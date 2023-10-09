@@ -1,14 +1,8 @@
 <?php
 
 $finder = (new PhpCsFixer\Finder())
-    ->in(__DIR__)
-    ->exclude('var')
-    ->exclude('config')
-    ->exclude('bin')
-    ->exclude('migrations')
-    ->exclude('public')
-    ->exclude('templates')
-    ->exclude('translations')
+    ->in(__DIR__ . '/src')
+    ->in(__DIR__ . '/tests')
 ;
 
 return (new PhpCsFixer\Config())
