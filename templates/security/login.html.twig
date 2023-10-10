@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion | {{ parent() }}{% endblock %}
+
+{% block body %}
+<section class="d-flex justify-content-center align-items-center vh-100">
+    <div class="col-12 col-md-8 col-xl-6 col-xxl-4">
+        <header class="mb-3">
+            <h1 class="text-uppercase fw-bold h3">Connexion</h1>
+            {% if error %}
+                {{ component('AlertComponent', {
+                    'color': 'danger',
+                    'message': error.messageKey|trans(error.messageData, 'security')
+                }) }}
+            {% endif %}
+        </header>
+
+        <form method="POST" class="card-auth">
+            <div class="mb-3">
+                <label class="form-label text-uppercase" for="inputUsername">Pseudo</label>
+                <input 
+                    type="text" 
+                    value="{{ last_username }}" 
+                    name="username" 
+                    id="inputUsername" 
+                    class="form-control" 
+                    placeholder=""
+                    autocomplete="username" required autofocus>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label text-uppercase" for="inputPassword">Mot de passe</label>
+                <input 
+                    type="password" 
+                    name="password" 
+                    id="inputPassword" 
+                    class="form-control" 
+                    placeholder=""
+                    autocomplete="current-password" required>
+            </div>
+
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" name="_remember_me" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">Se souvenir de moi</label>
+            </div>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            {{ component('ButtonComponent', {
+                'label': 'Connexion',
+                'type': 'submit',
+            }) }}
+        </form>
+    </div>
+</section>
+{% endblock %}
