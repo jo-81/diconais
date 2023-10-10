@@ -21,28 +21,28 @@ class KanjiVocabularyRepository extends ServiceEntityRepository
         parent::__construct($registry, KanjiVocabulary::class);
     }
 
-//    /**
-//     * @return KanjiVocabulary[] Returns an array of KanjiVocabulary objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('k')
-//            ->andWhere('k.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('k.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    //    /**
+    //     * @return KanjiVocabulary[] Returns an array of KanjiVocabulary objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('k')
+    //            ->andWhere('k.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('k.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
-//    public function findOneBySomeField($value): ?KanjiVocabulary
-//    {
-//        return $this->createQueryBuilder('k')
-//            ->andWhere('k.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?KanjiVocabulary
+    //    {
+    //        return $this->createQueryBuilder('k')
+    //            ->andWhere('k.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }
