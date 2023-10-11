@@ -1,6 +1,12 @@
 App\Entity\Admin:
-  admin:
+  admin_1:
     username: "admin"
     password: \$2y\$10\$1IXlDvl45Lwsx5WsHUZaKub8RCyasmPH54HCULLR5l36wEZ5dy4W6
     roles: "[ROLE_ADMIN]"
     email: "admin@domaine.fr"
+
+  admin_2:
+    username: "admin_2"
+    password: \$2y\$10\$1IXlDvl45Lwsx5WsHUZaKub8RCyasmPH54HCULLR5l36wEZ5dy4W6
+    roles: "[ROLE_ADMIN]"
+    email: "admin_2@domaine.fr"

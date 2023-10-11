@@ -1,0 +1,9 @@
+<div{{ attributes.defaults({ class: 'mb-3' }) }}>
+    <label class="form-label text-uppercase" for="{{ id }}">{{ label }}</label>
+    <input 
+        type="{{ type }}"  
+        name="{{ name }}" 
+        id="{{ id }}" 
+        class="form-control"
+        {{ attrs|join(' ') }}>
+</div>

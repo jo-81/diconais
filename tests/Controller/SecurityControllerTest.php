@@ -2,13 +2,14 @@
 
 namespace App\Tests\Controller;
 
-use App\Repository\UserRepository;
+use App\Tests\Traits\LoginTrait;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class SecurityControllerTest extends WebTestCase
 {
     use ReloadDatabaseTrait;
+    use LoginTrait;
 
     /**
      * testExistRouteLogin
@@ -57,9 +58,7 @@ class SecurityControllerTest extends WebTestCase
     public function testLoginWhenUserAlreadyConnected(): void
     {
         $client = static::createClient();
-        $userRepository = static::getContainer()->get(UserRepository::class);
-        $testUser = $userRepository->findOneByUsername('admin'); /* @phpstan-ignore-line */
-        $client->loginUser($testUser);
+        $this->login($client, 'admin');
 
         $client->request('GET', '/connexion');
         $this->assertResponseRedirects('/');

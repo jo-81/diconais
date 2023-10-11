@@ -4,8 +4,10 @@ namespace App\Entity;
 
 use App\Repository\ForgetPasswordRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\String\ByteString;
 
 #[ORM\Entity(repositoryClass: ForgetPasswordRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class ForgetPassword
 {
     #[ORM\Id]
@@ -77,5 +79,14 @@ class ForgetPassword
         $this->limitedAt = $limitedAt;
 
         return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function persist(): void
+    {
+        $date = new \DateTimeImmutable();
+        $this->createdAt = $date;
+        $this->limitedAt = $date->add(new \DateInterval('P1D'));
+        $this->token = ByteString::fromRandom(24);
     }
 }
