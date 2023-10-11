@@ -1,4 +1,12 @@
 <div{{ attributes }}>
     <div 
-        class="alert alert-{{ color }}">{{ message }}</div>
+        class="alert alert-{{ color }} {% if dismiss %}alert-dismissible fade show{% endif %}" 
+        {% if dismiss %}role="alert"{% endif %}
+    >
+        {{ message }}
+        
+        {% if dismiss %} 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+        {% endif %}
+    </div>
 </div>
