@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping\InheritanceType;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\DiscriminatorMap;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -40,6 +41,12 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     protected ?string $password = null;
+
+    #[Assert\Regex(
+        pattern: '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{10,}$/',
+        message: "Votre mot de passe n'est pas au bon format"
+    )]
+    protected ?string $plainPassword = null;
 
     #[ORM\Column(length: 255, unique: true)]
     protected ?string $email = null;
@@ -122,7 +129,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        $this->plainPassword = null;
     }
 
     public function getEmail(): ?string
@@ -157,6 +164,18 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAvatar(?Image $avatar): static
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(?string $plainPassword): static
+    {
+        $this->plainPassword = $plainPassword;
 
         return $this;
     }

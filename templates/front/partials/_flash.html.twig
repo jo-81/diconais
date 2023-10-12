@@ -1,0 +1,13 @@
+{% if dismiss is not defined %}
+    {% set dismiss = false %}
+{% endif %}
+
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        {{ component('AlertComponent', {
+            'color': label,
+            'message': message,
+            'dismiss': dismiss,
+        }) }}
+    {% endfor %}
+{% endfor %}
