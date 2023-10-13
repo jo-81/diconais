@@ -8,11 +8,11 @@
 
 <nav class="mt-5">
     <div class="list-group gap-2">
-        <a class="nav-link-profil list-group-item rounded-3 border-0 {% if current_page is defined and current_page == 'profile' %}active{% endif %}" href="{{ path('user.profil') }}">
+        <a class="nav-link-profil list-group-item rounded-3 border-0 {% if current_page is defined and current_page == 'profile' %}active{% endif %}" href="{{ path('account.profil') }}">
             <i class="fa-solid fa-gear"></i> <span class="ms-2">Mon compte</span>
         </a>
 
-        <a class="nav-link-profil list-group-item rounded-3 border-0 {% if current_page is defined and current_page == 'edit-password' %}active{% endif %}" href="{{ path('edit.password.profil') }}">
+        <a class="nav-link-profil list-group-item rounded-3 border-0 {% if current_page is defined and current_page == 'edit-password' %}active{% endif %}" href="{{ path('password.profil') }}">
             <i class="fa-solid fa-lock"></i> <span class="ms-2">Mot de passe</span>
         </a>
 

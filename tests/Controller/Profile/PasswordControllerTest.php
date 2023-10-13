@@ -5,17 +5,17 @@ namespace App\Tests\Controller\Profile;
 use App\Tests\Traits\LoginTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class ProfilControllerTest extends WebTestCase
+class PasswordControllerTest extends WebTestCase
 {
     use LoginTrait;
 
     /**
      * @dataProvider getRoutesProfile
      */
-    public function testAccessPageWhenUserNotLogged(string $path): void
+    public function testAccessPageWhenUserNotLogged(string $method): void
     {
         $client = static::createClient();
-        $client->request('GET', $path);
+        $client->request($method, '/profil/mot-de-passe');
 
         $this->assertResponseRedirects('/connexion');
     }
@@ -23,12 +23,12 @@ class ProfilControllerTest extends WebTestCase
     /**
      * @dataProvider getRoutesProfile
      */
-    public function testAccessPageWhenUserLogged(string $path): void
+    public function testAccessPageWhenUserLogged(string $method): void
     {
         $client = static::createClient();
         $this->login($client, 'admin');
 
-        $client->request('GET', $path);
+        $client->request($method, '/profil/mot-de-passe');
         $this->assertResponseIsSuccessful();
     }
 
@@ -40,8 +40,7 @@ class ProfilControllerTest extends WebTestCase
     public function getRoutesProfile(): array
     {
         return [
-            ['/profil'],
-            ['/profil/edit-password'],
+            ['GET'],
         ];
     }
 }
