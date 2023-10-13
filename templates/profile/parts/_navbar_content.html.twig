@@ -1,0 +1,23 @@
+<header class="text-center">
+    {% if app.user.avatar is null %}
+        <img class="img-fluid border rounded-circle p-2" src="{{ asset('images/user/avatar.png') }}" alt="">
+    {% endif %}
+
+    <p class="fs-4 mb-0 fw-bold">{{ app.user.username|capitalize }}</p>
+</header>
+
+<nav class="mt-5">
+    <div class="list-group gap-2">
+        <a class="nav-link-profil list-group-item rounded-3 border-0 {% if current_page is defined and current_page == 'profile' %}active{% endif %}" href="{{ path('user.profil') }}">
+            <i class="fa-solid fa-gear"></i> <span class="ms-2">Mon compte</span>
+        </a>
+
+        <a class="nav-link-profil list-group-item rounded-3 border-0 {% if current_page is defined and current_page == 'edit-password' %}active{% endif %}" href="{{ path('edit.password.profil') }}">
+            <i class="fa-solid fa-lock"></i> <span class="ms-2">Mot de passe</span>
+        </a>
+
+        <a class="nav-link-profil list-group-item rounded-3 border-0" href="{{ path('app_logout') }}">
+            <i class="fa-solid fa-right-from-bracket"></i> <span class="ms-2">Déconnexion</span>
+        </a>
+    </div>
+</nav>

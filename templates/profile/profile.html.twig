@@ -1,0 +1,28 @@
+{% extends 'profile/base.html.twig' %}
+
+{% block body %}
+    <section class="col-12 col-lg-8 col-xxl-9">
+
+        {% include "profile/parts/_bar.html.twig" %}
+
+        <div class="container mt-lg- mt-xxl-5">
+            <header class="mb-3 mb-lg-4">
+                <h1 class="h3 fw-bold text-uppercase mb-0">Mon compte</h1>
+            </header>
+
+            <div>
+                {{ form_start(form) }}
+                    <div class="row g-3 mb-3">
+                        {{ form_row(form.username) }}
+                        {{ form_row(form.email) }}
+                    </div>
+
+                    {{ component('ButtonComponent', {
+                        'label': 'modifier',
+                        'type': 'submit',
+                    }) }}
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </section>
+{% endblock %}
