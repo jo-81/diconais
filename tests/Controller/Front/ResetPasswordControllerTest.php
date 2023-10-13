@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Controller;
+namespace App\Tests\Controller\Front;
 
 use App\Entity\ForgetPassword;
 use App\Repository\ForgetPasswordRepository;

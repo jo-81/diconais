@@ -2,3 +2,13 @@
 @import "~bootstrap/scss/bootstrap";
 
 @import "./components/card";
+
+/* PROFILE */
+.nav-link-profil {
+
+    transition: background-color 0.3s;
+
+    &:hover, &.active {
+        background-color: $primary;
+    }
+}

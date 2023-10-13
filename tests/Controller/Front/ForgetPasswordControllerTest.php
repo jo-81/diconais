@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Controller;
+namespace App\Tests\Controller\Front;
 
 use App\Tests\Traits\LoginTrait;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;

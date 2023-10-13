@@ -37,6 +37,7 @@ class ResetPasswordController extends AbstractController
                 $user = $form->getData();
                 $this->resetPasswordService->editPassword($user);
                 $this->resetPasswordService->remove($forgetPassword);
+                $this->addFlash('success', 'Votre mot de passe a bien été modifié');
 
                 return $this->redirectToRoute('app_login');
             } catch (ORMException $e) {
