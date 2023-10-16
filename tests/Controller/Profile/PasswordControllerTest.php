@@ -40,7 +40,7 @@ class PasswordControllerTest extends WebTestCase
     public function getRoutesProfile(): array
     {
         return [
-            ['GET'],
+            ['GET', 'POST'],
         ];
     }
 }

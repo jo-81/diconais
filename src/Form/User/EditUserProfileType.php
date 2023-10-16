@@ -39,7 +39,7 @@ class EditUserProfileType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
-            'csrf_token_id'   => 'edit_user',
+            'csrf_token_id' => 'edit_user',
             'csrf_protection' => true,
         ]);
     }

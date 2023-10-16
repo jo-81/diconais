@@ -6,11 +6,11 @@ use App\Entity\User;
 use App\Form\User\EditUserProfileType;
 use App\Service\Profil\AccountService;
 use Doctrine\ORM\Exception\ORMException;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[IsGranted('IS_AUTHENTICATED')]
@@ -38,6 +38,7 @@ class AccountController extends AbstractController
 
             try {
                 $this->accountService->edit($user);
+
                 return $this->redirectToRoute('account.profil');
             } catch (ORMException $e) {
                 $this->addFlash('danger', 'Une erreur est survenue');
