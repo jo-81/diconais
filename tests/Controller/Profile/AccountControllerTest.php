@@ -40,7 +40,7 @@ class AccountControllerTest extends WebTestCase
     public function getRoutesProfile(): array
     {
         return [
-            ['GET'],
+            ['GET', 'POST'],
         ];
     }
 }

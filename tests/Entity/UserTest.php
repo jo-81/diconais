@@ -61,4 +61,56 @@ abstract class UserTest extends KernelTestCase
 
         $this->assertHasErrors($user, 0);
     }
+
+    /**
+     * testBadLenghtUsername.
+     */
+    public function testBadLenghtUsername(): void
+    {
+        $user = $this->getUser();
+
+        $user->setUsername('asd7');
+        $this->assertHasErrors($user, 1);
+    }
+
+    /**
+     * testGoodLenghtUsername.
+     */
+    public function testGoodLenghtUsername(): void
+    {
+        $user = $this->getUser();
+
+        $user->setUsername('asd78');
+        $this->assertHasErrors($user, 0);
+    }
+
+    /**
+     * testUniqueUsername.
+     */
+    public function testUniqueUsername(): void
+    {
+        $user = $this->getUser();
+
+        $user->setUsername('admin_2');
+        $this->assertHasErrors($user, 1);
+    }
+
+    /**
+     * testBadEmail.
+     */
+    public function testBadEmail(): void
+    {
+        $user = $this->getUser();
+
+        $user->setEmail('asd7');
+        $this->assertHasErrors($user, 1);
+    }
+
+    public function testUniqueEmail(): void
+    {
+        $user = $this->getUser();
+
+        $user->setEmail('admin_2@domaine.fr');
+        $this->assertHasErrors($user, 1);
+    }
 }

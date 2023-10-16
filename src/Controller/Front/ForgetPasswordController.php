@@ -26,7 +26,6 @@ class ForgetPasswordController extends AbstractController
         if ('POST' == $request->getMethod()) {
             /** @var string|null */
             $csrf = $request->request->get('_token');
-
             if (!$this->isCsrfTokenValid('forget-password', $csrf)) {
                 throw new BadRequestHttpException();
             }
