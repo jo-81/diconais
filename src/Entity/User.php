@@ -6,10 +6,13 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
 use Doctrine\ORM\Mapping\InheritanceType;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\DiscriminatorMap;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -22,6 +25,9 @@ use Symfony\Component\Validator\Constraints as Assert;
     typeProperty: 'discr',
     mapping: ['user' => 'User', 'admin' => 'Admin'])
 ]
+#[UniqueEntity('username')]
+#[UniqueEntity('email')]
+#[ORM\HasLifecycleCallbacks]
 abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -30,6 +36,10 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     protected ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\Length(
+        min: 5,
+        minMessage: 'Ce champ doit avoir un minimum de {{ limit }} caractères',
+    )]
     protected ?string $username = null;
 
     /** @var array<string> */
@@ -49,6 +59,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     protected ?string $plainPassword = null;
 
     #[ORM\Column(length: 255, unique: true)]
+    #[Assert\Email]
     protected ?string $email = null;
 
     #[ORM\Column(nullable: true)]
@@ -178,5 +189,11 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->plainPassword = $plainPassword;
 
         return $this;
+    }
+
+    #[ORM\PreUpdate]
+    public function editUser(): void
+    {
+        $this->editedAt = new \DateTimeImmutable();
     }
 }

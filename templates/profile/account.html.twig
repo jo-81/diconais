@@ -10,6 +10,8 @@
                 <h1 class="h3 fw-bold text-uppercase mb-0">Mon compte</h1>
             </header>
 
+            {% include "front/partials/_flash.html.twig" with {dismiss: true} %}
+
             <div>
                 {{ form_start(form) }}
                     <div class="row g-3 mb-3">

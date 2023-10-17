@@ -36,7 +36,7 @@ class SecurityControllerTest extends WebTestCase
         $form['password'] = '0';
         $client->submit($form);
 
-        $this->assertResponseRedirects('/profil');
+        $this->assertResponseRedirects('/profil/mon-compte');
     }
 
     /**

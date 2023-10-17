@@ -1,18 +1,26 @@
 <header class="text-center">
-    {% if app.user.avatar is null %}
-        <img class="img-fluid border rounded-circle p-2" src="{{ asset('images/user/avatar.png') }}" alt="">
-    {% endif %}
+    <div class="position-relative">
+        <turbo-frame id="edit-avatar">
+            {% if app.user.avatar is null %}
+                <img class="img-fluid border rounded-circle p-2" src="{{ asset('images/users/avatar.png') }}" alt="">
+                {% else %} <img class="img-fluid rounded-circle p-2" src="{{ asset('images/users/'~ app.user.avatar.path) }}" alt="">
+            {% endif %}
 
-    <p class="fs-4 mb-0 fw-bold">{{ app.user.username|capitalize }}</p>
+            <a  href="{{ path('avatar.profil') }}" 
+                class="position-absolute px-2 py-1 bg-white bottom-0 rounded-pill border" style="right: 8rem">
+                <i class="fa-solid fa-arrows-rotate"></i>
+            </a>
+        </turbo-frame>
+    </div>
 </header>
 
 <nav class="mt-5">
     <div class="list-group gap-2">
-        <a class="nav-link-profil list-group-item rounded-3 border-0 {% if current_page is defined and current_page == 'profile' %}active{% endif %}" href="{{ path('user.profil') }}">
+        <a class="nav-link-profil list-group-item rounded-3 border-0 {% if current_page is defined and current_page == 'profile' %}active{% endif %}" href="{{ path('account.profil') }}">
             <i class="fa-solid fa-gear"></i> <span class="ms-2">Mon compte</span>
         </a>
 
-        <a class="nav-link-profil list-group-item rounded-3 border-0 {% if current_page is defined and current_page == 'edit-password' %}active{% endif %}" href="{{ path('edit.password.profil') }}">
+        <a class="nav-link-profil list-group-item rounded-3 border-0 {% if current_page is defined and current_page == 'edit-password' %}active{% endif %}" href="{{ path('password.profil') }}">
             <i class="fa-solid fa-lock"></i> <span class="ms-2">Mot de passe</span>
         </a>
 
