@@ -2,11 +2,12 @@
 
 namespace App\EventListener;
 
-use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
-use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
+use Doctrine\ORM\Event\PostUpdateEventArgs;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 
 #[AsDoctrineListener(event: Events::preUpdate)]
 class UserEventListener

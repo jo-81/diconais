@@ -38,3 +38,7 @@ yarn-error.log
 ###> phpunit coverage
 /coverage
 ###< phpunit coverage
+
+###> public
+/public/images
+###< public

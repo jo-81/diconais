@@ -38,5 +38,3 @@ class PasswordController extends AbstractController
         ]);
     }
 }
-
-// Azerty2000

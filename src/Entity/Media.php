@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\MediaRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\DiscriminatorColumn;
+use App\Repository\MediaRepository;
 use Doctrine\ORM\Mapping\InheritanceType;
+use Doctrine\ORM\Mapping\DiscriminatorColumn;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Serializer\Annotation\DiscriminatorMap;
 
 #[ORM\Entity(repositoryClass: MediaRepository::class)]
@@ -18,6 +20,7 @@ use Symfony\Component\Serializer\Annotation\DiscriminatorMap;
     typeProperty: 'discr',
     mapping: ['media' => 'Media', 'image' => 'Image', 'file' => 'File'])
 ]
+#[Vich\Uploadable]
 abstract class Media
 {
     #[ORM\Id]
@@ -30,6 +33,12 @@ abstract class Media
 
     #[ORM\Column(length: 255)]
     protected ?string $extension = null;
+
+    #[ORM\Column(nullable: true)]
+    protected ?\DateTimeImmutable $updatedAt = null;
+
+    #[Vich\UploadableField(mapping: 'users', fileNameProperty: 'path', mimeType: 'extension')]
+    private ?File $imageFile = null;
 
     public function getId(): ?int
     {
@@ -58,5 +67,39 @@ abstract class Media
         $this->extension = $extension;
 
         return $this;
+    }
+
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function __serialize()
+    {
+        return [
+            $this->id,
+            $this->path,
+        ];
+    }
+
+    /**
+     * __unserialize.
+     *
+     * @param array<mixed> $serialized
+     *
+     * @return void
+     */
+    public function __unserialize(array $serialized)
+    {
+        list($this->id, $this->path) = unserialize(serialize($serialized)); /* @phpstan-ignore-line */
     }
 }

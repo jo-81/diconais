@@ -1,0 +1,13 @@
+<turbo-frame id="edit-avatar">
+    <div class="text-start">
+        {{ form_start(form) }}
+            <div class="row g-3">
+                {{ form_row(form.imageFile) }}
+            </div>
+            {{ component('ButtonComponent', {
+                'label': 'modifier',
+                'type': 'submit',
+            }) }}
+        {{ form_end(form) }}
+    </div>
+</turbo-frame>
