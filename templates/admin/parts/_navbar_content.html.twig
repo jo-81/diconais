@@ -1,0 +1,13 @@
+<nav class="mt-5 text-white">
+
+    <div class="mb-4">
+        <h2 class="text-uppercase fw-bold h4">Diconais</h2>
+        <a class="link-light" href="{{ path('homepage') }}"><i class="fa-solid fa-rotate-left"></i> Retour sur site</a>
+    </div>
+
+    <div class="list-group gap-2">
+        <a class="nav-link-profil list-group-item rounded-3 border-0 {% if current_page is defined and current_page == 'category' %}bg-white link-white{% endif %}" href="{{ path('admin.category.list') }}">
+            <i class="fa-solid fa-tag"></i> <span class="ms-2">Catégories</span>
+        </a>
+    </div>
+</nav>

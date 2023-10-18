@@ -1,0 +1,17 @@
+/* COULEURS */
+$primary: #283F8F;
+$secondary: #62277D;
+
+/* TYPOGRAPHIE */
+$body-color: #4f4f4f;
+$line-height-base: 1.6;
+$link-decoration: none;
+$font-family-base: 'Rubik', sans-serif;
+
+/* BUTTON */    
+$btn-font-size: 0.825rem;
+$btn-font-weight: bold;
+$btn-padding-y: 0.35rem;
+$btn-padding-x: 1.25rem;
+
+@import "~bootstrap/scss/bootstrap";

@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use App\Repository\MediaRepository;
-use Doctrine\ORM\Mapping\InheritanceType;
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
+use Doctrine\ORM\Mapping\InheritanceType;
 use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Serializer\Annotation\DiscriminatorMap;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: MediaRepository::class)]
 #[InheritanceType('JOINED')]
@@ -69,7 +69,7 @@ abstract class Media
         return $this;
     }
 
-    public function setImageFile(?File $imageFile = null): void
+    public function setImageFile(File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
 

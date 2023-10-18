@@ -4,10 +4,9 @@ namespace App\Form\User;
 
 use App\Entity\Media;
 use Symfony\Component\Form\AbstractType;
-use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class AvatarType extends AbstractType
 {
@@ -15,7 +14,7 @@ class AvatarType extends AbstractType
     {
         $builder
             ->add('imageFile', VichFileType::class, [
-                'label' => false
+                'label' => false,
             ])
         ;
     }

@@ -9,7 +9,6 @@ class ImageService
 {
     public function __construct(private EntityManagerInterface $em)
     {
-        
     }
 
     public function removeEntity(Image $image): void
