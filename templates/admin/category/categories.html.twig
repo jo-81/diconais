@@ -22,14 +22,14 @@
                     <div class="col-12 col-sm">Action</div>
                 </div>
 
-                {% for categorie in categories %}
+                {% for category in categories %}
                     <div class="d-flex flex-wrap bg-light px-3 py-2 rounded-3 align-items-center mb-2">
-                        <div class="col-12 col-sm">{{ categorie.name }}</div>
+                        <div class="col-12 col-sm">{{ category.name }}</div>
                         <div class="col-12 col-sm m-sm-0 mb-3 mt-2">
-                            <span class="py-1 px-3 rounded-5" style="background-color: {{ categorie.color }}"></span>
+                            <span class="py-1 px-3 rounded-5" style="background-color: {{ category.color }}"></span>
                         </div>
                         <div class="col-12 col-sm">
-                            <a class="btn btn-sm btn-secondary text-primary text-white text-uppercase" href="#">consulter</a>
+                            <a class="btn btn-sm btn-secondary text-primary text-white text-uppercase" href="{{ path('admin.category.single', {id: category.id}) }}">consulter</a>
                         </div>
                     </div>
                 {% endfor %}
@@ -37,7 +37,7 @@
                 <div class="mt-4">
                     {{ knp_pagination_render(categories) }}
                 </div>
-        </section>
+            </section>
 
     </section>
 {% endblock %}

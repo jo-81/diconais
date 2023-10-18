@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Category;
 use App\Repository\CategoryRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,6 +30,15 @@ class CategoryController extends AbstractController
         return $this->render('admin/category/categories.html.twig', [
             'current_page' => 'category',
             'categories' => $categories,
+        ]);
+    }
+
+    #[Route('/categories/{id}', name: 'admin.category.single')]
+    public function category(Category $category): Response
+    {
+        return $this->render('admin/category/category.html.twig', [
+            'current_page' => 'category',
+            'category' => $category,
         ]);
     }
 }

@@ -2,10 +2,13 @@
 
 namespace App\Tests\Controller\Admin;
 
+use App\Tests\Traits\LoginTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class CategoryControllerTest extends WebTestCase
 {
+    use LoginTrait;
+
     /**
      * testRouteAccessWhenUserNotLogged.
      *
@@ -20,6 +23,20 @@ class CategoryControllerTest extends WebTestCase
     }
 
     /**
+     * testRouteAccessWhenUserLogged.
+     *
+     * @dataProvider getAdminCategoryRoutes
+     */
+    public function testRouteAccessWhenUserLogged(string $path): void
+    {
+        $client = static::createClient();
+        $this->login($client, 'admin');
+        $client->request('GET', $path);
+
+        $this->assertResponseIsSuccessful();
+    }
+
+    /**
      * getAdminCategoryRoutes.
      *
      * @return array<array<string>>
@@ -28,6 +45,7 @@ class CategoryControllerTest extends WebTestCase
     {
         return [
             ['/admin/categories'],
+            ['/admin/categories/1'],
         ];
     }
 }
