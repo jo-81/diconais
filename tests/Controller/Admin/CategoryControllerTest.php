@@ -2,6 +2,7 @@
 
 namespace App\Tests\Controller\Admin;
 
+use App\Repository\CategoryRepository;
 use App\Tests\Traits\LoginTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -36,6 +37,32 @@ class CategoryControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
     }
 
+    public function testAddCategoryWhenUserNotLogged(): void
+    {
+        $client = static::createClient();
+        $client->request('POST', '/admin/categories/add');
+
+        $this->assertResponseRedirects('/connexion');
+    }
+
+    public function testAddCategoryWhenUserLogged(): void
+    {
+        $client = static::createClient();
+        $this->login($client, 'admin');
+        $crawler = $client->request('GET', '/admin/categories/add');
+
+        $form = $crawler->selectButton('ajouter')->form();
+        $form['category[name]'] = 'une catégorie au hasard';
+        $form['category[color]'] = '#4f4f4f';
+
+        $client->submit($form);
+
+        /** @var CategoryRepository */
+        $repository = static::getContainer()->get(CategoryRepository::class);
+
+        $this->assertCount(21, $repository->findAll());
+    }
+
     /**
      * getAdminCategoryRoutes.
      *
@@ -46,6 +73,7 @@ class CategoryControllerTest extends WebTestCase
         return [
             ['/admin/categories'],
             ['/admin/categories/1'],
+            ['/admin/categories/add'],
         ];
     }
 }

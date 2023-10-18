@@ -1,0 +1,24 @@
+<div id="list-categories">
+                    <p>Total : <span class="text-small">{{ categories.getTotalItemCount }}</span></p>
+                    <div class="d-flex flex-wrap p-3 rounded-3 align-items-center bg-primary bg-opacity-25 fw-bold mb-3">
+                        <div class="col-12 col-sm">Nom</div>
+                        <div class="col-12 col-sm">Couleur</div>
+                        <div class="col-12 col-sm">Action</div>
+                    </div>
+
+                    {% for category in categories %}
+                        <div class="d-flex flex-wrap bg-light px-3 py-2 rounded-3 align-items-center mb-2">
+                            <div class="col-12 col-sm">{{ category.name }}</div>
+                            <div class="col-12 col-sm m-sm-0 mb-3 mt-2">
+                                <span class="py-1 px-3 rounded-5" style="background-color: {{ category.color }}"></span>
+                            </div>
+                            <div class="col-12 col-sm">
+                                <a class="btn btn-sm btn-secondary text-primary text-white text-uppercase" href="{{ path('admin.category.single', {id: category.id}) }}">consulter</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <div class="mt-4">
+                        {{ knp_pagination_render(categories) }}
+                    </div>
+                </div>
