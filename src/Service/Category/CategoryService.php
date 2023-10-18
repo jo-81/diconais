@@ -20,4 +20,10 @@ class CategoryService
         $this->em->persist($category);
         $this->em->flush();
     }
+
+    public function remove(Category $category): void
+    {
+        $this->em->remove($category);
+        $this->em->flush();
+    }
 }

@@ -110,6 +110,27 @@ class CategoryController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}/remove', name: 'admin.category.remove', methods: ['GET', 'POST'])]
+    public function remove(Category $category, Request $request): Response
+    {
+        if ('POST' == $request->getMethod()) {
+            $this->categoryService->remove($category);
+
+            if (TurboBundle::STREAM_FORMAT === $request->getPreferredFormat()) {
+                $request->setRequestFormat(TurboBundle::STREAM_FORMAT);
+
+                return $this->render('admin/category/remove/_template-remove.html.twig', [
+                    'categories' => $this->getPaginationCategories($request),
+                ]);
+            }
+        }
+
+        return $this->render('admin/category/remove/remove.html.twig', [
+            'current_page' => 'category',
+            'category' => $category,
+        ]);
+    }
+
     private function getPaginationCategories(Request $request): PaginationInterface /* @phpstan-ignore-line */
     {
         return $this->paginator->paginate(
