@@ -1,6 +1,6 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Ajouter une catégorie | {{ parent() }}{% endblock %}
+{% block title %}Editer une catégorie | {{ parent() }}{% endblock %}
 
 {% block body %}
     <section class="col-12 col-lg-8 col-xxl-9">
@@ -9,13 +9,13 @@
 
             <header class="mb-3 mb-lg-4 bg-primary bg-opacity-50">
                 <div class="container py-4 py-lg-5">
-                    <h1 class="h3 text-uppercase fw-bold mb-0">Ajouter une catégorie</h1>
+                    <h1 class="h3 text-uppercase fw-bold mb-0">Editer une catégorie</h1>
                 </div>
             </header>
 
             <section class="container">
-                <turbo-frame id="admin-category-add">
-                    {% include 'admin/category/parts/_form-category.html.twig' with {'action': 'ajouter'} %}
+                <turbo-frame id="admin-category-edit">
+                    {% include 'admin/category/parts/_form-category.html.twig' with {'action': 'Modifier'} %}
                 </turbo-frame>
             </section>
 

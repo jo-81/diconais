@@ -50,7 +50,6 @@ class CategoryController extends AbstractController
     public function add(Request $request): Response
     {
         $category = new Category();
-
         $form = $this->createForm(CategoryType::class, $category, [
             'action' => $this->generateUrl('admin.category.add'),
         ]);
@@ -76,6 +75,37 @@ class CategoryController extends AbstractController
 
         return $this->render('admin/category/add.html.twig', [
             'current_page' => 'category',
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}/edit', name: 'admin.category.edit', methods: ['GET', 'POST'])]
+    public function edit(Category $category, Request $request): Response
+    {
+        $form = $this->createForm(CategoryType::class, $category, [
+            'action' => $this->generateUrl('admin.category.edit', ['id' => $category->getId()]),
+        ]);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var Category */
+            $category = $form->getData();
+            $this->categoryService->persist($category);
+
+            if (TurboBundle::STREAM_FORMAT === $request->getPreferredFormat()) {
+                $request->setRequestFormat(TurboBundle::STREAM_FORMAT);
+
+                return $this->render('admin/category/edit/_template-edit.html.twig', [
+                    'category' => $category,
+                ]);
+            }
+
+            return $this->redirectToRoute('admin.category.single', ['id' => $category->getId()]);
+        }
+
+        return $this->render('admin/category/edit/edit.html.twig', [
+            'current_page' => 'category',
+            'category' => $category,
             'form' => $form,
         ]);
     }

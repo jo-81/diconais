@@ -1,6 +1,6 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}{{ category.name }} | {{ parent() }}{% endblock %}
+{% block title %}Catégorie | {{ parent() }}{% endblock %}
 
 {% block body %}
     <section class="col-12 col-lg-8 col-xxl-9">
@@ -9,15 +9,12 @@
 
             <header class="mb-3 mb-lg-4 bg-primary bg-opacity-50">
                 <div class="container py-4 py-lg-5">
-                    <h1 class="h3 text-uppercase fw-bold mb-0">{{ category.name }}</h1>
+                    <h1 id="title-page-edit-category" class="h3 text-uppercase fw-bold mb-0">{{ category.name }}</h1>
                 </div>
             </header>
 
             <section class="container border p-3 rounded-3 mb-4">
-                <h2 class="h5 mb-3 fw-bold">Informations sur la catégorie</h2>
-                <p>Nom de la catégorie : <span class="fw-bold">{{ category.name }}</span></p>
-                <p>Couleur de la catégorie : <span class="px-3 py-1 rounded-3" style="background-color: {{ category.color }}; margin-left: 5px"></span></p>
-                <p class="mb-0"><a href="#" class="btn btn-secondary text-uppercase fw-bold">Modifier</a></p>
+                {% include "admin/category/edit/_information-category.html.twig" %}
             </section>
 
             <section class="container border p-3 rounded-3">

@@ -1,0 +1,11 @@
+<turbo-frame id="admin-category-edit">
+    <h2 class="h5 mb-3 fw-bold">Informations sur la catégorie</h2>
+    <p>Nom de la catégorie : <span class="fw-bold">{{ category.name }}</span></p>
+    <p>Couleur de la catégorie : 
+        <span   class="px-3 py-1 rounded-3" 
+                style="background-color: {{ category.color }}; margin-left: 5px"></span>
+    </p>
+    <p class="mb-0">
+        <a href="{{ path('admin.category.edit', {id: category.id}) }}" class="btn btn-secondary text-uppercase fw-bold">Modifier</a>
+    </p>
+</turbo-frame>

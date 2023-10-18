@@ -1,4 +1,4 @@
-<div id="form-category" class="p-3 bg-white rounded-3">
+<div id="form-category">
     {{ form_start(form) }}
         <div class="mb-3">
             {{ form_row(form.name) }}
@@ -6,6 +6,6 @@
         <div class="mb-3">
             {{ form_row(form.color) }}
         </div>
-        <button class="btn btn-secondary text-uppercase">ajouter</button>
+        <button class="btn btn-secondary text-uppercase">{{ action }}</button>
     {{ form_end(form) }}
 </div>

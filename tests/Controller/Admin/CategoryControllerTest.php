@@ -73,6 +73,7 @@ class CategoryControllerTest extends WebTestCase
         return [
             ['/admin/categories'],
             ['/admin/categories/1'],
+            ['/admin/categories/1/edit'],
             ['/admin/categories/add'],
         ];
     }
