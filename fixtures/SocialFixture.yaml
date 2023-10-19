@@ -2,29 +2,29 @@ App\Entity\Social:
   social_1:
     name: "Facebook"
     color: "#3b5998"
-    icon: '<i class="fa-brands fa-facebook fa-lg"></i>'
+    icon: 'fa-brands fa-facebook fa-lg'
 
   social_2:
     name: "Youtube"
     color: "#f00"
-    icon: '<i class="fa-brands fa-youtube fa-lg"></i>'
+    icon: 'fa-brands fa-youtube fa-lg'
 
   social_3:
     name: "Twitch"
     color: "#a970ff"
-    icon: '<i class="fa-brands fa-twitch fa-lg"></i>'
+    icon: 'fa-brands fa-twitch fa-lg'
 
   social_4:
     name: "Instagram"
     color: "#ffc400"
-    icon: '<i class="fa-brands fa-instagram fa-lg"></i>'
+    icon: 'fa-brands fa-instagram fa-lg'
 
   social_5:
     name: "Website"
     color: "#4f4f4f"
-    icon: '<i class="fa-solid fa-globe fa-lg"></i>'
+    icon: 'fa-solid fa-globe fa-lg'
 
   social_6:
     name: "X-Twitter"
     color: "#000"
-    icon: '<i class="fa-brands fa-x-twitter fa-lg"></i>'
+    icon: 'fa-brands fa-x-twitter fa-lg'

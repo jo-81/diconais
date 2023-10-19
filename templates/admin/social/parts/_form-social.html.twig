@@ -1,0 +1,22 @@
+<div id="form-social" class="card-form">
+    {{ form_start(form, {attr: {class: 'row'}}) }}
+
+    <div class="col-12 col-md">
+        {{ form_row(form.name) }}
+    </div>
+
+    <div class="col-12 col-md">
+        {{ form_row(form.icon) }}
+    </div>
+
+    <div class="col-12 col-md">
+        {{ form_row(form.color) }}
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary text-uppercase">ajouter</button>
+        <a class="btn btn-outline-primary text-uppercase" href="{{ path('admin.social.list') }}">annuler</a>
+    </div>
+
+    {{ form_end(form) }}
+</div>

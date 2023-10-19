@@ -1,0 +1,11 @@
+<turbo-stream action="replace" target="list-socials">
+    <template>
+        {% include 'admin/social/parts/_list.html.twig' %}
+    </template>
+</turbo-stream>
+
+<turbo-stream action="replace" target="form-social">
+    <template>
+        {% include 'admin/social/parts/_form-social.html.twig' with {'action': 'ajouter'} %}
+    </template>
+</turbo-stream>

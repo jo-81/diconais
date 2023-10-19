@@ -10,9 +10,11 @@
             <header class="mb-3 mb-lg-4 bg-primary bg-opacity-50">
                 <div class="container py-4 py-lg-5">
                     <h1 class="h3 text-uppercase fw-bold">Les réseaux sociaux </h1>
-                    <p class="mb-0">
-                        <a href="#" class="btn btn-primary text-uppercase">ajouter</a>
-                    </p>
+                    <turbo-frame id="admin-social-add">
+                        <p class="mb-0">
+                            <a href="{{ path('admin.social.add') }}" class="btn btn-primary text-uppercase">ajouter</a>
+                        </p>
+                    </turbo-frame>
                 </div>
             </header>
 
