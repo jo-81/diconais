@@ -1,0 +1,26 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Les réseaux sociaux | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <section class="col-12 col-lg-8 col-xxl-9">
+
+        {% include "admin/parts/_bar.html.twig" %}
+
+        <header class="mb-3 mb-lg-4 bg-primary bg-opacity-50">
+            <div class="container py-4 py-lg-5">
+                <h1 class="h3 text-uppercase fw-bold mb-0">{{ social.name }}</h1>
+            </div>
+        </header>
+
+        <section class="container border p-3 rounded-3 mb-4">
+            {% include "admin/social/parts/_information.html.twig" %}
+        </section>
+
+        <section class="container border p-3 rounded-3">
+            <h2 class="h5 mb-3 fw-bold">Ressources associés à ce réseau social</h2>
+            <p class="mb-0">Aucunes ressources n'est associé à ce réseau social.</p>
+        </section>
+
+    </section>
+{% endblock %}
