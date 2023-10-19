@@ -11,6 +11,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\UX\Turbo\TurboBundle;
 
@@ -39,6 +40,34 @@ class SocialController extends AbstractController
     public function show(Social $social): Response
     {
         return $this->render('admin/social/show.html.twig', [
+            'current_page' => 'social',
+            'social' => $social,
+        ]);
+    }
+
+    #[Route('/{id}/remove', name: 'admin.social.remove', methods: ['GET', 'POST'])]
+    public function remove(Social $social, Request $request): Response
+    {
+        if ('POST' == $request->getMethod()) {
+            /** @var string|null */
+            $csrf = $request->request->get('_token');
+            if (!$this->isCsrfTokenValid('admin-social-remove', $csrf)) {
+                throw new BadRequestHttpException("Le jeton CSRF n'est pas valide");
+            }
+
+            $this->socialService->remove($social);
+            if (TurboBundle::STREAM_FORMAT === $request->getPreferredFormat()) {
+                $request->setRequestFormat(TurboBundle::STREAM_FORMAT);
+
+                return $this->render('admin/social/parts/_template-remove-social.html.twig', [
+                    'socials' => $this->getPaginationSocials($request),
+                ]);
+            }
+
+            return $this->redirectToRoute('admin.social.list');
+        }
+
+        return $this->render('admin/social/remove.html.twig', [
             'current_page' => 'social',
             'social' => $social,
         ]);
