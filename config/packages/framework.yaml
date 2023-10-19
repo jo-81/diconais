@@ -19,6 +19,12 @@ framework:
     php_errors:
         log: true
 
+knp_paginator:
+    template:
+        pagination: '@KnpPaginator/Pagination/bootstrap_v5_pagination.html.twig'     
+        sortable: '@KnpPaginator/Pagination/sortable_link.html.twig'
+        filtration: '@KnpPaginator/Pagination/filtration.html.twig' 
+
 when@test:
     framework:
         test: true

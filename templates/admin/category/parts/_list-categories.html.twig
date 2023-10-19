@@ -1,0 +1,11 @@
+<turbo-stream action="replace" target="list-categories">
+    <template>
+        {% include 'admin/category/parts/_categories.html.twig' %}
+    </template>
+</turbo-stream>
+
+<turbo-stream action="replace" target="form-category">
+    <template>
+        {% include 'admin/category/parts/_form-category.html.twig' with {'action': 'ajouter'} %}
+    </template>
+</turbo-stream>

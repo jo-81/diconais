@@ -1,0 +1,26 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Les catégories | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <section class="col-12 col-lg-8 col-xxl-9">
+
+        {% include "admin/parts/_bar.html.twig" %}
+
+            <header class="mb-3 mb-lg-4 bg-primary bg-opacity-50">
+                <div class="container py-4 py-lg-5">
+                    <h1 class="h3 text-uppercase fw-bold">Catégories </h1>
+                    <p class="mb-0">
+                    <turbo-frame id="admin-category-add">
+                        <a href="{{ path('admin.category.add') }}" class="btn btn-primary text-uppercase">ajouter</a>
+                    </turbo-frame>
+                    </p>
+                </div>
+            </header>
+
+            <section class="container">
+                {% include 'admin/category/parts/_categories.html.twig' %}
+            </section>
+
+    </section>
+{% endblock %}

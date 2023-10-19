@@ -1,0 +1,11 @@
+<turbo-stream action="replace" target="title-page-edit-category">
+    <template>
+        <h1 id="title-page-edit-category" class="h3 text-uppercase fw-bold mb-0">{{ category.name }}</h1>
+    </template>
+</turbo-stream>
+
+<turbo-stream action="replace" target="admin-category-edit">
+    <template>
+        {% include "admin/category/edit/_information-category.html.twig" %}
+    </template>
+</turbo-stream>

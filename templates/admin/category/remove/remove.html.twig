@@ -1,0 +1,26 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Supprimer une catégorie | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <section class="col-12 col-lg-8 col-xxl-9">
+
+        {% include "admin/parts/_bar.html.twig" %}
+
+            <header class="mb-3 mb-lg-4 bg-primary bg-opacity-50">
+                <div class="container py-4 py-lg-5">
+                    <h1 class="h3 text-uppercase fw-bold mb-0">Supprimer une catégorie</h1>
+                </div>
+            </header>
+
+            <section class="container">
+                <turbo-frame id="admin-category-remove">
+                    <form class="d-flex align-items-center" action="{{ path('admin.category.remove', {'id': category.id}) }}" method="POST">
+                        <p class="mb-0 me-2">Voulez-vous supprimer cette catégorie ?</p>
+                        <button type="submit" class="btn btn-danger text-uppercase">oui</button>
+                    </form>
+                </turbo-frame>
+            </section>
+
+    </section>
+{% endblock %}
