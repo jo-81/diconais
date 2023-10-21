@@ -106,6 +106,35 @@ class SocialController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}/edit', name: 'admin.social.edit', methods: ['GET', 'POST'])]
+    public function edit(Social $social, Request $request): Response
+    {
+        $form = $this->createForm(SocialType::class, $social, [
+            'action' => $this->generateUrl('admin.social.edit', ['id' => $social->getId()]),
+        ]);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var Social */
+            $social = $form->getData();
+            $this->socialService->persist($social);
+
+            if (TurboBundle::STREAM_FORMAT === $request->getPreferredFormat()) {
+                $request->setRequestFormat(TurboBundle::STREAM_FORMAT);
+                return $this->render('admin/social/parts/_template-edit-social.html.twig', [
+                    'social' => $social,
+                ]);
+            }
+
+            return $this->redirectToRoute('admin.social.show');
+        }
+
+        return $this->render('admin/social/edit.html.twig', [
+            'current_page' => 'social',
+            'form' => $form,
+        ]);
+    }
+
     private function getPaginationSocials(Request $request): PaginationInterface /* @phpstan-ignore-line */
     {
         return $this->paginator->paginate(

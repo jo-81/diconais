@@ -47,6 +47,7 @@ class SocialControllerTest extends WebTestCase
             ['/admin/socials'],
             ['/admin/socials/1'],
             ['/admin/socials/1/remove'],
+            ['/admin/socials/1/edit'],
             ['/admin/socials/add'],
         ];
     }
