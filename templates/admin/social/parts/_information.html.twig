@@ -1,10 +1,12 @@
-<h2 class="h5 mb-3 fw-bold">Informations sur le réseau social</h2>
-<p>Nom du réseau social : <span class="fw-bold">{{ social.name }}</span></p>
-<p>Couleur du réseau social : 
-    <span   class="px-3 py-1 rounded-3" 
-            style="background-color: {{ social.color }}; margin-left: 5px"></span>
-</p>
-<p>Icon du réseau social : <i class="{{ social.icon }}"></i></p>
-<p class="mb-0">
-    <a href="#" class="btn btn-secondary text-uppercase fw-bold">Modifier</a>
-</p>
+<turbo-frame id="admin-social-edit">
+    <h2 class="h5 mb-3 fw-bold">Informations sur le réseau social</h2>
+    <p>Nom du réseau social : <span class="fw-bold">{{ social.name }}</span></p>
+    <p>Couleur du réseau social : 
+        <span   class="px-3 py-1 rounded-3" 
+                style="background-color: {{ social.color }}; margin-left: 5px"></span>
+    </p>
+    <p>Icon du réseau social : <i class="{{ social.icon }}"></i></p>
+    <p class="mb-0">
+        <a href="{{ path('admin.social.edit', {id: social.id}) }}" class="btn btn-secondary text-uppercase fw-bold">Modifier</a>
+    </p>
+</turbo-frame>

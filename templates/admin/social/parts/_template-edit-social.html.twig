@@ -1,0 +1,11 @@
+<turbo-stream action="replace" target="title-page-edit-social">
+    <template>
+        <h1 id="title-page-edit-social" class="h3 text-uppercase fw-bold mb-0">{{ social.name }}</h1>
+    </template>
+</turbo-stream>
+
+<turbo-stream action="replace" target="admin-social-edit">
+    <template>
+        {% include "admin/social/parts/_information.html.twig" %}
+    </template>
+</turbo-stream>
