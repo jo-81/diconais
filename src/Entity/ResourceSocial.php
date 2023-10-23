@@ -18,10 +18,6 @@ class ResourceSocial
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
-    private ?Social $social = null;
-
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?Resource $resource = null;
 
     public function getId(): ?int
@@ -37,18 +33,6 @@ class ResourceSocial
     public function setLink(string $link): static
     {
         $this->link = $link;
-
-        return $this;
-    }
-
-    public function getSocial(): ?Social
-    {
-        return $this->social;
-    }
-
-    public function setSocial(?Social $social): static
-    {
-        $this->social = $social;
 
         return $this;
     }
