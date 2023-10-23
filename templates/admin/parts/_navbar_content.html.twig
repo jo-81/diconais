@@ -9,9 +9,5 @@
         <a class="nav-link-profil list-group-item rounded-3 border-0 {% if current_page is defined and current_page == 'category' %}bg-white link-white{% else %}bg-primary text-white{% endif %}" href="{{ path('admin.category.list') }}">
             <i class="fa-solid fa-tag"></i> <span class="ms-2">Catégories</span>
         </a>
-
-        <a class="nav-link-profil list-group-item rounded-3 border-0 {% if current_page is defined and current_page == 'social' %}bg-white link-white{% else %}bg-primary text-white{% endif %}" href="{{ path('admin.social.list') }}">
-            <i class="fa-solid fa-share-nodes"></i> <span class="ms-2">Réseaux sociaux</span>
-        </a>
     </div>
 </nav>
