@@ -55,9 +55,10 @@ class ResourceSocial
 
     public function getIcon(): ?string
     {
-        if (SocialIconEnum::get($this->icon) == null) {
+        if (null == SocialIconEnum::get($this->icon)) {
             return null;
         }
+
         return SocialIconEnum::get($this->icon)->value;
     }
 

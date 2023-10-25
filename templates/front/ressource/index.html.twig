@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les sources | {{ parent() }}{% endblock %}
+
+{% block body %}
+<section>
+    <header class="mb-4">
+        <h1 class="h3 fw-bold text-uppercase">Les sources</h1>
+        <p class="mb-0">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porta venenatis purus, eu blandit arcu    iaculis sed. Integer tincidunt dignissim tellus ac ornare. Donec lorem ante, mattis et velit vel, aliquet ultricies lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae
+        </p>
+    </header>
+
+    <div class="row g-3">
+        {% for resource in resources %}
+            <div class="col-12">
+                <article class="border rounded-4 p-4">
+                    <header class="d-flex justify-content-between align-items-center mb-3">
+                        <h2 class="h5 fw-bold mb-0">{{ resource.name }}</h2>
+
+                        <span>
+                        {% for social in resource.socials %}
+                            <a target="_blank" href="{{ social.link }}">
+                                <i class="{{ social.icon }}"></i>
+                            </a>
+                        {% endfor %}
+                        </span>
+                    </header>
+
+                    <p>{{ resource.content }}</p>
+
+                    {{ component('ButtonComponent', {
+                        'label': 'découvrir',
+                        'color': 'outline-primary',
+                        'type': 'submit',
+                    }) }}
+                </article>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="mt-4">
+        {{ knp_pagination_render(resources) }}
+    </div>
+
+</section>
+{% endblock %}
