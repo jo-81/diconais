@@ -10,4 +10,15 @@ enum SocialIconEnum: string
     case Twitch = 'fa-brands fa-twitch fa-lg';
     case Twitter = 'fa-brands fa-x-twitter fa-lg';
     case Website = 'fa-solid fa-globe fa-lg';
+
+    public static function get(?string $icon): self|null
+    {
+        foreach (self::cases() as $case) {
+            if ($case->name == $icon) {
+                return $case;
+            }
+        }
+
+        return null;
+    }
 }

@@ -1,0 +1,26 @@
+<div>
+    <p>Total : <span class="text-small">{{ ressources.getTotalItemCount }}</span></p>
+    <div class="d-flex flex-wrap p-3 rounded-3 align-items-center bg-primary bg-opacity-25 fw-bold mb-3">
+        <div class="col-12 col-sm">Nom</div>
+        <div class="col-12 col-sm">Socials</div>
+        <div class="col-12 col-sm">Action</div>
+    </div>
+
+    {% for ressource in ressources %}
+        <div class="d-flex flex-wrap bg-light px-3 py-2 rounded-3 align-items-center mb-2">
+            <div class="col-12 col-sm">{{ ressource.name }}</div>
+            <div class="col-12 col-sm">
+                {% for social in ressource.socials %}
+                    <a target="_blank" href="{{ social.link }}"><i class="{{social.icon}}"></i></a>
+                {% endfor %}
+            </div>
+            <div class="col-12 col-sm mt-2 mt-md-0">
+                <a class="btn btn-sm btn-secondary text-primary text-white text-uppercase" href="#"><i class="fa-solid fa-eye"></i></a>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="mt-4">
+        {{ knp_pagination_render(ressources) }}
+    </div>
+</div>

@@ -21,8 +21,26 @@ $form-label-font-size: 0.825rem;
 
 @import "~bootstrap/scss/bootstrap";
 
-#admin-social-add .card-form {
-    background-color: white;
-    padding: 1.5rem;
-    border-radius: 0.5rem;
+.fa-brands.fa-facebook.fa-lg {
+    color: #3b5998;
+}
+
+.fa-brands.fa-youtube.fa-lg {
+    color: #f00;
+}
+
+.fa-brands.fa-twitch.fa-lg {
+    color: #a970ff;
+}
+
+.fa-brands.fa-instagram.fa-lg {
+    color: #ffc400;
+}
+
+.fa-brands.fa-x-twitter.fa-lg {
+    color: #000;
+}
+
+.fa-solid.fa-globe.fa-lg {
+    color: #4f4f4f;
 }
