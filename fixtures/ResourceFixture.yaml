@@ -1,0 +1,10 @@
+App\Entity\Resource:
+  resource_1:
+    name (unique): "resource"
+    slug (unique): "<slug()>"
+    content: "<text(500)>"
+
+  resource_{2..10}:
+    name (unique): "<word()>"
+    slug (unique): "<slug()>"
+    content: "<text(500)>"

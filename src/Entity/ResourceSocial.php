@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\SocialIconEnum;
 use App\Repository\ResourceSocialRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -16,9 +17,12 @@ class ResourceSocial
     #[ORM\Column(length: 255, unique: true)]
     private ?string $link = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: Resource::class, inversedBy: 'socials')]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?Resource $resource = null;
+
+    #[ORM\Column(type: 'enumiconsocial')]
+    private ?string $icon = null;
 
     public function getId(): ?int
     {
@@ -45,6 +49,22 @@ class ResourceSocial
     public function setResource(?Resource $resource): static
     {
         $this->resource = $resource;
+
+        return $this;
+    }
+
+    public function getIcon(): ?string
+    {
+        if (null == SocialIconEnum::get($this->icon)) {
+            return null;
+        }
+
+        return SocialIconEnum::get($this->icon)->value;
+    }
+
+    public function setIcon(?string $icon): static
+    {
+        $this->icon = $icon;
 
         return $this;
     }

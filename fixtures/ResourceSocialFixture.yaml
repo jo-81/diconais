@@ -1,0 +1,5 @@
+App\Entity\ResourceSocial:
+  resources_social_{1..30}:
+    link: "<url()>"
+    icon: "<randomElement(['Facebook', 'Twitter', 'Youtube', 'Website', 'Instagram', 'Twitch']))>"
+    resource: "@resource_<numberBetween(1, 10)>"

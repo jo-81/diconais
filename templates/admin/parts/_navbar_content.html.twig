@@ -9,5 +9,9 @@
         <a class="nav-link-profil list-group-item rounded-3 border-0 {% if current_page is defined and current_page == 'category' %}bg-white link-white{% else %}bg-primary text-white{% endif %}" href="{{ path('admin.category.list') }}">
             <i class="fa-solid fa-tag"></i> <span class="ms-2">Catégories</span>
         </a>
+
+        <a class="nav-link-profil list-group-item rounded-3 border-0 {% if current_page is defined and current_page == 'resource' %}bg-white link-white{% else %}bg-primary text-white{% endif %}" href="{{ path('admin.ressource.list') }}">
+            <i class="fa-solid fa-list"></i> <span class="ms-2">Resources</span>
+        </a>
     </div>
 </nav>
