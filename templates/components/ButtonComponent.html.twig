@@ -1,5 +1,7 @@
 <div{{ attributes }}>
-    <button 
-        class="btn btn-{{ color }} text-uppercase" 
-        type="{{ type }}">{{ label }}</button>
+    {% if path is null %}
+        <button class="btn btn-{{ color }} text-uppercase" type="{{ type }}">{{ label }}</button>
+    {% else %}
+        <a href="{{ path }}" class="btn btn-{{ color }} text-uppercase">{{ label }}</a>
+    {% endif %}
 </div>

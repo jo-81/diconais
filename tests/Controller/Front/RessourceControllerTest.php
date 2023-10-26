@@ -26,6 +26,7 @@ class RessourceControllerTest extends WebTestCase
     {
         return [
             ['/sources'],
+            ['/sources/resource'],
         ];
     }
 }

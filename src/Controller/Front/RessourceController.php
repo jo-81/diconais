@@ -2,6 +2,7 @@
 
 namespace App\Controller\Front;
 
+use App\Entity\Resource;
 use App\Repository\ResourceRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -20,11 +21,19 @@ class RessourceController extends AbstractController
     ) {
     }
 
-    #[Route('/sources', name: 'ressource.list')]
+    #[Route('/sources', name: 'ressource.list', methods: ['GET'])]
     public function index(Request $request): Response
     {
         return $this->render('front/ressource/index.html.twig', [
             'resources' => $this->getPaginationResources($request),
+        ]);
+    }
+
+    #[Route('/sources/{slug}', name: 'ressource.single', methods: ['GET'])]
+    public function show(Resource $resource): Response
+    {
+        return $this->render('front/ressource/show.html.twig', [
+            'resource' => $resource,
         ]);
     }
 
