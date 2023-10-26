@@ -32,7 +32,7 @@
                     {{ component('ButtonComponent', {
                         'label': 'découvrir',
                         'color': 'outline-primary',
-                        'type': 'submit',
+                        'path': path('ressource.single', {slug: resource.slug})
                     }) }}
                 </article>
             </div>

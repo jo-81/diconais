@@ -53,13 +53,13 @@ class ResourceSocial
         return $this;
     }
 
-    public function getIcon(): ?string
+    public function getIcon(string $field = 'value'): ?string
     {
         if (null == SocialIconEnum::get($this->icon)) {
             return null;
         }
 
-        return SocialIconEnum::get($this->icon)->value;
+        return SocialIconEnum::get($this->icon)->$field;
     }
 
     public function setIcon(?string $icon): static

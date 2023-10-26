@@ -10,4 +10,5 @@ final class ButtonComponent
     public string $color = 'primary';
     public string $type = 'button';
     public string $label;
+    public ?string $path = null;
 }

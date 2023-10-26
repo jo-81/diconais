@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ resource.name }} | {{ parent() }}{% endblock %}
+
+{% block body %}
+<section class="row">
+    <div class="col-12 col-lg-7 col-xxl-8">
+        <header class="mb-4">
+            <h1 class="h3 fw-bold text-uppercase">{{ resource.name }}</h1>
+        </header>
+
+        <div>
+            {{ resource.content }}
+        </div>
+    </div>
+
+    <aside class="col-12 col-lg-4 offset-lg-1 col-xxl-3 mt-5 mt-lg-0">
+        <div class="sticky-top bg-primary bg-opacity-10 p-3 rounded-4" style="top: 1rem">
+            <h3 class="h5 fw-bold mb-3">Réseaux sociaux</h3>
+            {% for social in resource.socials %}
+                {{ socialLink(social) }}
+            {% endfor %}
+        </div>
+    </aside>
+</section>
+{% endblock %}
