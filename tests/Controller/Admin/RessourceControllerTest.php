@@ -45,6 +45,7 @@ class RessourceControllerTest extends WebTestCase
     {
         return [
             ['/admin/resources'],
+            ['/admin/resources/1'],
         ];
     }
 }

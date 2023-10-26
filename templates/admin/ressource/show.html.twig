@@ -1,0 +1,52 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ ressource.name }} | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <section class="col-12 col-lg-8 col-xxl-9">
+
+        {% include "admin/parts/_bar.html.twig" %}
+
+        <header class="mb-3 mb-lg-4 bg-primary bg-opacity-50">
+            <div class="container py-4 py-lg-5">
+                <h1 class="h3 text-uppercase fw-bold">{{ ressource.name }}</h1>
+            </div>
+        </header>
+
+        <section class="container">
+            <div class="border p-3 rounded-3 mb-3">
+                <h2 class="h5 fw-bold">Description</h2>
+                {{ ressource.content }}
+                <a href="#" class="btn btn-secondary text-uppercase mt-3">modifier</a>
+            </div>
+
+            <div class="border p-3 rounded-3">
+                <h2 class="h5 fw-bold">Réseaux sociaux</h2>
+
+                <div class="row g-2">
+                    {% for social in ressource.socials %}
+                        <div class="col-12">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap py-2 px-3 border rounded-4 bg-light">
+                                <p class="mb-0">
+                                    <span class="me-2"><i class="{{ social.icon }}"></i></span>
+                                    <a target="_blank" href="{{ social.link }}">{{ social.link }}<a>
+                                </p>
+
+                                <a href="#">
+                                    <span class="text-primary me-2"><i class="fa-solid fa-pen-to-square"></i></span>
+                                    <span class="text-danger"><i class="fa-solid fa-trash"></i></span>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <a href="#" class="btn btn-secondary text-uppercase mt-3">ajouter</a>
+
+            </div>
+
+
+        </section>
+
+    </section>
+{% endblock %}
