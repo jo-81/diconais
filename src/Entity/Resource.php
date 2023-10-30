@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 #[ORM\Entity(repositoryClass: ResourceRepository::class)]
 #[UniqueEntity('name')]
+#[ORM\HasLifecycleCallbacks]
 class Resource
 {
     #[ORM\Id]
@@ -39,6 +40,9 @@ class Resource
     private Collection $socials;
 
     private Collection $plainSocials;
+
+    #[ORM\Column]
+    private ?bool $published = null;
 
     public function __construct()
     {
@@ -126,5 +130,23 @@ class Resource
         $this->plainSocials = $plainSocials;
 
         return $this;
+    }
+
+    public function isPublished(): ?bool
+    {
+        return $this->published;
+    }
+
+    public function setPublished(bool $published): static
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function persist(): void
+    {
+        $this->published = true;
     }
 }

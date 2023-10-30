@@ -4,12 +4,12 @@ namespace App\Controller\Front;
 
 use App\Entity\Resource;
 use App\Repository\ResourceRepository;
-use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class RessourceController extends AbstractController
 {
@@ -32,6 +32,10 @@ class RessourceController extends AbstractController
     #[Route('/sources/{slug}', name: 'ressource.single', methods: ['GET'])]
     public function show(Resource $resource): Response
     {
+        if (! $resource->isPublished()) {
+            throw $this->createNotFoundException();
+        }
+
         return $this->render('front/ressource/show.html.twig', [
             'resource' => $resource,
         ]);
@@ -40,7 +44,7 @@ class RessourceController extends AbstractController
     private function getPaginationResources(Request $request): PaginationInterface /* @phpstan-ignore-line */
     {
         return $this->paginator->paginate(
-            $this->resourceRepository->findBy([], ['id' => 'DESC']),
+            $this->resourceRepository->findBy(['published' => true], ['id' => 'DESC']),
             $request->query->getInt('page', 1),
             self::ITEM_PER_PAGE
         );

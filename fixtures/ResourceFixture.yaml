@@ -3,8 +3,10 @@ App\Entity\Resource:
     name (unique): "resource"
     slug (unique): "resource"
     content: "<text(500)>"
+    published: false
 
   resource_{2..10}:
     name (unique): "<word()>"
     slug (unique): "<slug()>"
     content: "<text(500)>"
+    published: true
