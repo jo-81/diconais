@@ -2,9 +2,9 @@
 
 namespace App\Entity;
 
-use App\Enum\SocialIconEnum;
 use App\Repository\ResourceSocialRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ResourceSocialRepository::class)]
 class ResourceSocial
@@ -15,6 +15,7 @@ class ResourceSocial
     private ?int $id = null;
 
     #[ORM\Column(length: 255, unique: true)]
+    #[Assert\Url]
     private ?string $link = null;
 
     #[ORM\ManyToOne(targetEntity: Resource::class, inversedBy: 'socials')]
@@ -53,13 +54,9 @@ class ResourceSocial
         return $this;
     }
 
-    public function getIcon(string $field = 'value'): ?string
+    public function getIcon(): ?string
     {
-        if (null == SocialIconEnum::get($this->icon)) {
-            return null;
-        }
-
-        return SocialIconEnum::get($this->icon)->$field;
+        return $this->icon;
     }
 
     public function setIcon(?string $icon): static

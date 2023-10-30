@@ -21,4 +21,15 @@ enum SocialIconEnum: string
 
         return null;
     }
+
+    public static function getIcon(string $socialName): ?string
+    {
+        foreach (self::cases() as $case) {
+            if ($case->name == $socialName) {
+                return $case->value;
+            }
+        }
+
+        return null;
+    }
 }

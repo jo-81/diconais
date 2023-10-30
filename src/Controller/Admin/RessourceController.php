@@ -3,7 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Resource;
+use App\Form\Ressource\RessourceType;
 use App\Repository\ResourceRepository;
+use App\Service\Ressource\RessourceService;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,7 +20,8 @@ class RessourceController extends AbstractController
 
     public function __construct(
         private ResourceRepository $resourceRepository,
-        private PaginatorInterface $paginator
+        private PaginatorInterface $paginator,
+        private RessourceService $ressourceService
     ) {
     }
 
@@ -37,6 +40,27 @@ class RessourceController extends AbstractController
         return $this->render('admin/ressource/show.html.twig', [
             'current_page' => 'resource',
             'ressource' => $resource,
+        ]);
+    }
+
+    #[Route('/add', name: 'admin.ressource.add', methods: ['GET', 'POST'], priority: 10)]
+    public function add(Request $request): Response
+    {
+        $ressource = new Resource();
+        $form = $this->createForm(RessourceType::class, $ressource);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var resource $ressource */
+            $ressource = $form->getData();
+            $this->ressourceService->persist($ressource);
+
+            return $this->redirectToRoute('admin.ressource.list');
+        }
+
+        return $this->render('admin/ressource/add/add.html.twig', [
+            'current_page' => 'resource',
+            'form' => $form,
         ]);
     }
 

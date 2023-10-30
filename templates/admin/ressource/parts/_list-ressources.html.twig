@@ -11,7 +11,7 @@
             <div class="col-12 col-sm">{{ ressource.name }}</div>
             <div class="col-12 col-sm">
                 {% for social in ressource.socials %}
-                    <a target="_blank" href="{{ social.link }}"><i class="{{social.icon}}"></i></a>
+                    {{ socialIcon(social) }}
                 {% endfor %}
             </div>
             <div class="col-12 col-sm mt-2 mt-md-0">
