@@ -3,6 +3,7 @@
     <div class="d-flex flex-wrap p-3 rounded-3 align-items-center bg-primary bg-opacity-25 fw-bold mb-3">
         <div class="col-12 col-sm">Nom</div>
         <div class="col-12 col-sm">Socials</div>
+        <div class="col-12 col-sm">Publié ?</div>
         <div class="col-12 col-sm">Action</div>
     </div>
 
@@ -14,6 +15,7 @@
                     {{ socialIcon(social) }}
                 {% endfor %}
             </div>
+            <div class="col-12 col-sm">{{ published(ressource.published) }}</div>
             <div class="col-12 col-sm mt-2 mt-md-0">
                 <a class="btn btn-sm btn-secondary text-primary text-white text-uppercase" href="{{ path('admin.ressource.single', {id: ressource.id}) }}"><i class="fa-solid fa-eye"></i></a>
             </div>
