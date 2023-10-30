@@ -1,0 +1,58 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Ajouter une resource | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <section class="col-12 col-lg-8 col-xxl-9">
+
+        {% include "admin/parts/_bar.html.twig" %}
+
+        <header class="mb-3 mb-lg-4 bg-primary bg-opacity-50">
+            <div class="container py-4 py-lg-5">
+                <h1 class="h3 text-uppercase fw-bold mb-0">Ajouter une resource</h1>
+            </div>
+        </header>
+
+        {% macro collection_item(form) %}
+            <div data-form-social-collection-target="field" class="row align-items-center">
+                <div class="col-2">
+                    {{ form_widget(form.icon) }}
+                </div>
+                <div class="col-9">
+                    {{ form_widget(form.link) }}
+                </div>
+
+                <div class="col-1">
+                    <button class="btn btn-danger" type="button" data-action="form-social-collection#removeElement"><i class="fa-solid fa-minus"></i></button>
+                </div>
+            </div>
+        {% endmacro %}
+
+        {% import _self as formMacros %}
+
+        <div class="container">
+            {{ form_start(form) }}
+            {{ form_row(form.name) }}
+            {{ form_row(form.content) }}
+            
+            <div class="border p-3 rounded-3 bg-primary bg-opacity-10" {{ stimulus_controller('form-social-collection') }}
+                data-form-social-collection-index-value="{{ form.plainSocials|length > 0 ? form.plainSocials|last.vars.name + 1 : 0 }}"
+                data-form-social-collection-prototype-value="{{ formMacros.collection_item(form.plainSocials.vars.prototype)|e('html_attr') }}"
+            >
+                <h2 class="h6 text-uppercase mb-2 fw-bold">Réseaux sociaux</h2>
+                <div {{ stimulus_target('form-social-collection', 'collectionContainer') }}></div>
+                
+
+                <button 
+                    class="btn btn-primary text-uppercase" 
+                    type="button" 
+                    {{ stimulus_action('form-social-collection', 'addCollectionElement') }}><i class="fa-solid fa-plus"></i></button>
+            </div>
+
+            <button type="submit" class="btn btn-secondary text-uppercase mt-4">ajouter</button>
+
+            {{ form_end(form) }}
+        </div>
+
+    </section>
+{% endblock %}

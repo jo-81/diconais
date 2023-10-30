@@ -23,6 +23,7 @@ class SocialLinkExtension extends AbstractExtension
     {
         return [
             new TwigFunction('socialLink', [SocialLinkExtensionRuntime::class, 'doSocialLink'], ['is_safe' => ['html']]),
+            new TwigFunction('socialIcon', [SocialLinkExtensionRuntime::class, 'doSocialIcon'], ['is_safe' => ['html']]),
         ];
     }
 }

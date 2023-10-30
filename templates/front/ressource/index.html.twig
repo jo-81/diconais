@@ -20,9 +20,7 @@
 
                         <span>
                         {% for social in resource.socials %}
-                            <a target="_blank" href="{{ social.link }}">
-                                <i class="{{ social.icon }}"></i>
-                            </a>
+                            {{ socialIcon(social) }}
                         {% endfor %}
                         </span>
                     </header>

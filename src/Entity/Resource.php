@@ -7,8 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 #[ORM\Entity(repositoryClass: ResourceRepository::class)]
+#[UniqueEntity('name')]
 class Resource
 {
     #[ORM\Id]
@@ -17,20 +21,29 @@ class Resource
     private ?int $id = null;
 
     #[ORM\Column(length: 255, unique: true)]
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'Ce champ doit avoir un minimum de {{ limit }} caractères',
+    )]
     private ?string $name = null;
 
     #[ORM\Column(length: 255, unique: true)]
     private ?string $slug = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[NotBlank]
     private ?string $content = null;
 
     #[ORM\OneToMany(mappedBy: 'resource', targetEntity: ResourceSocial::class)]
+    #[Assert\Valid]
     private Collection $socials;
+
+    private Collection $plainSocials;
 
     public function __construct()
     {
         $this->socials = new ArrayCollection();
+        $this->plainSocials = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -99,6 +112,18 @@ class Resource
                 $social->setResource(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPlainSocials(): Collection
+    {
+        return $this->plainSocials;
+    }
+
+    public function setPlainSocials(Collection $plainSocials): static
+    {
+        $this->plainSocials = $plainSocials;
 
         return $this;
     }
