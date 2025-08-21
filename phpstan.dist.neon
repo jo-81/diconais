@@ -1,12 +1,23 @@
-includes:
-    - vendor/phpstan/phpstan-symfony/extension.neon
-    - vendor/phpstan/phpstan-symfony/rules.neon
-
 parameters:
-    level: 9
+    level: 6
+    
+    paths:
+        - src
+        - tests
+    
+    tmpDir: var/cache/phpstan
+    
     symfony:
         containerXmlPath: var/cache/dev/App_KernelDevDebugContainer.xml
+        constantHassers: false
+        consoleApplicationLoader: tests/console-application.php
+    
+    excludePaths:
+        - tests\bootstrap.php
+        - src\Kernel.php
+    
+    bootstrapFiles:
+        - vendor/autoload.php
 
-paths:
-    - src/
-    - tests/
+    ignoreErrors:
+        - identifier: doctrine.columnType
