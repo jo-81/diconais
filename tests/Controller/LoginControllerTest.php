@@ -55,4 +55,36 @@ class LoginControllerTest extends WebTestCase
 
         self::assertSelectorTextContains('.alert-danger', 'Identifiants invalides.');
     }
+
+    public function testLoginThrottlingBlocksAfterMaxAttempts(): void
+    {
+        $client = static::createClient();
+        
+        $maxAttempts = 5;
+        $loginUrl = '/connexion';
+
+        for ($i = 0; $i < $maxAttempts; $i++) {
+            $crawler = $client->request('GET', $loginUrl);
+            $form = $crawler->selectButton('Connexion')->form([
+                '_username' => 'wrong_user',
+                '_password' => 'wrong_pass',
+            ]);
+            $client->submit($form);
+            
+            $this->assertResponseStatusCodeSame(302);
+        }
+
+        // Tentative suivante dépassant la limite
+        $crawler = $client->request('GET', $loginUrl);
+        $form = $crawler->selectButton('Connexion')->form([
+            '_username' => 'wrong_user',
+            '_password' => 'wrong_pass',
+        ]);
+        $client->submit($form);
+
+        $this->assertResponseStatusCodeSame(302);
+        $client->followRedirect();
+
+        self::assertSelectorTextContains('.alert-danger', 'Plusieurs tentatives de connexion ont échoué, veuillez réessayer dans 1 minute.');
+    }
 }

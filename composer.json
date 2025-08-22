@@ -1,6 +1,7 @@
 {
     "type": "project",
     "license": "proprietary",
+    "version": "0.1",
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
@@ -32,6 +33,7 @@
         "symfony/process": "7.3.*",
         "symfony/property-access": "7.3.*",
         "symfony/property-info": "7.3.*",
+        "symfony/rate-limiter": "7.3.*",
         "symfony/runtime": "7.3.*",
         "symfony/security-bundle": "7.3.*",
         "symfony/serializer": "7.3.*",
