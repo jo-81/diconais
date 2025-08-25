@@ -1,9 +1,10 @@
 <?php
-namespace App\Tests;
+namespace App\Tests\Controller;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -13,6 +14,23 @@ class ResetPasswordControllerTest extends WebTestCase
     private KernelBrowser $client;
     private EntityManagerInterface $em;
     private UserRepository $userRepository;
+
+    #[DataProvider('getDataProviderPath')]
+    public function testRouteExists(string $path)
+    {
+        $client = static::createClient();
+        $client->request('GET', $path);
+
+        $this->assertResponseIsSuccessful();
+    }
+
+    public static function getDataProviderPath(): array
+    {
+        return [
+            ['/mot-de-passe-oublie'],
+            ['/mot-de-passe-oublie/verification-email'],
+        ];
+    }
 
     // protected function setUp(): void
     // {
