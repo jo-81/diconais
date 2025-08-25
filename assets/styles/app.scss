@@ -1,1 +1,47 @@
+/* COLORS */
+$primary: #87ceeb;
+$secondary: #a8e6cf;
+$danger: #ee86af;
+$warning: #faa785;
+$info: #b6b4f2;
+
+$link: #005aa1;
+
+/* GENERALE */
+$font-family-base: "Noto Sans JP";
+$line-height-base: 1.6;
+
+$body-color: #4f4f4f;
+
+$link-color: $link;
+
+$enable-shadows: true;
+$enable-gradients: true;
+
+$dn-border-radius: 1rem;
+
+$input-btn-padding-y: 0.5rem;
+$input-btn-padding-x: 1rem;
+
+/* FORM */
+$form-label-font-weight: bold;
+$input-border-radius: $dn-border-radius * 0.5;
+
+/* BUTTON */
+$btn-border-radius: $dn-border-radius * 0.5;
+$btn-border-width: 0;
+
+/* CARD */
+$card-border-width: 0;
+$card-border-radius: $dn-border-radius;
+
 @import '../../vendor/twbs/bootstrap/scss/bootstrap';
+
+/* MIXINS : COLORS */
+.bg-gradient-45 {
+    @include gradient-directional(rgba($primary, 1), rgba($primary, 0.5), 45deg);
+}
+
+.title {
+    color: mix($black, $primary, 75%);
+}
