@@ -30,7 +30,9 @@ class CategoryCrudController extends AbstractCrudController
             ->setPaginatorPageSize(10)
             ->setSearchFields(['name'])
             ->setEntityLabelInPlural('catégories')
+            ->setEntityLabelInSingular('catégorie')
             ->setPageTitle('index', 'Liste des %entity_label_plural%')
+            ->setPageTitle('new', 'Ajouter une %entity_label_singular%')
             ->showEntityActionsInlined()
         ;
     }
@@ -49,7 +51,7 @@ class CategoryCrudController extends AbstractCrudController
     {
         return $actions
             ->add(Crud::PAGE_INDEX, Action::DETAIL)
-
+            ->remove(Crud::PAGE_NEW, Action::SAVE_AND_ADD_ANOTHER)
             ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
                 return $action->setLabel('Ajouter');
             })
