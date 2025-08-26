@@ -26,11 +26,13 @@ class CategoryCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setDefaultSort(['id' => 'ASC'])
+            ->setDefaultSort(['id' => 'DESC'])
             ->setPaginatorPageSize(10)
             ->setSearchFields(['name'])
             ->setEntityLabelInPlural('catégories')
+            ->setEntityLabelInSingular('catégorie')
             ->setPageTitle('index', 'Liste des %entity_label_plural%')
+            ->setPageTitle('new', 'Ajouter une %entity_label_singular%')
             ->showEntityActionsInlined()
         ;
     }
@@ -38,7 +40,7 @@ class CategoryCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
+            IdField::new('id')->onlyOnIndex(),
             TextField::new('name', 'Nom de la catégorie'),
             SlugField::new('slug')->setTargetFieldName('name'),
             ColorField::new('color', 'Couleur'),
@@ -49,7 +51,7 @@ class CategoryCrudController extends AbstractCrudController
     {
         return $actions
             ->add(Crud::PAGE_INDEX, Action::DETAIL)
-
+            ->remove(Crud::PAGE_NEW, Action::SAVE_AND_ADD_ANOTHER)
             ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
                 return $action->setLabel('Ajouter');
             })

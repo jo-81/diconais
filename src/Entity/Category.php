@@ -4,7 +4,12 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CategoryRepository;
+use App\Validator\Constraints\NameAndSlugConstraints;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+#[UniqueEntity('name')]
+#[UniqueEntity('slug')]
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 class Category
 {
@@ -13,12 +18,17 @@ class Category
     #[ORM\Column]
     private ?int $id = null;
 
+    #[NameAndSlugConstraints]
     #[ORM\Column(length: 255, unique: true)]
     private ?string $name = null;
 
+    #[NameAndSlugConstraints]
     #[ORM\Column(length: 255, unique: true)]
     private ?string $slug = null;
 
+    #[Assert\CssColor(
+        message: "Ce format de couleur n'est pas autorisé."
+    )]
     #[ORM\Column(length: 50)]
     private ?string $color = null;
 
@@ -61,5 +71,10 @@ class Category
         $this->color = $color;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 }
