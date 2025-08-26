@@ -15,9 +15,9 @@ class ResetPasswordControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
     }
-    
+
     /**
-     * getDataProviderPath
+     * getDataProviderPath.
      *
      * @return array<string[]>
      */
