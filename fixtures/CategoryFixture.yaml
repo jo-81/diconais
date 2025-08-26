@@ -1,0 +1,10 @@
+App\Entity\Category:
+  category_1:
+    name: category
+    slug: category
+    color: <hexColor()>
+
+  category_{2..20}:
+    name (unique): <word()>
+    slug (unique): <slug()>
+    color: <hexColor()>

@@ -59,18 +59,18 @@ class LoginControllerTest extends WebTestCase
     public function testLoginThrottlingBlocksAfterMaxAttempts(): void
     {
         $client = static::createClient();
-        
+
         $maxAttempts = 5;
         $loginUrl = '/connexion';
 
-        for ($i = 0; $i < $maxAttempts; $i++) {
+        for ($i = 0; $i < $maxAttempts; ++$i) {
             $crawler = $client->request('GET', $loginUrl);
             $form = $crawler->selectButton('Connexion')->form([
                 '_username' => 'wrong_user',
                 '_password' => 'wrong_pass',
             ]);
             $client->submit($form);
-            
+
             $this->assertResponseStatusCodeSame(302);
         }
 
