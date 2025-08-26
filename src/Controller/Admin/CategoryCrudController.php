@@ -26,7 +26,7 @@ class CategoryCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setDefaultSort(['id' => 'ASC'])
+            ->setDefaultSort(['id' => 'DESC'])
             ->setPaginatorPageSize(10)
             ->setSearchFields(['name'])
             ->setEntityLabelInPlural('catégories')
@@ -38,7 +38,7 @@ class CategoryCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
+            IdField::new('id')->onlyOnIndex(),
             TextField::new('name', 'Nom de la catégorie'),
             SlugField::new('slug')->setTargetFieldName('name'),
             ColorField::new('color', 'Couleur'),

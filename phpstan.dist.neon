@@ -22,3 +22,4 @@ parameters:
     ignoreErrors:
         - identifier: doctrine.columnType
         - identifier: doctrine.associationType
+        - identifier: function.alreadyNarrowedType
