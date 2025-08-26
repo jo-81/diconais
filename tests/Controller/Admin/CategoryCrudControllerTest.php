@@ -38,6 +38,9 @@ final class CategoryCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->request('GET', $this->generateNewFormUrl());
         static::assertResponseRedirects('/connexion');
+
+        $this->client->request('GET', $this->generateEditFormUrl(1));
+        static::assertResponseRedirects('/connexion');
     }
 
     /**
@@ -54,12 +57,19 @@ final class CategoryCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->request('GET', $this->generateNewFormUrl());
         static::assertResponseIsSuccessful();
-    }
 
+        $this->client->request('GET', $this->generateEditFormUrl(1));
+        static::assertResponseIsSuccessful();
+    }
+    
+    /**
+     * testCreateEntityCategory
+     *
+     * @return void
+     */
     public function testCreateEntityCategory(): void
     {
-        $userRepository = $this->entityManager->getRepository(User::class);
-        $testUser = $userRepository->findOneByEmail('admin@domaine.fr');
+        $testUser = $this->findOneEntityBy(User::class, ['email' => 'admin@domaine.fr']);
         $this->client->loginUser($testUser);
         $crawler = $this->client->request('GET', $this->generateNewFormUrl());
 
@@ -70,9 +80,36 @@ final class CategoryCrudControllerTest extends AbstractCrudTestCase
         $this->client->submit($form);
 
         self::assertInstanceOf(Category::class, $this->findOneEntityBy(Category::class, ['name' => 'category 2']));
-
         self::assertResponseRedirects();
+
         $this->client->followRedirect();
+
         $this->assertSelectorTextContains('div', "'category 2' a été créé avec succès.");
+    }
+    
+    /**
+     * testUpdateEntityCategory
+     *
+     * @return void
+     */
+    public function testUpdateEntityCategory(): void
+    {
+        $testUser = $this->findOneEntityBy(User::class, ['email' => 'admin@domaine.fr']);
+        $this->client->loginUser($testUser);
+        $crawler = $this->client->request('GET', $this->generateEditFormUrl(1));
+
+        $form = $crawler->selectButton('Sauvegarder les modifications')->form();
+        $form['Category[name]'] = 'category update';
+        $this->client->submit($form);
+
+        $entityUpdate = $this->findEntity(Category::class, 1);
+
+        self::assertInstanceOf(Category::class, $entityUpdate);
+        self::assertEquals('category update', $entityUpdate->getName());
+        self::assertResponseRedirects();
+
+        $this->client->followRedirect();
+
+        $this->assertSelectorTextContains('div', "'category update' a été mis à jour avec succès.");
     }
 }

@@ -33,6 +33,7 @@ class CategoryCrudController extends AbstractCrudController
             ->setEntityLabelInSingular('catégorie')
             ->setPageTitle('index', 'Liste des %entity_label_plural%')
             ->setPageTitle('new', 'Ajouter une %entity_label_singular%')
+            ->setPageTitle('edit', fn (Category $category) => sprintf('Modifier %s', $category->getName()))
             ->showEntityActionsInlined()
         ;
     }
