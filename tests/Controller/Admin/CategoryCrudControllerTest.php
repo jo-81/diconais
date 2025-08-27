@@ -7,6 +7,7 @@ use App\Entity\Category;
 use App\Tests\Traits\EntityFinderTrait;
 use App\Controller\Admin\DashboardController;
 use App\Controller\Admin\CategoryCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 use EasyCorp\Bundle\EasyAdminBundle\Test\AbstractCrudTestCase;
 
@@ -41,6 +42,9 @@ final class CategoryCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->request('GET', $this->generateEditFormUrl(1));
         static::assertResponseRedirects('/connexion');
+
+        $this->client->request('POST', $this->generateEditFormUrl(1));
+        static::assertResponseRedirects('/connexion');
     }
 
     /**
@@ -60,12 +64,13 @@ final class CategoryCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->request('GET', $this->generateEditFormUrl(1));
         static::assertResponseIsSuccessful();
+
+        $this->client->request('POST', $this->getCrudUrl(Action::DELETE, 1));
+        static::assertResponseRedirects('/admin');
     }
-    
+
     /**
-     * testCreateEntityCategory
-     *
-     * @return void
+     * testCreateEntityCategory.
      */
     public function testCreateEntityCategory(): void
     {
@@ -86,11 +91,9 @@ final class CategoryCrudControllerTest extends AbstractCrudTestCase
 
         $this->assertSelectorTextContains('div', "'category 2' a été créé avec succès.");
     }
-    
+
     /**
-     * testUpdateEntityCategory
-     *
-     * @return void
+     * testUpdateEntityCategory.
      */
     public function testUpdateEntityCategory(): void
     {
