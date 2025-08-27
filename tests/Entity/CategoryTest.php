@@ -5,10 +5,12 @@ namespace App\Tests\Entity;
 use App\Entity\Category;
 use App\Tests\Traits\ValidatorTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class CategoryTest extends WebTestCase
 {
+    use ReloadDatabaseTrait;
     use ValidatorTrait;
 
     private ValidatorInterface $validator;
