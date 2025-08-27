@@ -34,6 +34,7 @@ class CategoryCrudController extends AbstractCrudController
             ->setPageTitle('index', 'Liste des %entity_label_plural%')
             ->setPageTitle('new', 'Ajouter une %entity_label_singular%')
             ->setPageTitle('edit', fn (Category $category) => sprintf('Modifier %s', $category->getName()))
+            ->setPageTitle('detail', fn (Category $category) => sprintf('%s', $category->getName()))
             ->showEntityActionsInlined()
         ;
     }
@@ -41,7 +42,7 @@ class CategoryCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id')->onlyOnIndex(),
+            IdField::new('id')->hideOnForm(),
             TextField::new('name', 'Nom de la catégorie'),
             SlugField::new('slug')->setTargetFieldName('name'),
             ColorField::new('color', 'Couleur'),

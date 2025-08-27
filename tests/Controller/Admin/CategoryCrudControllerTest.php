@@ -43,7 +43,10 @@ final class CategoryCrudControllerTest extends AbstractCrudTestCase
         $this->client->request('GET', $this->generateEditFormUrl(1));
         static::assertResponseRedirects('/connexion');
 
-        $this->client->request('POST', $this->generateEditFormUrl(1));
+        $this->client->request('POST', $this->getCrudUrl(Action::DELETE, 1));
+        static::assertResponseRedirects('/connexion');
+
+        $this->client->request('GET', $this->generateDetailUrl(1));
         static::assertResponseRedirects('/connexion');
     }
 
@@ -63,6 +66,9 @@ final class CategoryCrudControllerTest extends AbstractCrudTestCase
         static::assertResponseIsSuccessful();
 
         $this->client->request('GET', $this->generateEditFormUrl(1));
+        static::assertResponseIsSuccessful();
+
+        $this->client->request('GET', $this->generateDetailUrl(1));
         static::assertResponseIsSuccessful();
 
         $this->client->request('POST', $this->getCrudUrl(Action::DELETE, 1));
