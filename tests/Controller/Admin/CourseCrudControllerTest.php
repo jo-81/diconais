@@ -38,6 +38,9 @@ class CourseCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->request('GET', $this->generateDetailUrl(1));
         static::assertResponseRedirects('/connexion');
+
+        $this->client->request('GET', $this->generateNewFormUrl());
+        static::assertResponseRedirects('/connexion');
     }
 
     /**
@@ -54,5 +57,33 @@ class CourseCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->request('GET', $this->generateDetailUrl(1));
         static::assertResponseIsSuccessful();
+
+        $this->client->request('GET', $this->generateNewFormUrl());
+        static::assertResponseIsSuccessful();
+    }
+
+    /**
+     * testCreateEntityCourse.
+     */
+    public function testCreateEntityCourse(): void
+    {
+        $testUser = $this->findOneEntityBy(User::class, ['email' => 'admin@domaine.fr']);
+        $this->client->loginUser($testUser);
+        $crawler = $this->client->request('GET', $this->generateNewFormUrl());
+
+        $form = $crawler->selectButton('Créer')->form();
+        $form['Course[name]'] = 'A new course';
+        $form['Course[slug]'] = 'a-new-course';
+        $form['Course[content]'] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce finibus interdum sem laoreet dapibus.';
+        $form['Course[category]'] = '1';
+        $form['Course[published]'] = '1';
+        $this->client->submit($form);
+
+        self::assertInstanceOf(Course::class, $this->findOneEntityBy(Course::class, ['name' => 'A new course']));
+        self::assertResponseRedirects();
+
+        $this->client->followRedirect();
+
+        $this->assertSelectorTextContains('div', "'A new course' a été créé avec succès.");
     }
 }

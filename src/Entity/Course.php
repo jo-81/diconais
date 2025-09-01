@@ -5,7 +5,12 @@ namespace App\Entity;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CourseRepository;
+use App\Validator\Constraints\NameAndSlugConstraints;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+#[UniqueEntity('name')]
+#[UniqueEntity('slug')]
 #[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: CourseRepository::class)]
 class Course
@@ -15,12 +20,15 @@ class Course
     #[ORM\Column]
     private ?int $id = null;
 
+    #[NameAndSlugConstraints]
     #[ORM\Column(length: 255, unique: true)]
     private ?string $name = null;
 
+    #[NameAndSlugConstraints]
     #[ORM\Column(length: 255, unique: true)]
     private ?string $slug = null;
 
+    #[Assert\NotBlank(message: 'Ce champ ne peut pas être vide.')]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
@@ -30,6 +38,7 @@ class Course
     #[ORM\Column(options: ['default' => true])]
     private ?bool $published = null;
 
+    #[Assert\NotNull(message: 'Ce champ ne peut pas être null.')]
     #[ORM\ManyToOne(inversedBy: 'courses')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;

@@ -33,9 +33,10 @@ class CourseCrudController extends AbstractCrudController
             ->setPaginatorPageSize(10)
             ->setSearchFields(['name'])
             ->setEntityLabelInPlural('cours')
-            ->setEntityLabelInSingular('cour')
+            ->setEntityLabelInSingular('cours')
             ->setPageTitle('index', 'Liste des %entity_label_plural%')
             ->setPageTitle('detail', fn (Course $course) => sprintf('%s', ucfirst($course->getName())))
+            ->setPageTitle('new', 'Ajouter un %entity_label_singular%')
             ->showEntityActionsInlined()
         ;
     }
@@ -48,12 +49,19 @@ class CourseCrudController extends AbstractCrudController
                 ->onlyOnDetail()
                 ->setLabel('Lien vers le cours')
                 ->setTemplatePath('admin/fields/course/course_front_link.html.twig'),
-            TextField::new('name', 'Nom du cour'),
-            SlugField::new('slug')->setTargetFieldName('name')->hideOnIndex(),
-            DateField::new('createdAt', 'Date de publication'),
+            TextField::new('name', 'Titre')
+                ->setColumns('col-12 col-sm-6 col-md-4'),
+            SlugField::new('slug')
+                ->setTargetFieldName('name')
+                ->hideOnIndex()
+                ->setColumns('col-12 col-sm-6 col-md-4'),
+            DateField::new('createdAt', 'Date de publication')->hideOnForm(),
+            AssociationField::new('category', 'Catégorie')
+                ->setColumns('col-12 col-md-4'),
             BooleanField::new('published', 'Publié ?'),
-            AssociationField::new('category', 'Catégorie'),
-            TextEditorField::new('content', 'Contenue du cour')->hideOnIndex(),
+            TextEditorField::new('content', 'Contenue du cours')
+                ->hideOnIndex()
+                ->setColumns('col-12'),
         ];
     }
 
@@ -61,6 +69,7 @@ class CourseCrudController extends AbstractCrudController
     {
         return $actions
             ->add(Crud::PAGE_INDEX, Action::DETAIL)
+            ->remove(Crud::PAGE_NEW, Action::SAVE_AND_ADD_ANOTHER)
             ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
                 return $action->setLabel('Ajouter');
             })

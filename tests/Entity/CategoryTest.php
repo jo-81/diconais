@@ -43,7 +43,7 @@ class CategoryTest extends WebTestCase
     }
 
     /**
-     * testUniqueValuePropertyName.
+     * testUniqueValuePropertySlug.
      */
     public function testUniqueValuePropertySlug(): void
     {
