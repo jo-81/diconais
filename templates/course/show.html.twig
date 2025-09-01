@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ course.name }} | {{ parent() }}{% endblock %}
+
+{% block body %}
+<section>
+    <twig:PageHeader title="{{ course.name }}" />
+
+    <section class="container my-5">
+        <div class="mb-4">
+            <p class="mb-2 d-md-inline">Publié le {{ course.createdAt|date('d/m/Y') }}</p>
+            <div class="vr d-none d-md-inline-block mx-md-3"></div>
+            <p class="mb-0 d-md-inline">
+                <twig:Badge name="{{ course.category.name }}" color="{{ course.category.color }}" />
+            </p>
+        </div>
+
+        {{ course.content }}
+
+        {% if is_granted('ROLE_ADMIN') %}
+        <div class="mt-3">
+            <a href="{{ ea_url().setController('App\\Controller\\Admin\\CourseCrudController').setEntityId(course.id).setAction('detail') }}" target="_blank">Modifier le cours</a>
+        </div>
+        {% endif %}
+    </section>
+</section>
+{% endblock %}
