@@ -1,0 +1,74 @@
+{% if pageCount > 1 %}
+<nav>
+    <ul class="pagination gap-1">
+        {% if previous is defined %}
+        <li class="page-item">
+            <button class="page-link" data-action="live#action" data-live-action-param="prevPage"><span
+                    aria-hidden="true">&laquo;</span></button>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <span class="page-link"><span aria-hidden="true">&laquo;</span></span>
+        </li>
+        {% endif %}
+
+        {% if startPage > 1 %}
+        <button class="page-link rounded-2" data-action="live#action" data-live-page-param="1"
+            data-live-action-param="selectedPage">1</button>
+
+        {% if startPage == 3 %}
+
+        <button class="page-link rounded-2" data-action="live#action" data-live-page-param="2"
+            data-live-action-param="selectedPage">2</button>
+        {% elseif startPage != 2 %}
+        <li class="page-item disabled">
+            <span class="page-link">&hellip;</span>
+        </li>
+        {% endif %}
+        {% endif %}
+
+        {% for page in pagesInRange %}
+        {% if page != current %}
+        <li class="page-item">
+            <button class="page-link rounded-1" data-action="live#action" data-live-page-param="{{ page }}"
+                data-live-action-param="selectedPage">{{ page }}</button>
+        </li>
+        {% else %}
+        <li class="page-item active">
+            <span class="page-link rounded-1">{{ page }}</span>
+        </li>
+        {% endif %}
+        {% endfor %}
+
+        {% if pageCount > endPage %}
+        {% if pageCount > (endPage + 1) %}
+        {% if pageCount > (endPage + 2) %}
+        <li class="page-item disabled">
+            <span class="page-link rounded-1">&hellip;</span>
+        </li>
+        {% else %}
+        <li class="page-item">
+            <button class="page-link rounded-1" data-action="live#action" data-live-page-param="{{ pageCount - 1 }}"
+                data-live-action-param="selectedPage">{{ pageCount - 1 }}</button>
+        </li>
+        {% endif %}
+        {% endif %}
+        <li class="page-item">
+            <button class="page-link rounded-1" data-action="live#action" data-live-page-param="{{ pageCount }}"
+                data-live-action-param="selectedPage">{{ pageCount }}</button>
+        </li>
+        {% endif %}
+
+        {% if next is defined %}
+        <li class="page-item">
+            <button class="page-link" data-action="live#action" data-live-action-param="nextPage"><span
+                    aria-hidden="true">&raquo;</span></button>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <span class="page-link"><span aria-hidden="true">&raquo;</span></span>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
