@@ -126,6 +126,11 @@ class Course
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     #[ORM\PrePersist]
     public function setPersistValue(): void
     {

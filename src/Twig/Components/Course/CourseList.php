@@ -3,12 +3,13 @@
 namespace App\Twig\Components\Course;
 
 use App\Entity\Category;
-use App\Repository\CategoryRepository;
 use App\Repository\CourseRepository;
+use App\Repository\CategoryRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Twig\Components\Traits\PaginationTrait;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
+use Knp\Component\Pager\Pagination\PaginationInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 
 #[AsLiveComponent]
@@ -26,13 +27,13 @@ final class CourseList
     public string $query = '';
 
     public function __construct(
-        private CourseRepository $courseRepository, 
+        private CourseRepository $courseRepository,
         private PaginatorInterface $paginator,
-        private CategoryRepository $categoryRepository
-    )
-    {}
+        private CategoryRepository $categoryRepository,
+    ) {
+    }
 
-    public function getCourses()
+    public function getCourses(): PaginationInterface
     {
         return $this->paginator->paginate(
             $this->courseRepository->findCourseQuery($this->query, $this->getSelectedCategory()),
@@ -41,7 +42,12 @@ final class CourseList
         );
     }
 
-    public function getCategories()
+    /**
+     * getCategories.
+     *
+     * @return Category[]
+     */
+    public function getCategories(): array
     {
         return $this->categoryRepository->findAll();
     }
@@ -51,6 +57,7 @@ final class CourseList
         if (empty($this->categorySlug)) {
             return null;
         }
+
         return $this->categoryRepository->findOneBy(['slug' => $this->categorySlug]);
     }
 }

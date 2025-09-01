@@ -9,8 +9,10 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
@@ -33,6 +35,7 @@ class CourseCrudController extends AbstractCrudController
             ->setEntityLabelInPlural('cours')
             ->setEntityLabelInSingular('cour')
             ->setPageTitle('index', 'Liste des %entity_label_plural%')
+            ->setPageTitle('detail', fn (Course $course) => sprintf('%s', ucfirst($course->getName())))
             ->showEntityActionsInlined()
         ;
     }
@@ -41,10 +44,16 @@ class CourseCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
+            TextField::new('slug')
+                ->onlyOnDetail()
+                ->setLabel('Lien vers le cours')
+                ->setTemplatePath('admin/fields/course/course_front_link.html.twig'),
             TextField::new('name', 'Nom du cour'),
+            SlugField::new('slug')->setTargetFieldName('name')->hideOnIndex(),
             DateField::new('createdAt', 'Date de publication'),
             BooleanField::new('published', 'Publié ?'),
             AssociationField::new('category', 'Catégorie'),
+            TextEditorField::new('content', 'Contenue du cour')->hideOnIndex(),
         ];
     }
 

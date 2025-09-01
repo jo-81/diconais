@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ColorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 /**
@@ -34,7 +35,7 @@ class CategoryCrudController extends AbstractCrudController
             ->setPageTitle('index', 'Liste des %entity_label_plural%')
             ->setPageTitle('new', 'Ajouter une %entity_label_singular%')
             ->setPageTitle('edit', fn (Category $category) => sprintf('Modifier %s', $category->getName()))
-            ->setPageTitle('detail', fn (Category $category) => sprintf('%s', $category->getName()))
+            ->setPageTitle('detail', fn (Category $category) => sprintf('%s', ucfirst($category->getName())))
             ->showEntityActionsInlined()
         ;
     }
@@ -46,6 +47,9 @@ class CategoryCrudController extends AbstractCrudController
             TextField::new('name', 'Nom de la catégorie'),
             SlugField::new('slug')->setTargetFieldName('name'),
             ColorField::new('color', 'Couleur'),
+            AssociationField::new('courses')
+                ->onlyOnDetail()
+                ->setTemplatePath('admin/fields/category/category_detail_courses.html.twig'),
         ];
     }
 

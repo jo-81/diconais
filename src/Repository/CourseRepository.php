@@ -2,8 +2,8 @@
 
 namespace App\Repository;
 
-use App\Entity\Category;
 use App\Entity\Course;
+use App\Entity\Category;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
@@ -17,7 +17,12 @@ class CourseRepository extends ServiceEntityRepository
         parent::__construct($registry, Course::class);
     }
 
-    public function findCourseQuery(string $query, ?Category $category = null)
+    /**
+     * findCourseQuery.
+     *
+     * @return Course[]
+     */
+    public function findCourseQuery(string $query, ?Category $category = null): array
     {
         $qb = $this->createQueryBuilder('c')
             ->andWhere('c.published = :published')

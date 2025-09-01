@@ -16,6 +16,6 @@ class CourseListTest extends KernelTestCase
         $this->assertInstanceOf(CourseList::class, $testComponent->component());
         $this->assertEquals('The course one', $testComponent->component()->query);
         $renderedOutput = $testComponent->render();
-        $this->assertStringContainsString('The course one', (string) $renderedOutput); 
+        $this->assertStringContainsString('The course one', (string) $renderedOutput);
     }
 }

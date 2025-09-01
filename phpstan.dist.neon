@@ -24,3 +24,5 @@ parameters:
         - identifier: doctrine.associationType
         - identifier: function.alreadyNarrowedType
         - identifier: argument.type
+        - identifier: missingType.iterableValue
+        - identifier: missingType.generics
