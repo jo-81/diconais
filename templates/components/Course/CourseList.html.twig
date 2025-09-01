@@ -1,0 +1,33 @@
+<section {{ attributes }}>
+
+    <header class="mb-4 row flex-wrap g-2">
+        <!-- Barre de recherche -->
+        <div class="col-12 col-md-6 col-lg-4">
+            <label for="search" class="form-label">Rechercher</label>
+            <input data-model="debounce(300)|query" type="search" id="search" class="form-control">
+        </div>
+        <!-- Barre de recherche -->
+
+        <!-- Sélectionner une catégorie -->
+        <div class="col-12 col-md-6 col-lg-4">
+            <label for="category" class="form-label">Catégorie</label>
+            <select data-model="categorySlug" class="form-select" id="category">
+                <option value="">Sélectionner une catégorie</option>
+                {% for category in this.categories %}
+                    <option value="{{ category.slug }}" {% if this.categorySlug == category.slug %}selected{% endif %}>{{ category.name|capitalize }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <!-- Sélectionner une catégorie -->
+    </header>
+
+    <div class="row gy-3">
+        {% for course in this.courses %}
+            <twig:Course:CourseCard key="course-{{ course.id }}" course="{{ course }}" />
+            {% else %}
+            <p>Aucun cours trouvés.</p>
+        {% endfor %}
+
+        {{ knp_pagination_render(this.courses) }}
+    </div>
+</section>

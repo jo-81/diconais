@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les cours de Japonais | {{ parent() }}{% endblock %}
+
+{% block body %}
+<section>
+    <twig:PageHeader title="Les cours de Japonais"/>
+
+    <div class="container my-5">
+        <twig:Course:CourseList />
+    </div>
+</section>
+{% endblock %}

@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Course;
 use App\Entity\Category;
 use Symfony\Component\HttpFoundation\Response;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -17,7 +18,7 @@ class DashboardController extends AbstractDashboardController
     {
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
 
-        return $this->redirect($adminUrlGenerator->setController(CategoryCrudController::class)->generateUrl());
+        return $this->redirect($adminUrlGenerator->setController(CourseCrudController::class)->generateUrl());
     }
 
     public function configureDashboard(): Dashboard
@@ -29,6 +30,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linkToCrud('Cours', 'fa-solid fa-list', Course::class);
         yield MenuItem::linkToCrud('Catégories', 'fa-solid fa-tag', Category::class);
     }
 }

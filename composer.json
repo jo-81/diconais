@@ -13,6 +13,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.4",
         "doctrine/orm": "^3.5",
         "easycorp/easyadmin-bundle": "^4.24",
+        "knplabs/knp-paginator-bundle": "^6.9",
         "phpdocumentor/reflection-docblock": "^5.6",
         "phpstan/phpdoc-parser": "^2.2",
         "symfony/asset": "7.3.*",
@@ -51,7 +52,8 @@
         "symfonycasts/reset-password-bundle": "^1.23",
         "symfonycasts/sass-bundle": "^0.8.2",
         "twbs/bootstrap": "^5.3",
-        "twig/extra-bundle": "^2.12|^3.0",
+        "twig/extra-bundle": "^3.21",
+        "twig/string-extra": "^3.21",
         "twig/twig": "^2.12|^3.0"
     },
     "config": {

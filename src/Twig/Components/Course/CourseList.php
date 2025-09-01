@@ -1,0 +1,56 @@
+<?php
+
+namespace App\Twig\Components\Course;
+
+use App\Entity\Category;
+use App\Repository\CategoryRepository;
+use App\Repository\CourseRepository;
+use Knp\Component\Pager\PaginatorInterface;
+use App\Twig\Components\Traits\PaginationTrait;
+use Symfony\UX\LiveComponent\Attribute\LiveProp;
+use Symfony\UX\LiveComponent\DefaultActionTrait;
+use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
+
+#[AsLiveComponent]
+final class CourseList
+{
+    use DefaultActionTrait;
+    use PaginationTrait;
+
+    public const NUMBER_ITEMS = 6;
+
+    #[LiveProp(writable: true, url: true)]
+    public string $categorySlug = '';
+
+    #[LiveProp(writable: true, url: true)]
+    public string $query = '';
+
+    public function __construct(
+        private CourseRepository $courseRepository, 
+        private PaginatorInterface $paginator,
+        private CategoryRepository $categoryRepository
+    )
+    {}
+
+    public function getCourses()
+    {
+        return $this->paginator->paginate(
+            $this->courseRepository->findCourseQuery($this->query, $this->getSelectedCategory()),
+            $this->page,
+            self::NUMBER_ITEMS
+        );
+    }
+
+    public function getCategories()
+    {
+        return $this->categoryRepository->findAll();
+    }
+
+    public function getSelectedCategory(): ?Category
+    {
+        if (empty($this->categorySlug)) {
+            return null;
+        }
+        return $this->categoryRepository->findOneBy(['slug' => $this->categorySlug]);
+    }
+}
