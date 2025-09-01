@@ -36,6 +36,7 @@ class CourseCrudController extends AbstractCrudController
             ->setEntityLabelInSingular('cours')
             ->setPageTitle('index', 'Liste des %entity_label_plural%')
             ->setPageTitle('detail', fn (Course $course) => sprintf('%s', ucfirst($course->getName())))
+            ->setPageTitle('edit', fn (Course $course) => sprintf('Modifier le cours : %s', $course->getName()))
             ->setPageTitle('new', 'Ajouter un %entity_label_singular%')
             ->showEntityActionsInlined()
         ;
