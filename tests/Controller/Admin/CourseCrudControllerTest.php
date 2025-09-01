@@ -39,6 +39,9 @@ class CourseCrudControllerTest extends AbstractCrudTestCase
         $this->client->request('GET', $this->generateDetailUrl(1));
         static::assertResponseRedirects('/connexion');
 
+        $this->client->request('GET', $this->generateEditFormUrl(1));
+        static::assertResponseRedirects('/connexion');
+
         $this->client->request('GET', $this->generateNewFormUrl());
         static::assertResponseRedirects('/connexion');
     }
@@ -56,6 +59,9 @@ class CourseCrudControllerTest extends AbstractCrudTestCase
         static::assertResponseIsSuccessful();
 
         $this->client->request('GET', $this->generateDetailUrl(1));
+        static::assertResponseIsSuccessful();
+
+        $this->client->request('GET', $this->generateEditFormUrl(1));
         static::assertResponseIsSuccessful();
 
         $this->client->request('GET', $this->generateNewFormUrl());
@@ -85,5 +91,31 @@ class CourseCrudControllerTest extends AbstractCrudTestCase
         $this->client->followRedirect();
 
         $this->assertSelectorTextContains('div', "'A new course' a été créé avec succès.");
+    }
+    
+    /**
+     * testUpdateEntityCourse
+     *
+     * @return void
+     */
+    public function testUpdateEntityCourse(): void
+    {
+        $testUser = $this->findOneEntityBy(User::class, ['email' => 'admin@domaine.fr']);
+        $this->client->loginUser($testUser);
+        $crawler = $this->client->request('GET', $this->generateEditFormUrl(1));
+
+        $form = $crawler->selectButton('Sauvegarder les modifications')->form();
+        $form['Course[name]'] = 'Cours modifié';
+        $this->client->submit($form);
+
+        $entityUpdate = $this->findEntity(Course::class, 1);
+
+        self::assertInstanceOf(Course::class, $entityUpdate);
+        self::assertEquals('Cours modifié', $entityUpdate->getName());
+        self::assertResponseRedirects();
+
+        $this->client->followRedirect();
+
+        $this->assertSelectorTextContains('div', "'Cours modifié' a été mis à jour avec succès.");
     }
 }
