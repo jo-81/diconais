@@ -1,0 +1,13 @@
+{% if field.value is not empty %}
+    <ul>
+    {% for course in field.value %}
+        {% set courseUrl = ea_url()
+            .setController('App\\Controller\\Admin\\CourseCrudController')
+            .setEntityId(course.id)
+        %}
+        <li><a href="{{ courseUrl }}">{{ course.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+Aucun cours
+{% endif %}
