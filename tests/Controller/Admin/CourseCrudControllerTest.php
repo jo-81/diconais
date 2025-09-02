@@ -92,11 +92,9 @@ class CourseCrudControllerTest extends AbstractCrudTestCase
 
         $this->assertSelectorTextContains('div', "'A new course' a été créé avec succès.");
     }
-    
+
     /**
-     * testUpdateEntityCourse
-     *
-     * @return void
+     * testUpdateEntityCourse.
      */
     public function testUpdateEntityCourse(): void
     {

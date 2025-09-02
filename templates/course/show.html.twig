@@ -7,6 +7,11 @@
     <twig:PageHeader title="{{ course.name }}" />
 
     <section class="container my-5">
+
+        {% if is_granted('ROLE_ADMIN') and course.published == false %}
+            <twig:Alert message="Ce cours n'est pas encore publié !" type="warning"/>
+        {% endif %}
+
         <div class="mb-4">
             <p class="mb-2 d-md-inline">Publié le {{ course.createdAt|date('d/m/Y') }}</p>
             <div class="vr d-none d-md-inline-block mx-md-3"></div>
@@ -15,12 +20,12 @@
             </p>
         </div>
 
-        {{ course.content }}
+        {{ course.content|raw }}
 
         {% if is_granted('ROLE_ADMIN') %}
-        <div class="mt-3">
-            <a href="{{ ea_url().setController('App\\Controller\\Admin\\CourseCrudController').setEntityId(course.id).setAction('detail') }}" target="_blank">Modifier le cours</a>
-        </div>
+            <div class="mt-3">
+                <a href="{{ ea_url().setController('App\\Controller\\Admin\\CourseCrudController').setEntityId(course.id).setAction('detail') }}" target="_blank">Modifier le cours</a>
+            </div>
         {% endif %}
     </section>
 </section>
