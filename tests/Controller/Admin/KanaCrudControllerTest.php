@@ -35,6 +35,9 @@ class KanaCrudControllerTest extends AbstractCrudTestCase
     {
         $this->client->request('GET', $this->generateNewFormUrl());
         static::assertResponseRedirects('/connexion');
+
+        $this->client->request('GET', $this->generateDetailUrl(1));
+        static::assertResponseRedirects('/connexion');
     }
 
     /**
@@ -47,6 +50,9 @@ class KanaCrudControllerTest extends AbstractCrudTestCase
         $this->client->loginUser($testUser);
 
         $this->client->request('GET', $this->generateNewFormUrl());
+        static::assertResponseIsSuccessful();
+
+        $this->client->request('GET', $this->generateDetailUrl(1));
         static::assertResponseIsSuccessful();
     }
 
@@ -75,5 +81,26 @@ class KanaCrudControllerTest extends AbstractCrudTestCase
         $this->client->followRedirect();
 
         $this->assertSelectorTextContains('div', "'や' a été créé avec succès.");
+    }
+
+    public function testUpdateEntityKana(): void
+    {
+        $testUser = $this->findOneEntityBy(User::class, ['email' => 'admin@domaine.fr']);
+        $this->client->loginUser($testUser);
+        $crawler = $this->client->request('GET', $this->generateEditFormUrl(1));
+
+        $form = $crawler->selectButton('Sauvegarder les modifications')->form();
+        $form['Kana[romaji]'] = 'ki';
+        $this->client->submit($form);
+
+        $entityUpdate = $this->findEntity(Kana::class, 1);
+
+        self::assertInstanceOf(Kana::class, $entityUpdate);
+        self::assertEquals('ki', $entityUpdate->getRomaji());
+        self::assertResponseRedirects();
+
+        $this->client->followRedirect();
+
+        $this->assertSelectorTextContains('div', "'あ' a été mis à jour avec succès.");
     }
 }
