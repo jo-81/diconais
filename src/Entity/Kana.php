@@ -38,6 +38,9 @@ class Kana
     #[ORM\Column(enumType: KanaTypeEnum::class)]
     private ?KanaTypeEnum $type = null;
 
+    #[ORM\Column]
+    private ?int $position = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -111,6 +114,23 @@ class Kana
     public function setType(KanaTypeEnum $type): static
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->ideogramme;
+    }
+
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+
+    public function setPosition(int $position): static
+    {
+        $this->position = $position;
 
         return $this;
     }

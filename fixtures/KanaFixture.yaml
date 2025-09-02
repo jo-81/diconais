@@ -6,3 +6,4 @@ App\Entity\Kana:
     accent: false
     combination: false
     type: hiragana
+    position: 1
