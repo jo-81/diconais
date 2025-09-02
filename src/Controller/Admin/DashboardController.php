@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Kana;
 use App\Entity\Course;
 use App\Entity\Category;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,5 +33,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Cours', 'fa-solid fa-list', Course::class);
         yield MenuItem::linkToCrud('Catégories', 'fa-solid fa-tag', Category::class);
+        yield MenuItem::linkToCrud('Kana', 'fa-solid fa-language', Kana::class);
     }
 }

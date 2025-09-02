@@ -1,0 +1,9 @@
+App\Entity\Kana:
+  kana_1:
+    ideogramme: あ
+    romaji: a
+    kunrei: a
+    accent: false
+    combination: false
+    type: hiragana
+    position: 1
