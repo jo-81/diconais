@@ -3,13 +3,16 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Kana;
+use App\Enum\KanaTypeEnum;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\ChoiceFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class KanaCrudController extends AbstractCrudController
@@ -22,7 +25,7 @@ class KanaCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setDefaultSort(['id' => 'DESC'])
+            ->setDefaultSort(['position' => 'ASC'])
             ->setPaginatorPageSize(10)
             ->setSearchFields(['name'])
             ->setEntityLabelInPlural('kana')
@@ -36,6 +39,7 @@ class KanaCrudController extends AbstractCrudController
     public function configureActions(Actions $actions): Actions
     {
         return $actions
+            ->add(Crud::PAGE_INDEX, Action::DETAIL)
             ->remove(Crud::PAGE_NEW, Action::SAVE_AND_ADD_ANOTHER)
             ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
                 return $action->setLabel('Ajouter');
@@ -54,5 +58,20 @@ class KanaCrudController extends AbstractCrudController
             BooleanField::new('accent')->setColumns('col-6'),
             BooleanField::new('combination', 'Combinaison')->setColumns('col-6'),
         ];
+    }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        $choices = array_combine(
+            array_map(fn ($c) => ucfirst(strtolower($c->name)), KanaTypeEnum::cases()),
+            array_map(fn ($c) => $c->value, KanaTypeEnum::cases())
+        );
+
+        return $filters
+            ->add('ideogramme')
+            ->add('accent')
+            ->add('combination')
+            ->add(ChoiceFilter::new('type')->setChoices($choices))
+        ;
     }
 }

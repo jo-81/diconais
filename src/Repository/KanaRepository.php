@@ -16,28 +16,45 @@ class KanaRepository extends ServiceEntityRepository
         parent::__construct($registry, Kana::class);
     }
 
-    //    /**
-    //     * @return Kana[] Returns an array of Kana objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('k')
-    //            ->andWhere('k.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('k.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    /**
+     * filterListKana.
+     *
+     * @return Kana[]
+     */
+    public function filterListKana(string $query, string $type = '', string $accent = '', string $combination = '')
+    {
+        $qb = $this->createQueryBuilder('k')
+            ->orderBy('k.position', 'ASC')
+        ;
 
-    //    public function findOneBySomeField($value): ?Kana
-    //    {
-    //        return $this->createQueryBuilder('k')
-    //            ->andWhere('k.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        if (!empty($query)) {
+            $qb
+                ->andWhere('k.romaji LIKE :query')
+                ->setParameter('query', '%'.$query.'%')
+            ;
+        }
+
+        if (!empty($type)) {
+            $qb
+                ->andWhere('k.type = :type')
+                ->setParameter('type', $type)
+            ;
+        }
+
+        if ('' !== $accent) {
+            $qb
+                ->andWhere('k.accent = :accent')
+                ->setParameter('accent', (bool) $accent)
+            ;
+        }
+
+        if ('' !== $combination) {
+            $qb
+                ->andWhere('k.combination = :combination')
+                ->setParameter('combination', (bool) $combination)
+            ;
+        }
+
+        return $qb->getQuery()->getResult();
+    }
 }

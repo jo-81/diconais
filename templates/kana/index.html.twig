@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les Kana | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <twig:PageHeader title="Les Kana"/>
+
+    <div class="container my-5">
+        <twig:Kana:KanaList />
+    </div>
+{% endblock %}
