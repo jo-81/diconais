@@ -6,9 +6,7 @@ use App\Enum\KanaTypeEnum;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\KanaRepository;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-#[UniqueEntity('ideogramme')]
 #[ORM\Entity(repositoryClass: KanaRepository::class)]
 class Kana
 {

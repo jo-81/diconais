@@ -75,11 +75,5 @@ class KanaTest extends WebTestCase
         $violations = $this->getValidationErrors($kana, $this->validator);
         $this->assertEquals(1, $violations['count']);
         $this->assertContains('Ce champ ne peut pas être vide.', $violations['messages']);
-
-        // Unique
-        $kana->setIdeogramme('あ');
-        $violations = $this->getValidationErrors($kana, $this->validator);
-        $this->assertEquals(1, $violations['count']);
-        $this->assertContains('Cette valeur est déjà utilisée.', $violations['messages']);
     }
 }

@@ -38,6 +38,9 @@ class KanaCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->request('GET', $this->generateDetailUrl(1));
         static::assertResponseRedirects('/connexion');
+
+        $this->client->request('GET', $this->generateIndexUrl());
+        static::assertResponseRedirects('/connexion');
     }
 
     /**
@@ -53,6 +56,9 @@ class KanaCrudControllerTest extends AbstractCrudTestCase
         static::assertResponseIsSuccessful();
 
         $this->client->request('GET', $this->generateDetailUrl(1));
+        static::assertResponseIsSuccessful();
+
+        $this->client->request('GET', $this->generateIndexUrl());
         static::assertResponseIsSuccessful();
     }
 

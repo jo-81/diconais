@@ -1,0 +1,55 @@
+<section {{ attributes }}>
+    <header class="mb-4 row flex-wrap g-2">
+
+        <!-- Barre de recherche -->
+        <div class="col-12 col-md-6 col-lg">
+            <label for="search" class="form-label">Rechercher</label>
+            <input data-model="debounce(300)|query" type="search" id="search" class="form-control">
+        </div>
+        <!-- Barre de recherche -->
+
+        <!-- Sélectionner un le type : Hiragana / Katakana -->
+        <div class="col-12 col-md-6 col-lg">
+            <label for="type" class="form-label">Type</label>
+            <select data-model="type" class="form-select" id="type">
+                <option value="">Tous les kana</option>
+                {% for t in enum_cases('App\\Enum\\KanaTypeEnum') %}
+                    <option value={{ t.value }}>{{ t.value }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <!-- Sélectionner un le type : Hiragana / Katakana -->
+
+        <!-- Afficher les accents -->
+        <div class="col-12 col-md-6 col-lg">
+            <label for="accent" class="form-label">Accents</label>
+            <select data-model="accent" class="form-select" id="accent">
+                <option value="">Tous les kana</option>
+                <option value="1" {% if accent == "1" %}selected{% endif %}>Oui</option>
+                <option value="0" {% if accent == "0" %}selected{% endif %}>Non</option>
+            </select>
+        </div>
+        <!-- Afficher les accents -->
+
+        <!-- Afficher les combinaisons -->
+        <div class="col-12 col-md-6 col-lg">
+            <label for="combination" class="form-label">Combinaison</label>
+            <select data-model="combination" class="form-select" id="combination">
+                <option value="">Tous les kana</option>
+                <option value="1">Oui</option>
+                <option value="0">Non</option>
+            </select>
+        </div>
+        <!-- Afficher les combinaisons -->
+    </header>
+
+    <div class="row gy-3">
+        {% for kana in this.kanas %}
+            <twig:Kana:KanaCard key="kana-{{ kana.id }}" kana="{{ kana }}"/>
+            {% else %}
+            <p>Aucun kana de trouvés.</p>
+        {% endfor %}
+
+        {{ knp_pagination_render(this.kanas) }}
+    </div>
+</section>
