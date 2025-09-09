@@ -3,10 +3,10 @@
 namespace App\Entity;
 
 use App\Enum\JlptLevelEnum;
-use App\Repository\KanjiRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\KanjiRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: KanjiRepository::class)]
 class Kanji extends Ideogramme

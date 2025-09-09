@@ -1,0 +1,1498 @@
+App\Entity\Key:
+  kanji_key_1:
+    number: 1
+    numberStroke: 1
+    ideogramme: '一'
+    signification: 'un, trait horizontal'
+    kunyomi: 'ひと'
+
+  kanji_key_2:
+    number: 2
+    numberStroke: 1
+    ideogramme: '丨'
+    signification: 'trait vertical'
+    kunyomi: 'ぼう'
+
+  kanji_key_3:
+    number: 3
+    numberStroke: 1
+    ideogramme: '丶'
+    signification: 'point'
+    kunyomi: 'てん'
+
+  kanji_key_4:
+    number: 4
+    numberStroke: 1
+    ideogramme: '丿'
+    signification: 'trait oblique'
+    kunyomi: 'の'
+
+  kanji_key_5:
+    number: 5
+    numberStroke: 1
+    ideogramme: '乙'
+    signification: 'crochet'
+    kunyomi: 'おつ'
+
+  kanji_key_6:
+    number: 6
+    numberStroke: 1
+    ideogramme: '亅'
+    signification: 'crochet vertical'
+    kunyomi: 'はねぼう'
+
+  kanji_key_7:
+    number: 7
+    numberStroke: 2
+    ideogramme: '二'
+    signification: 'deux'
+    kunyomi: 'ふた'
+
+  kanji_key_8:
+    number: 8
+    numberStroke: 2
+    ideogramme: '亠'
+    signification: 'couvercle'
+    kunyomi: 'なべぶた'
+
+  kanji_key_9:
+    number: 9
+    numberStroke: 2
+    ideogramme: '人'
+    signification: 'homme, personne'
+    kunyomi: 'ひと'
+
+  kanji_key_10:
+    number: 10
+    numberStroke: 2
+    ideogramme: '儿'
+    signification: 'jambes'
+    kunyomi: 'ひとあし'
+
+  kanji_key_11:
+    number: 11
+    numberStroke: 2
+    ideogramme: '入'
+    signification: 'entrer'
+    kunyomi: 'はい'
+
+  kanji_key_12:
+    number: 12
+    numberStroke: 2
+    ideogramme: '八'
+    signification: 'huit'
+    kunyomi: 'はち'
+
+  kanji_key_13:
+    number: 13
+    numberStroke: 2
+    ideogramme: '冂'
+    signification: 'enceinte'
+    kunyomi: 'けいがまえ'
+
+  kanji_key_14:
+    number: 14
+    numberStroke: 2
+    ideogramme: '冖'
+    signification: 'couvercle'
+    kunyomi: 'わかんむり'
+
+  kanji_key_15:
+    number: 15
+    numberStroke: 2
+    ideogramme: '冫'
+    signification: 'glace'
+    kunyomi: 'にすい'
+
+  kanji_key_16:
+    number: 16
+    numberStroke: 2
+    ideogramme: '几'
+    signification: 'table'
+    kunyomi: 'つくえ'
+
+  kanji_key_17:
+    number: 17
+    numberStroke: 2
+    ideogramme: '凵'
+    signification: 'récipient ouvert'
+    kunyomi: 'うけばこ'
+
+  kanji_key_18:
+    number: 18
+    numberStroke: 2
+    ideogramme: '刀'
+    signification: 'couteau'
+    kunyomi: 'かたな'
+
+  kanji_key_19:
+    number: 19
+    numberStroke: 2
+    ideogramme: '力'
+    signification: 'force'
+    kunyomi: 'ちから'
+
+  kanji_key_20:
+    number: 20
+    numberStroke: 2
+    ideogramme: '勹'
+    signification: 'envelopper'
+    kunyomi: 'つつみがまえ'
+
+  kanji_key_21:
+    number: 21
+    numberStroke: 2
+    ideogramme: '匕'
+    signification: 'cuillère'
+    kunyomi: 'さじ'
+
+  kanji_key_22:
+    number: 22
+    numberStroke: 2
+    ideogramme: '匚'
+    signification: 'boîte'
+    kunyomi: 'はこがまえ'
+
+  kanji_key_23:
+    number: 23
+    numberStroke: 2
+    ideogramme: '匸'
+    signification: 'cacher'
+    kunyomi: 'かくしがまえ'
+
+  kanji_key_24:
+    number: 24
+    numberStroke: 2
+    ideogramme: '十'
+    signification: 'dix'
+    kunyomi: 'とお'
+
+  kanji_key_25:
+    number: 25
+    numberStroke: 2
+    ideogramme: '卜'
+    signification: 'divination'
+    kunyomi: 'うらない'
+
+  kanji_key_26:
+    number: 26
+    numberStroke: 2
+    ideogramme: '卩'
+    signification: 'sceau'
+    kunyomi: 'ふしづくり'
+
+  kanji_key_27:
+    number: 27
+    numberStroke: 2
+    ideogramme: '厂'
+    signification: 'falaise'
+    kunyomi: 'がんだれ'
+
+  kanji_key_28:
+    number: 28
+    numberStroke: 2
+    ideogramme: '厶'
+    signification: 'privé'
+    kunyomi: 'む'
+
+  kanji_key_29:
+    number: 29
+    numberStroke: 2
+    ideogramme: '又'
+    signification: 'encore, main droite'
+    kunyomi: 'また'
+
+  kanji_key_30:
+    number: 30
+    numberStroke: 3
+    ideogramme: '口'
+    signification: 'bouche'
+    kunyomi: 'くち'
+
+  kanji_key_31:
+    number: 31
+    numberStroke: 3
+    ideogramme: '囗'
+    signification: 'enceinte'
+    kunyomi: 'くにがまえ'
+
+  kanji_key_32:
+    number: 32
+    numberStroke: 3
+    ideogramme: '土'
+    signification: 'terre'
+    kunyomi: 'つち'
+
+  kanji_key_33:
+    number: 33
+    numberStroke: 3
+    ideogramme: '士'
+    signification: 'érudit, guerrier'
+    kunyomi: 'さむらい'
+
+  kanji_key_34:
+    number: 34
+    numberStroke: 3
+    ideogramme: '夂'
+    signification: 'aller lentement'
+    kunyomi: 'ふゆがしら'
+
+  kanji_key_35:
+    number: 35
+    numberStroke: 3
+    ideogramme: '夊'
+    signification: 'aller lentement'
+    kunyomi: 'すいにょう'
+
+  kanji_key_36:
+    number: 36
+    numberStroke: 3
+    ideogramme: '夕'
+    signification: 'soir'
+    kunyomi: 'ゆう'
+
+  kanji_key_37:
+    number: 37
+    numberStroke: 3
+    ideogramme: '大'
+    signification: 'grand'
+    kunyomi: 'おお'
+
+  kanji_key_38:
+    number: 38
+    numberStroke: 3
+    ideogramme: '女'
+    signification: 'femme'
+    kunyomi: 'おんな'
+
+  kanji_key_39:
+    number: 39
+    numberStroke: 3
+    ideogramme: '子'
+    signification: 'enfant'
+    kunyomi: 'こ'
+
+  kanji_key_40:
+    number: 40
+    numberStroke: 3
+    ideogramme: '宀'
+    signification: 'toit'
+    kunyomi: 'うかんむり'
+
+  kanji_key_41:
+    number: 41
+    numberStroke: 3
+    ideogramme: '寸'
+    signification: 'pouce'
+    kunyomi: 'すん'
+
+  kanji_key_42:
+    number: 42
+    numberStroke: 3
+    ideogramme: '小'
+    signification: 'petit'
+    kunyomi: 'ちい'
+
+  kanji_key_43:
+    number: 43
+    numberStroke: 3
+    ideogramme: '尢'
+    signification: 'boiteux'
+    kunyomi: 'だいのまげあし'
+
+  kanji_key_44:
+    number: 44
+    numberStroke: 3
+    ideogramme: '尸'
+    signification: 'cadavre'
+    kunyomi: 'しかばね'
+
+  kanji_key_45:
+    number: 45
+    numberStroke: 3
+    ideogramme: '屮'
+    signification: 'bourgeon'
+    kunyomi: 'てつ'
+
+  kanji_key_46:
+    number: 46
+    numberStroke: 3
+    ideogramme: '山'
+    signification: 'montagne'
+    kunyomi: 'やま'
+
+  kanji_key_47:
+    number: 47
+    numberStroke: 3
+    ideogramme: '巛'
+    signification: 'rivière'
+    kunyomi: 'かわ'
+
+  kanji_key_48:
+    number: 48
+    numberStroke: 3
+    ideogramme: '工'
+    signification: 'travail, artisan'
+    kunyomi: 'たくみ'
+
+  kanji_key_49:
+    number: 49
+    numberStroke: 3
+    ideogramme: '己'
+    signification: 'soi'
+    kunyomi: 'おのれ'
+
+  kanji_key_50:
+    number: 50
+    numberStroke: 3
+    ideogramme: '巾'
+    signification: 'tissu'
+    kunyomi: 'はば'
+
+  kanji_key_51:
+    number: 51
+    numberStroke: 3
+    ideogramme: '干'
+    signification: 'sec'
+    kunyomi: 'かん'
+
+  kanji_key_52:
+    number: 52
+    numberStroke: 3
+    ideogramme: '幺'
+    signification: 'fil ténu'
+    kunyomi: 'いとがしら'
+
+  kanji_key_53:
+    number: 53
+    numberStroke: 3
+    ideogramme: '广'
+    signification: 'maison sur falaise'
+    kunyomi: 'まだれ'
+
+  kanji_key_54:
+    number: 54
+    numberStroke: 3
+    ideogramme: '廴'
+    signification: 'long pas'
+    kunyomi: 'えんにょう'
+
+  kanji_key_55:
+    number: 55
+    numberStroke: 3
+    ideogramme: '廾'
+    signification: 'deux mains'
+    kunyomi: 'にじゅうあし'
+
+  kanji_key_56:
+    number: 56
+    numberStroke: 3
+    ideogramme: '弋'
+    signification: 'flèche'
+    kunyomi: 'しきがまえ'
+
+  kanji_key_57:
+    number: 57
+    numberStroke: 3
+    ideogramme: '弓'
+    signification: 'arc'
+    kunyomi: 'ゆみ'
+
+  kanji_key_58:
+    number: 58
+    numberStroke: 3
+    ideogramme: '彐'
+    signification: 'tête de sanglier'
+    kunyomi: 'けいがしら'
+
+  kanji_key_59:
+    number: 59
+    numberStroke: 3
+    ideogramme: '彡'
+    signification: 'plume, cheveux'
+    kunyomi: 'さんづくり'
+
+  kanji_key_60:
+    number: 60
+    numberStroke: 3
+    ideogramme: '彳'
+    signification: 'aller'
+    kunyomi: 'ぎょうにんべん'
+
+  kanji_key_61:
+    number: 61
+    numberStroke: 4
+    ideogramme: '心'
+    signification: 'cœur'
+    kunyomi: 'こころ'
+
+  kanji_key_62:
+    number: 62
+    numberStroke: 4
+    ideogramme: '戈'
+    signification: 'hallebarde'
+    kunyomi: 'ほこがまえ'
+
+  kanji_key_63:
+    number: 63
+    numberStroke: 4
+    ideogramme: '戸'
+    signification: 'porte'
+    kunyomi: 'と'
+
+  kanji_key_64:
+    number: 64
+    numberStroke: 4
+    ideogramme: '手'
+    signification: 'main'
+    kunyomi: 'て'
+
+  kanji_key_65:
+    number: 65
+    numberStroke: 4
+    ideogramme: '支'
+    signification: 'branche'
+    kunyomi: 'しにょう'
+
+  kanji_key_66:
+    number: 66
+    numberStroke: 4
+    ideogramme: '攴'
+    signification: 'frapper'
+    kunyomi: 'ぼくにょう'
+
+  kanji_key_67:
+    number: 67
+    numberStroke: 4
+    ideogramme: '文'
+    signification: 'littérature'
+    kunyomi: 'ぶん'
+
+  kanji_key_68:
+    number: 68
+    numberStroke: 4
+    ideogramme: '斗'
+    signification: 'boisseau'
+    kunyomi: 'とます'
+
+  kanji_key_69:
+    number: 69
+    numberStroke: 4
+    ideogramme: '斤'
+    signification: 'hache'
+    kunyomi: 'おのづくり'
+
+  kanji_key_70:
+    number: 70
+    numberStroke: 4
+    ideogramme: '方'
+    signification: 'carré, direction'
+    kunyomi: 'ほう'
+
+  kanji_key_71:
+    number: 71
+    numberStroke: 4
+    ideogramme: '无'
+    signification: 'ne pas avoir'
+    kunyomi: 'なし'
+
+  kanji_key_72:
+    number: 72
+    numberStroke: 4
+    ideogramme: '日'
+    signification: 'soleil, jour'
+    kunyomi: 'ひ'
+
+  kanji_key_73:
+    number: 73
+    numberStroke: 4
+    ideogramme: '曰'
+    signification: 'dire'
+    kunyomi: 'いわく'
+
+  kanji_key_74:
+    number: 74
+    numberStroke: 4
+    ideogramme: '月'
+    signification: 'lune, mois'
+    kunyomi: 'つき'
+
+  kanji_key_75:
+    number: 75
+    numberStroke: 4
+    ideogramme: '木'
+    signification: 'arbre, bois'
+    kunyomi: 'き'
+
+  kanji_key_76:
+    number: 76
+    numberStroke: 4
+    ideogramme: '欠'
+    signification: 'manquer'
+    kunyomi: 'か'
+
+  kanji_key_77:
+    number: 77
+    numberStroke: 4
+    ideogramme: '止'
+    signification: 'arrêter'
+    kunyomi: 'と'
+
+  kanji_key_78:
+    number: 78
+    numberStroke: 4
+    ideogramme: '歹'
+    signification: 'mort violente'
+    kunyomi: 'がつへん'
+
+  kanji_key_79:
+    number: 79
+    numberStroke: 4
+    ideogramme: '殳'
+    signification: 'arme'
+    kunyomi: 'るまた'
+
+  kanji_key_80:
+    number: 80
+    numberStroke: 4
+    ideogramme: '毋'
+    signification: 'ne pas'
+    kunyomi: 'なかれ'
+
+  kanji_key_81:
+    number: 81
+    numberStroke: 4
+    ideogramme: '比'
+    signification: 'comparer'
+    kunyomi: 'くら'
+
+  kanji_key_82:
+    number: 82
+    numberStroke: 4
+    ideogramme: '毛'
+    signification: 'poil'
+    kunyomi: 'け'
+
+  kanji_key_83:
+    number: 83
+    numberStroke: 4
+    ideogramme: '氏'
+    signification: 'clan'
+    kunyomi: 'うじ'
+
+  kanji_key_84:
+    number: 84
+    numberStroke: 4
+    ideogramme: '气'
+    signification: 'vapeur'
+    kunyomi: 'きがまえ'
+
+  kanji_key_85:
+    number: 85
+    numberStroke: 4
+    ideogramme: '水'
+    signification: 'eau'
+    kunyomi: 'みず'
+
+  kanji_key_86:
+    number: 86
+    numberStroke: 4
+    ideogramme: '火'
+    signification: 'feu'
+    kunyomi: 'ひ'
+
+  kanji_key_87:
+    number: 87
+    numberStroke: 4
+    ideogramme: '爪'
+    signification: 'griffe'
+    kunyomi: 'つめ'
+
+  kanji_key_88:
+    number: 88
+    numberStroke: 4
+    ideogramme: '父'
+    signification: 'père'
+    kunyomi: 'ちち'
+
+  kanji_key_89:
+    number: 89
+    numberStroke: 4
+    ideogramme: '爻'
+    signification: 'trait de Yi King'
+    kunyomi: 'こう'
+
+  kanji_key_90:
+    number: 90
+    numberStroke: 4
+    ideogramme: '爿'
+    signification: 'demi-tronc'
+    kunyomi: 'しょうへん'
+
+  kanji_key_91:
+    number: 91
+    numberStroke: 4
+    ideogramme: '片'
+    signification: 'morceau'
+    kunyomi: 'かた'
+
+  kanji_key_92:
+    number: 92
+    numberStroke: 4
+    ideogramme: '牙'
+    signification: 'défense, croc'
+    kunyomi: 'きば'
+
+  kanji_key_93:
+    number: 93
+    numberStroke: 4
+    ideogramme: '牛'
+    signification: 'bœuf'
+    kunyomi: 'うし'
+
+  kanji_key_94:
+    number: 94
+    numberStroke: 4
+    ideogramme: '犬'
+    signification: 'chien'
+    kunyomi: 'いぬ'
+
+  kanji_key_95:
+    number: 95
+    numberStroke: 5
+    ideogramme: '玄'
+    signification: 'mystérieux'
+    kunyomi: 'げん'
+
+  kanji_key_96:
+    number: 96
+    numberStroke: 5
+    ideogramme: '玉'
+    signification: 'jade'
+    kunyomi: 'たま'
+
+  kanji_key_97:
+    number: 97
+    numberStroke: 5
+    ideogramme: '瓜'
+    signification: 'melon'
+    kunyomi: 'うり'
+
+  kanji_key_98:
+    number: 98
+    numberStroke: 5
+    ideogramme: '瓦'
+    signification: 'tuile'
+    kunyomi: 'かわら'
+
+  kanji_key_99:
+    number: 99
+    numberStroke: 5
+    ideogramme: '甘'
+    signification: 'doux'
+    kunyomi: 'あま'
+
+  kanji_key_100:
+    number: 100
+    numberStroke: 5
+    ideogramme: '生'
+    signification: 'naître, vivre'
+    kunyomi: 'い'
+
+  kanji_key_101:
+    number: 101
+    numberStroke: 5
+    ideogramme: '用'
+    signification: 'utiliser'
+    kunyomi: 'もち'
+
+  kanji_key_102:
+    number: 102
+    numberStroke: 5
+    ideogramme: '田'
+    signification: 'champ de riz'
+    kunyomi: 'た'
+
+  kanji_key_103:
+    number: 103
+    numberStroke: 5
+    ideogramme: '疋'
+    signification: 'rouleau de tissu'
+    kunyomi: 'ひき'
+
+  kanji_key_104:
+    number: 104
+    numberStroke: 5
+    ideogramme: '疒'
+    signification: 'maladie'
+    kunyomi: 'やまいだれ'
+
+  kanji_key_105:
+    number: 105
+    numberStroke: 5
+    ideogramme: '癶'
+    signification: 'partir'
+    kunyomi: 'はつがしら'
+
+  kanji_key_106:
+    number: 106
+    numberStroke: 5
+    ideogramme: '白'
+    signification: 'blanc'
+    kunyomi: 'しろ'
+
+  kanji_key_107:
+    number: 107
+    numberStroke: 5
+    ideogramme: '皮'
+    signification: 'peau'
+    kunyomi: 'かわ'
+
+  kanji_key_108:
+    number: 108
+    numberStroke: 5
+    ideogramme: '皿'
+    signification: 'plat, assiette'
+    kunyomi: 'さら'
+
+  kanji_key_109:
+    number: 109
+    numberStroke: 5
+    ideogramme: '目'
+    signification: 'œil'
+    kunyomi: 'め'
+
+  kanji_key_110:
+    number: 110
+    numberStroke: 5
+    ideogramme: '矛'
+    signification: 'lance'
+    kunyomi: 'ほこ'
+
+  kanji_key_111:
+    number: 111
+    numberStroke: 5
+    ideogramme: '矢'
+    signification: 'flèche'
+    kunyomi: 'や'
+
+  kanji_key_112:
+    number: 112
+    numberStroke: 5
+    ideogramme: '石'
+    signification: 'pierre'
+    kunyomi: 'いし'
+
+  kanji_key_113:
+    number: 113
+    numberStroke: 5
+    ideogramme: '示'
+    signification: 'montrer, autel'
+    kunyomi: 'しめす'
+
+  kanji_key_114:
+    number: 114
+    numberStroke: 5
+    ideogramme: '禸'
+    signification: 'trace'
+    kunyomi: 'ぐうのあし'
+
+  kanji_key_115:
+    number: 115
+    numberStroke: 5
+    ideogramme: '禾'
+    signification: 'épi de céréale'
+    kunyomi: 'のぎ'
+
+  kanji_key_116:
+    number: 116
+    numberStroke: 5
+    ideogramme: '穴'
+    signification: 'trou, caverne'
+    kunyomi: 'あな'
+
+  kanji_key_117:
+    number: 117
+    numberStroke: 5
+    ideogramme: '立'
+    signification: 'se tenir debout'
+    kunyomi: 'た'
+
+  kanji_key_118:
+    number: 118
+    numberStroke: 6
+    ideogramme: '竹'
+    signification: 'bambou'
+    kunyomi: 'たけ'
+
+  kanji_key_119:
+    number: 119
+    numberStroke: 6
+    ideogramme: '米'
+    signification: 'riz'
+    kunyomi: 'こめ'
+
+  kanji_key_120:
+    number: 120
+    numberStroke: 6
+    ideogramme: '糸'
+    signification: 'fil, soie'
+    kunyomi: 'いと'
+
+  kanji_key_121:
+    number: 121
+    numberStroke: 6
+    ideogramme: '缶'
+    signification: 'jarre'
+    kunyomi: 'ほとぎ'
+  
+  kanji_key_122:
+    number: 122
+    numberStroke: 6
+    ideogramme: '网'
+    signification: 'filet'
+    kunyomi: 'あみがしら'
+
+  kanji_key_123:
+    number: 123
+    numberStroke: 6
+    ideogramme: '羊'
+    signification: 'mouton'
+    kunyomi: 'ひつじ'
+
+  kanji_key_124:
+    number: 124
+    numberStroke: 6
+    ideogramme: '羽'
+    signification: 'plume'
+    kunyomi: 'はね'
+
+  kanji_key_125:
+    number: 125
+    numberStroke: 6
+    ideogramme: '老'
+    signification: 'vieux'
+    kunyomi: 'お'
+
+  kanji_key_126:
+    number: 126
+    numberStroke: 6
+    ideogramme: '而'
+    signification: 'et, barbe'
+    kunyomi: 'しこうして'
+
+  kanji_key_127:
+    number: 127
+    numberStroke: 6
+    ideogramme: '耒'
+    signification: 'charrue'
+    kunyomi: 'らいすき'
+
+  kanji_key_128:
+    number: 128
+    numberStroke: 6
+    ideogramme: '耳'
+    signification: 'oreille'
+    kunyomi: 'みみ'
+
+  kanji_key_129:
+    number: 129
+    numberStroke: 6
+    ideogramme: '聿'
+    signification: 'pinceau'
+    kunyomi: 'ふで'
+
+  kanji_key_130:
+    number: 130
+    numberStroke: 6
+    ideogramme: '肉'
+    signification: 'viande'
+    kunyomi: 'にく'
+
+  kanji_key_131:
+    number: 131
+    numberStroke: 6
+    ideogramme: '臣'
+    signification: 'ministre'
+    kunyomi: 'しん'
+
+  kanji_key_132:
+    number: 132
+    numberStroke: 6
+    ideogramme: '自'
+    signification: 'soi-même'
+    kunyomi: 'みずか'
+
+  kanji_key_133:
+    number: 133
+    numberStroke: 6
+    ideogramme: '至'
+    signification: 'arriver'
+    kunyomi: 'いた'
+
+  kanji_key_134:
+    number: 134
+    numberStroke: 6
+    ideogramme: '臼'
+    signification: 'mortier'
+    kunyomi: 'うす'
+
+  kanji_key_135:
+    number: 135
+    numberStroke: 6
+    ideogramme: '舌'
+    signification: 'langue'
+    kunyomi: 'した'
+
+  kanji_key_136:
+    number: 136
+    numberStroke: 6
+    ideogramme: '舛'
+    signification: 'opposer'
+    kunyomi: 'ます'
+
+  kanji_key_137:
+    number: 137
+    numberStroke: 6
+    ideogramme: '舟'
+    signification: 'bateau'
+    kunyomi: 'ふね'
+
+  kanji_key_138:
+    number: 138
+    numberStroke: 6
+    ideogramme: '艮'
+    signification: 'arrêter'
+    kunyomi: 'こん'
+
+  kanji_key_139:
+    number: 139
+    numberStroke: 6
+    ideogramme: '色'
+    signification: 'couleur'
+    kunyomi: 'いろ'
+
+  kanji_key_140:
+    number: 140
+    numberStroke: 6
+    ideogramme: '艸'
+    signification: 'herbe'
+    kunyomi: 'くさ'
+
+  kanji_key_141:
+    number: 141
+    numberStroke: 6
+    ideogramme: '虍'
+    signification: 'tigre'
+    kunyomi: 'とらがしら'
+
+  kanji_key_142:
+    number: 142
+    numberStroke: 6
+    ideogramme: '虫'
+    signification: 'insecte'
+    kunyomi: 'むし'
+
+  kanji_key_143:
+    number: 143
+    numberStroke: 6
+    ideogramme: '血'
+    signification: 'sang'
+    kunyomi: 'ち'
+
+  kanji_key_144:
+    number: 144
+    numberStroke: 6
+    ideogramme: '行'
+    signification: 'aller'
+    kunyomi: 'い'
+
+  kanji_key_145:
+    number: 145
+    numberStroke: 6
+    ideogramme: '衣'
+    signification: 'vêtement'
+    kunyomi: 'ころも'
+
+  kanji_key_146:
+    number: 146
+    numberStroke: 6
+    ideogramme: '襾'
+    signification: 'couvrir'
+    kunyomi: 'にし'
+
+  kanji_key_147:
+    number: 147
+    numberStroke: 7
+    ideogramme: '見'
+    signification: 'voir'
+    kunyomi: 'み'
+
+  kanji_key_148:
+    number: 148
+    numberStroke: 7
+    ideogramme: '角'
+    signification: 'corne'
+    kunyomi: 'つの'
+
+  kanji_key_149:
+    number: 149
+    numberStroke: 7
+    ideogramme: '言'
+    signification: 'parole'
+    kunyomi: 'い'
+
+  kanji_key_150:
+    number: 150
+    numberStroke: 7
+    ideogramme: '谷'
+    signification: 'vallée'
+    kunyomi: 'たに'
+
+  kanji_key_151:
+    number: 151
+    numberStroke: 7
+    ideogramme: '豆'
+    signification: 'haricot'
+    kunyomi: 'まめ'
+
+  kanji_key_152:
+    number: 152
+    numberStroke: 7
+    ideogramme: '豕'
+    signification: 'porc'
+    kunyomi: 'いのこ'
+
+  kanji_key_153:
+    number: 153
+    numberStroke: 7
+    ideogramme: '豸'
+    signification: 'animal sans cornes'
+    kunyomi: 'むじな'
+
+  kanji_key_154:
+    number: 154
+    numberStroke: 7
+    ideogramme: '貝'
+    signification: 'coquillage'
+    kunyomi: 'かい'
+
+  kanji_key_155:
+    number: 155
+    numberStroke: 7
+    ideogramme: '赤'
+    signification: 'rouge'
+    kunyomi: 'あか'
+
+  kanji_key_156:
+    number: 156
+    numberStroke: 7
+    ideogramme: '走'
+    signification: 'courir'
+    kunyomi: 'はし'
+
+  kanji_key_157:
+    number: 157
+    numberStroke: 7
+    ideogramme: '足'
+    signification: 'pied'
+    kunyomi: 'あし'
+
+  kanji_key_158:
+    number: 158
+    numberStroke: 7
+    ideogramme: '身'
+    signification: 'corps'
+    kunyomi: 'み'
+
+  kanji_key_159:
+    number: 159
+    numberStroke: 7
+    ideogramme: '車'
+    signification: 'véhicule'
+    kunyomi: 'くるま'
+
+  kanji_key_160:
+    number: 160
+    numberStroke: 7
+    ideogramme: '辛'
+    signification: 'épicé, pénible'
+    kunyomi: 'から'
+
+  kanji_key_161:
+    number: 161
+    numberStroke: 7
+    ideogramme: '辰'
+    signification: 'dragon zodiacal'
+    kunyomi: 'たつ'
+
+  kanji_key_162:
+    number: 162
+    numberStroke: 7
+    ideogramme: '辵'
+    signification: 'avancer'
+    kunyomi: 'しんにょう'
+
+  kanji_key_163:
+    number: 163
+    numberStroke: 7
+    ideogramme: '邑'
+    signification: 'ville'
+    kunyomi: 'おおざと'
+
+  kanji_key_164:
+    number: 164
+    numberStroke: 7
+    ideogramme: '酉'
+    signification: 'saké, coq'
+    kunyomi: 'とり'
+
+  kanji_key_165:
+    number: 165
+    numberStroke: 7
+    ideogramme: '釆'
+    signification: 'distinguer'
+    kunyomi: 'のごめ'
+
+  kanji_key_166:
+    number: 166
+    numberStroke: 7
+    ideogramme: '里'
+    signification: 'village'
+    kunyomi: 'さと'
+
+  kanji_key_167:
+    number: 167
+    numberStroke: 8
+    ideogramme: '金'
+    signification: 'métal, or'
+    kunyomi: 'かね'
+
+  kanji_key_168:
+    number: 168
+    numberStroke: 8
+    ideogramme: '長'
+    signification: 'long'
+    kunyomi: 'なが'
+
+  kanji_key_169:
+    number: 169
+    numberStroke: 8
+    ideogramme: '門'
+    signification: 'porte'
+    kunyomi: 'もん'
+
+  kanji_key_170:
+    number: 170
+    numberStroke: 8
+    ideogramme: '阜'
+    signification: 'colline'
+    kunyomi: 'こざと'
+
+  kanji_key_171:
+    number: 171
+    numberStroke: 8
+    ideogramme: '隶'
+    signification: 'esclave'
+    kunyomi: 'れいづくり'
+
+  kanji_key_172:
+    number: 172
+    numberStroke: 8
+    ideogramme: '隹'
+    signification: 'oiseau à queue courte'
+    kunyomi: 'ふるとり'
+
+  kanji_key_173:
+    number: 173
+    numberStroke: 8
+    ideogramme: '雨'
+    signification: 'pluie'
+    kunyomi: 'あめ'
+
+  kanji_key_174:
+    number: 174
+    numberStroke: 8
+    ideogramme: '青'
+    signification: 'bleu, vert'
+    kunyomi: 'あお'
+
+  kanji_key_175:
+    number: 175
+    numberStroke: 8
+    ideogramme: '非'
+    signification: 'ne pas être'
+    kunyomi: 'あら'
+
+  kanji_key_176:
+    number: 176
+    numberStroke: 9
+    ideogramme: '面'
+    signification: 'visage'
+    kunyomi: 'めん'
+
+  kanji_key_177:
+    number: 177
+    numberStroke: 9
+    ideogramme: '革'
+    signification: 'cuir'
+    kunyomi: 'かわ'
+
+  kanji_key_178:
+    number: 178
+    numberStroke: 9
+    ideogramme: '韋'
+    signification: 'cuir tanné'
+    kunyomi: 'なめしがわ'
+
+  kanji_key_179:
+    number: 179
+    numberStroke: 9
+    ideogramme: '韭'
+    signification: 'poireau'
+    kunyomi: 'にら'
+
+  kanji_key_180:
+    number: 180
+    numberStroke: 9
+    ideogramme: '音'
+    signification: 'son'
+    kunyomi: 'おと'
+
+  kanji_key_181:
+    number: 181
+    numberStroke: 9
+    ideogramme: '頁'
+    signification: 'page, tête'
+    kunyomi: 'おおがい'
+
+  kanji_key_182:
+    number: 182
+    numberStroke: 9
+    ideogramme: '風'
+    signification: 'vent'
+    kunyomi: 'かぜ'
+
+  kanji_key_183:
+    number: 183
+    numberStroke: 9
+    ideogramme: '飛'
+    signification: 'voler'
+    kunyomi: 'と'
+
+  kanji_key_184:
+    number: 184
+    numberStroke: 9
+    ideogramme: '食'
+    signification: 'manger'
+    kunyomi: 'た'
+
+  kanji_key_185:
+    number: 185
+    numberStroke: 9
+    ideogramme: '首'
+    signification: 'tête, cou'
+    kunyomi: 'くび'
+
+  kanji_key_186:
+    number: 186
+    numberStroke: 9
+    ideogramme: '香'
+    signification: 'parfum'
+    kunyomi: 'かお'
+
+  kanji_key_187:
+    number: 187
+    numberStroke: 10
+    ideogramme: '馬'
+    signification: 'cheval'
+    kunyomi: 'うま'
+
+  kanji_key_188:
+    number: 188
+    numberStroke: 10
+    ideogramme: '骨'
+    signification: 'os'
+    kunyomi: 'ほね'
+
+  kanji_key_189:
+    number: 189
+    numberStroke: 10
+    ideogramme: '高'
+    signification: 'haut'
+    kunyomi: 'たか'
+
+  kanji_key_190:
+    number: 190
+    numberStroke: 10
+    ideogramme: '髟'
+    signification: 'cheveux longs'
+    kunyomi: 'かみがしら'
+
+  kanji_key_191:
+    number: 191
+    numberStroke: 10
+    ideogramme: '鬥'
+    signification: 'se battre'
+    kunyomi: 'とうがまえ'
+
+  kanji_key_192:
+    number: 192
+    numberStroke: 10
+    ideogramme: '鬯'
+    signification: 'alcool parfumé'
+    kunyomi: 'ちょう'
+
+  kanji_key_193:
+    number: 193
+    numberStroke: 10
+    ideogramme: '鬲'
+    signification: 'chaudron'
+    kunyomi: 'れき'
+
+  kanji_key_194:
+    number: 194
+    numberStroke: 10
+    ideogramme: '鬼'
+    signification: 'démon, fantôme'
+    kunyomi: 'おに'
+
+  kanji_key_195:
+    number: 195
+    numberStroke: 11
+    ideogramme: '魚'
+    signification: 'poisson'
+    kunyomi: 'うお'
+
+  kanji_key_196:
+    number: 196
+    numberStroke: 11
+    ideogramme: '鳥'
+    signification: 'oiseau'
+    kunyomi: 'とり'
+
+  kanji_key_197:
+    number: 197
+    numberStroke: 11
+    ideogramme: '鹵'
+    signification: 'sel'
+    kunyomi: 'しお'
+
+  kanji_key_198:
+    number: 198
+    numberStroke: 11
+    ideogramme: '鹿'
+    signification: 'cerf'
+    kunyomi: 'しか'
+
+  kanji_key_199:
+    number: 199
+    numberStroke: 11
+    ideogramme: '麥'
+    signification: 'blé'
+    kunyomi: 'むぎ'
+
+  kanji_key_200:
+    number: 200
+    numberStroke: 11
+    ideogramme: '麻'
+    signification: 'chanvre'
+    kunyomi: 'あさ'
+
+  kanji_key_201:
+    number: 201
+    numberStroke: 12
+    ideogramme: '黃'
+    signification: 'jaune'
+    kunyomi: 'き'
+
+  kanji_key_202:
+    number: 202
+    numberStroke: 12
+    ideogramme: '黍'
+    signification: 'millet'
+    kunyomi: 'きび'
+
+  kanji_key_203:
+    number: 203
+    numberStroke: 12
+    ideogramme: '黑'
+    signification: 'noir'
+    kunyomi: 'くろ'
+
+  kanji_key_204:
+    number: 204
+    numberStroke: 12
+    ideogramme: '黹'
+    signification: 'broderie'
+    kunyomi: 'ち'
+
+  kanji_key_205:
+    number: 205
+    numberStroke: 13
+    ideogramme: '黽'
+    signification: 'grenouille'
+    kunyomi: 'かえる'
+
+  kanji_key_206:
+    number: 206
+    numberStroke: 13
+    ideogramme: '鼎'
+    signification: 'trépied'
+    kunyomi: 'かなえ'
+
+  kanji_key_207:
+    number: 207
+    numberStroke: 13
+    ideogramme: '鼓'
+    signification: 'tambour'
+    kunyomi: 'つづみ'
+
+  kanji_key_208:
+    number: 208
+    numberStroke: 13
+    ideogramme: '鼠'
+    signification: 'rat'
+    kunyomi: 'ねずみ'
+
+  kanji_key_209:
+    number: 209
+    numberStroke: 14
+    ideogramme: '鼻'
+    signification: 'nez'
+    kunyomi: 'はな'
+
+  kanji_key_210:
+    number: 210
+    numberStroke: 14
+    ideogramme: '齊'
+    signification: 'égal'
+    kunyomi: 'ひと'
+
+  kanji_key_211:
+    number: 211
+    numberStroke: 15
+    ideogramme: '齒'
+    signification: 'dent'
+    kunyomi: 'は'
+
+  kanji_key_212:
+    number: 212
+    numberStroke: 16
+    ideogramme: '龍'
+    signification: 'dragon'
+    kunyomi: 'りゅう'
+
+  kanji_key_213:
+    number: 213
+    numberStroke: 16
+    ideogramme: '龜'
+    signification: 'tortue'
+    kunyomi: 'かめ'
+
+  kanji_key_214:
+    number: 214
+    numberStroke: 17
+    ideogramme: '龠'
+    signification: 'flûte'
+    kunyomi: 'やく'

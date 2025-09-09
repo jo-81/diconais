@@ -7,7 +7,6 @@ use App\Repository\IdeogrammeRepository;
 use Doctrine\ORM\Mapping\InheritanceType;
 use Doctrine\ORM\Mapping\DiscriminatorMap;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
-use App\Entity\Kanji;
 
 #[InheritanceType('JOINED')]
 #[DiscriminatorColumn(name: 'discr', type: 'string')]

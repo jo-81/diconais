@@ -2,7 +2,7 @@
 
 namespace App\Enum;
 
-enum JlptLevelEnum: string 
+enum JlptLevelEnum: string
 {
     case JLPT1 = 'JLPT 1';
     case JLPT2 = 'JLPT 2';

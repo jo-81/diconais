@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Key;
 use App\Entity\Kana;
 use App\Entity\Course;
 use App\Entity\Category;
@@ -31,8 +32,13 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+
+        yield MenuItem::section('Cours');
         yield MenuItem::linkToCrud('Cours', 'fa-solid fa-list', Course::class);
         yield MenuItem::linkToCrud('Catégories', 'fa-solid fa-tag', Category::class);
+
+        yield MenuItem::section('Idéogrammes');
+        yield MenuItem::linkToCrud('Key', 'fa-solid fa-key', Key::class);
         yield MenuItem::linkToCrud('Kana', 'fa-solid fa-language', Kana::class);
     }
 }
