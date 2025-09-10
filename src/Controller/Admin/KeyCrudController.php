@@ -5,7 +5,6 @@ namespace App\Controller\Admin;
 use App\Entity\Key;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -35,7 +34,6 @@ class KeyCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
             IntegerField::new('number', 'Numéro'),
             TextField::new('ideogramme'),
             TextField::new('signification'),

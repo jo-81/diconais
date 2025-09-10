@@ -1,0 +1,9 @@
+App\Entity\Kanji:
+  kanji_{1..100}:
+    numberStroke: <numberBetween(1, 10)>
+    ideogramme: '困'
+    signification: <word()>
+    kunyomi: '25%? ひと'
+    onyomi: '25%? ヒト'
+    level: <randomJlptLevel()>
+    associatedKey: ['@kanji_key_<numberBetween(1, 214)>']
