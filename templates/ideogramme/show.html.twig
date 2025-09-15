@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ ideogramme.ideogramme }} | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <twig:PageHeader title="{{ class_name == "App\\Entity\\Kanji" ? "Kanji" : "Clé"}}" />
+
+    <div class="container my-5">
+        <!-- Informations sur le kanji -->
+        <section>
+            <header class="mb-3">
+                <h2 class="title mb-0 h3 fw-semibold">Informations</h2>
+            </header>
+
+            <section class="d-flex flex-wrap">
+                <div class="col-12 col-sm col-md-4 col-xl-3">
+                    <div class="text-sm-center ideogramme justify-content-center align-items-center">{{ ideogramme.ideogramme }}</div>
+                </div>
+
+                <div class="col-12 col-sm col-md-8 col-xl-9">
+                    <div class="mt-3 mt-md-0 ms-md-4">
+                        <p class="mb-2">
+                            <span class="fw-bold">Signification</span> : {{ ideogramme.signification }}
+                        </p>
+
+                        {% if class_name == "App\\Entity\\Kanji" and ideogramme.onyomi is not null %}
+                            <p class="mb-2">
+                                <span class="fw-bold">Onyomi</span> : {{ ideogramme.onyomi }}
+                            </p>
+                        {% endif %}
+
+                        {% if ideogramme.kunyomi is not null %}
+                            <p class="mb-2">
+                                <span class="fw-bold">Kunyomi</span> : {{ ideogramme.kunyomi }}
+                            </p>
+                        {% endif %}
+
+                        <p class="mb-2">
+                            <span class="fw-bold">Nombre de traits</span> : {{ ideogramme.numberStroke }}
+                        </p>
+
+                        {% if class_name == "App\\Entity\\Kanji" and ideogramme.level is not null %}
+                            <p class="mb-0"><span class="fw-bold">Niveau JLPT</span> : {{ ideogramme.level.value }}</p>
+                        {% endif %}
+                        
+                        {% if class_name == "App\\Entity\\Kanji" and ideogramme.associatedKey %}
+                            <p class="mt-2 mb-0 fw-bold"><span class="fw-bold me-2">
+                                {{ plurial('Clés associées', 'Clé associée', ideogramme.associatedKey.count) }}
+                            </span>
+                                {% for key in ideogramme.associatedKey %}
+                                    <a class="text-decoration-none" href="#">{{ key.ideogramme }}</a>
+                                {% endfor %}
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
+        </section>
+        <!-- Informations sur le kanji -->
+
+        {% if class_name == "App\\Entity\\Kanji" %}
+        <!-- Liste des kanji similaires -->
+        <section class="mt-5">
+            <header class="mb-3">
+                <h2 class="title mb-0 h3 fw-semibold">Kanji similaires</h2>
+            </header>
+
+            {% for similar in ideogramme.similars %}
+                {% else %}
+                <p>Aucun kanji similaire.</p>
+            {% endfor %}
+        </section>
+        <!-- Liste des kanji similaires -->
+        {% endif %}
+
+        <!-- Vocabulaires associés au kanji -->
+        <!-- Vocabulaires associés au kanji -->
+    </div>
+{% endblock %}

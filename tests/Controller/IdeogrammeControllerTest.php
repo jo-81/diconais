@@ -4,12 +4,12 @@ namespace App\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-final class KanjiControllerTest extends WebTestCase
+final class IdeogrammeControllerTest extends WebTestCase
 {
     public function testIndex(): void
     {
         $client = static::createClient();
-        $client->request('GET', '/kanji');
+        $client->request('GET', '/ideogrammes');
 
         self::assertResponseIsSuccessful();
     }

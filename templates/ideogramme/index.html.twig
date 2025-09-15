@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les idéogrammes | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <twig:PageHeader title="Les idéogrammes"/>
+
+    <div class="container my-5">
+        <twig:Ideogramme:IdeogrammeList data-loading="addClass(opacity-50)"/>
+    </div>
+{% endblock %}
