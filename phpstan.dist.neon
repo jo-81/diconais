@@ -6,6 +6,8 @@ parameters:
         - tests
     
     tmpDir: var/cache/phpstan
+
+    treatPhpDocTypesAsCertain: false
     
     symfony:
         containerXmlPath: var/cache/dev/App_KernelDevDebugContainer.xml
