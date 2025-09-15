@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les kanji | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <twig:PageHeader title="Les kanji"/>
+
+    <div class="container my-5">
+        <twig:Kanji:KanjiList data-loading="addClass(opacity-50)"/>
+    </div>
+{% endblock %}

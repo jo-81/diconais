@@ -1,0 +1,107 @@
+<div {{ attributes }}>
+    <div class="row">
+        <div class="col-12 col-md-7 col-xl-8 gx-xl-5">
+            <section class="row gy-3">
+                {% for kanji in this.kanjis %}
+                    <twig:Kanji:KanjiCard key="ideogramme-{{ kanji.id }}" ideogramme="{{ kanji }}"/>
+                    {% else %}
+                    <p>Aucun résultat trouvé pour votre recherche...</p>
+                {% endfor %}
+
+                {{ knp_pagination_render(this.kanjis) }}
+            </section>
+        </div>
+
+        <aside class="col-12 col-md-5 col-xl-4">
+            <div class="card card-body shadow-sm">
+                <div class="mb-4">
+                    <h3 class="h6 mb-2 text-uppercase fw-bold text-secondary"><small>Type</small></h3>
+
+                    <!-- Choix entre kanji et key -->
+                    <div class="mb-3 d-flex align-items-center">
+                        <div class="form-check me-3">
+                            <input class="form-check-input" type="radio" name="ideogrammeType" id="ideogrammeType1" value="kanji" data-model="ideogrammeType" checked>
+                            <label class="form-check-label" for="ideogrammeType1">Kanji</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="ideogrammeType" id="ideogrammeType2" value="key" data-model="ideogrammeType">
+                            <label class="form-check-label" for="ideogrammeType2">Clés</label>
+                        </div>
+                    </div>
+                    <!-- Choix entre kanji et key -->
+
+                    {% if this.ideogrammeType == "kanji" %}
+                    <!-- Niveau JLPT -->
+                    <div>
+                        <label for="jlpt" class="form-label">Niveau JLPT</label>
+                        <select data-model="jlpt" class="form-select" id="jlpt">
+                            <option value="">Aucun</option>
+                            {% for t in enum_cases('App\\Enum\\JlptLevelEnum') %}
+                                <option value="{{ t.value }}">{{ t.value }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <!-- Niveau JLPT -->
+                    {% endif %}
+
+                    {% if this.ideogrammeType == "key" %}
+                    <!-- Numéro de la clé -->
+                    <div>
+                        <label for="numberKey" class="form-label">Numéro de la clé</label>
+                        <select data-model="numberKey" class="form-select" id="numberKey">
+                            <option value="0">Tous les numéros</option>
+                            {% for n in 1..214 %}
+                                <option value="{{ n }}">{{ n }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <!-- Numéro de la clé -->
+                    {% endif %}
+                </div>
+
+                <div class="mb-4">
+                    <h3 class="h6 mb-2 text-uppercase fw-bold text-secondary"><small>Recherche</small></h3>
+
+                    <!-- Barre de recherche -->
+                    <div class="mb-3">
+                        <label for="search" class="form-label">Signification</label>
+                        <input data-model="debounce(300)|query" type="search" id="search" class="form-control">
+                    </div>
+                    <!-- Barre de recherche -->
+
+                    <!-- Idéogramme -->
+                    <div class="">
+                        <label for="search" class="form-label">Idéogramme</label>
+                        <input data-model="debounce(300)|ideogramme" type="search" id="search" class="form-control">
+                    </div>
+                    <!-- Idéogramme --> 
+                </div>
+
+                <div class="mb-4">
+                    <h3 class="h6 mb-2 text-uppercase fw-bold text-secondary"><small>Traits</small></h3>
+
+                    <!-- Nombre de trait -->
+                    <label for="numberStroke" class="form-label">Nombre de traits</label>
+                    <div class="input-group">
+                        <input data-model="debounce(300)|numberStroke" type="number" id="numberStroke" class="form-control">
+                        
+                        <select data-model="numberStrokeEgal" class="form-select" id="numberStrokeEgal" style="border-top-left-radius: 0; border-bottom-left-radius: 0">
+                            <option value="=">Egal</option>
+                            <option value="<">Inférieur</option>
+                            <option value=">">Supérieur</option>
+                        </select>
+                    </div>
+                    <!-- Nombre de trait -->
+                </div>
+
+                <div>
+                    <button
+                        data-action="live#action"
+                        data-live-action-param="reset"
+                        class="btn btn-primary">Réinitialiser</button>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>
