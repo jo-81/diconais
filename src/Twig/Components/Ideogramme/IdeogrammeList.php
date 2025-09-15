@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Twig\Components\Kanji;
+namespace App\Twig\Components\Ideogramme;
 
 use App\Repository\KeyRepository;
 use App\Repository\KanjiRepository;
@@ -13,7 +13,7 @@ use Knp\Component\Pager\Pagination\PaginationInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 
 #[AsLiveComponent]
-final class KanjiList
+final class IdeogrammeList
 {
     use DefaultActionTrait;
     use PaginationTrait;
@@ -48,7 +48,7 @@ final class KanjiList
     ) {
     }
 
-    public function getKanjis(): PaginationInterface
+    public function getIdeogrammes(): PaginationInterface
     {
         $strokes = [
             'numberStroke' => $this->numberStroke,

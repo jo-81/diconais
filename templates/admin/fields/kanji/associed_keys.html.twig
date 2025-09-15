@@ -1,0 +1,13 @@
+{% if field.value is not empty %}
+    <ul>
+    {% for key in field.value %}
+        {% set keyUrl = ea_url()
+            .setController('App\\Controller\\Admin\\KeyCrudController')
+            .setEntityId(key.id)
+        %}
+        <li><a href="{{ keyUrl }}">{{ key.ideogramme }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+Aucune clé associée
+{% endif %}

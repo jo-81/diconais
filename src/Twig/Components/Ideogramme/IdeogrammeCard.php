@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Twig\Components\Kanji;
+namespace App\Twig\Components\Ideogramme;
 
 use App\Entity\Ideogramme;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
 #[AsTwigComponent]
-final class KanjiCard
+final class IdeogrammeCard
 {
     public Ideogramme $ideogramme;
 }

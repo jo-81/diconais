@@ -1,0 +1,13 @@
+{% if field.value is not empty %}
+    <ul>
+    {% for kanji in field.value %}
+        {% set kanjiUrl = ea_url()
+            .setController('App\\Controller\\Admin\\KanjiCrudController')
+            .setEntityId(kanji.id)
+        %}
+        <li><a href="{{ kanjiUrl }}">{{ kanji.ideogramme }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+Aucun kanji associé(s)
+{% endif %}
