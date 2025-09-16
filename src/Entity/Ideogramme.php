@@ -7,7 +7,6 @@ use App\Repository\IdeogrammeRepository;
 use Doctrine\ORM\Mapping\InheritanceType;
 use Doctrine\ORM\Mapping\DiscriminatorMap;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
-use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[InheritanceType('JOINED')]
@@ -21,7 +20,7 @@ abstract class Ideogramme
     #[ORM\Column]
     protected ?int $id = null;
 
-    #[NotBlank(message: 'Ce champ ne peut pas être vide.')]
+    #[Assert\NotBlank(message: 'Ce champ ne peut pas être vide.')]
     #[ORM\Column(length: 255)]
     protected ?string $signification = null;
 
@@ -32,7 +31,7 @@ abstract class Ideogramme
     #[ORM\Column(length: 255, nullable: true)]
     protected ?string $kunyomi = null;
 
-    #[NotBlank(message: 'Ce champ ne peut pas être vide.')]
+    #[Assert\NotBlank(message: 'Ce champ ne peut pas être vide.')]
     #[ORM\Column(length: 255)]
     protected ?string $ideogramme = null;
 
