@@ -2,8 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Key;
 use App\Entity\Kanji;
 use App\Enum\JlptLevelEnum;
+use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -30,6 +32,7 @@ class KanjiCrudController extends AbstractCrudController
             ->setPageTitle('index', 'Liste des kanji')
             ->setPageTitle('detail', 'Consulter un kanji')
             ->setPageTitle('new', 'Ajouter un kanji')
+            ->setPageTitle('edit', fn (Kanji $kanji) => sprintf('Modifier le kanji %s', $kanji->getIdeogramme()))
             ->showEntityActionsInlined()
         ;
     }
