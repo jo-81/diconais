@@ -7,6 +7,8 @@ use App\Repository\IdeogrammeRepository;
 use Doctrine\ORM\Mapping\InheritanceType;
 use Doctrine\ORM\Mapping\DiscriminatorMap;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[InheritanceType('JOINED')]
 #[DiscriminatorColumn(name: 'discr', type: 'string')]
@@ -19,15 +21,18 @@ abstract class Ideogramme
     #[ORM\Column]
     protected ?int $id = null;
 
+    #[NotBlank(message: 'Ce champ ne peut pas être vide.')]
     #[ORM\Column(length: 255)]
     protected ?string $signification = null;
 
-    #[ORM\Column(length: 255)]
-    protected ?string $numberStroke = null;
+    #[Assert\Positive(message: 'Ce champ doit avoir une valeur strictement positive.')]
+    #[ORM\Column()]
+    protected ?int $numberStroke = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     protected ?string $kunyomi = null;
 
+    #[NotBlank(message: 'Ce champ ne peut pas être vide.')]
     #[ORM\Column(length: 255)]
     protected ?string $ideogramme = null;
 
@@ -48,12 +53,12 @@ abstract class Ideogramme
         return $this;
     }
 
-    public function getNumberStroke(): ?string
+    public function getNumberStroke(): ?int
     {
         return $this->numberStroke;
     }
 
-    public function setNumberStroke(string $numberStroke): static
+    public function setNumberStroke(int $numberStroke): static
     {
         $this->numberStroke = $numberStroke;
 
@@ -82,5 +87,10 @@ abstract class Ideogramme
         $this->ideogramme = $ideogramme;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->ideogramme;
     }
 }

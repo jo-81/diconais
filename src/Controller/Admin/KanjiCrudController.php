@@ -29,6 +29,7 @@ class KanjiCrudController extends AbstractCrudController
             ->setPaginatorPageSize(15)
             ->setPageTitle('index', 'Liste des kanji')
             ->setPageTitle('detail', 'Consulter un kanji')
+            ->setPageTitle('new', 'Ajouter un kanji')
             ->showEntityActionsInlined()
         ;
     }
@@ -46,16 +47,27 @@ class KanjiCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('ideogramme'),
+            TextField::new('ideogramme')->setColumns('col-md-6'),
             IntegerField::new('id')
                 ->onlyOnDetail()
                 ->setLabel('Lien vers le kanji')
-                ->setTemplatePath('admin/fields/kanji/kanji_front_link.html.twig'),
-            TextField::new('signification'),
-            IntegerField::new('numberStroke', 'Nombre de trait'),
-            ChoiceField::new('level', 'JLPT'),
-            TextField::new('onyomi'),
-            TextField::new('kunyomi'),
+                ->setTemplatePath('admin/fields/kanji/kanji_front_link.html.twig')
+                ->setColumns('col-md-6'),
+            TextField::new('signification')->setColumns('col-md-6'),
+            IntegerField::new('numberStroke', 'Nombre de trait')->setColumns('col-md-6'),
+            ChoiceField::new('level', 'JLPT')->setColumns('col-md-6'),
+            TextField::new('onyomi')
+                ->setColumns('col-md-6')
+                ->setHelp('Lecture sino-japonaise'),
+            TextField::new('kunyomi')
+                ->setColumns('col-md-6')
+                ->setHelp('Lecture purement japonaise'),
+            AssociationField::new('associatedKey', 'Clé(s) associée(s)')
+                ->onlyOnForms()
+                ->setColumns('col-md-6'),
+            AssociationField::new('similars', 'Kanji similaire(s)')
+                ->onlyOnForms()
+                ->setColumns('col-md-6'),
             AssociationField::new('associatedKey', 'Clé(s) associée(s)')
                 ->onlyOnDetail()
                 ->setTemplatePath('admin/fields/kanji/associed_keys.html.twig'),
