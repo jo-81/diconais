@@ -39,16 +39,21 @@
                             <span class="fw-bold">Nombre de traits</span> : {{ ideogramme.numberStroke }}
                         </p>
 
+                        {% if class_name == "App\\Entity\\Key" %}
+                            <p class="mb-0"><span class="fw-bold">Numéro</span> : {{ ideogramme.number }}</p>
+                        {% endif %}
+
                         {% if class_name == "App\\Entity\\Kanji" and ideogramme.level is not null %}
                             <p class="mb-0"><span class="fw-bold">Niveau JLPT</span> : {{ ideogramme.level.value }}</p>
                         {% endif %}
                         
-                        {% if class_name == "App\\Entity\\Kanji" and ideogramme.associatedKey %}
+                        {% if class_name == "App\\Entity\\Kanji" and ideogramme.associatedKey.count >= 1 %}
                             <p class="mt-2 mb-0 fw-bold"><span class="fw-bold me-2">
                                 {{ plurial('Clés associées', 'Clé associée', ideogramme.associatedKey.count) }}
                             </span>
                                 {% for key in ideogramme.associatedKey %}
-                                    <a class="text-decoration-none" href="#">{{ key.ideogramme }}</a>
+                                    <a class="text-decoration-none" href="{{ path('ideogramme.show', {id: key.id}) }}">{{ key.ideogramme }}</a>
+                                    {% if loop.last == false %}<span> / </span>{% endif %}
                                 {% endfor %}
                             </p>
                         {% endif %}
@@ -59,18 +64,21 @@
         <!-- Informations sur le kanji -->
 
         {% if class_name == "App\\Entity\\Kanji" %}
-        <!-- Liste des kanji similaires -->
-        <section class="mt-5">
-            <header class="mb-3">
-                <h2 class="title mb-0 h3 fw-semibold">Kanji similaires</h2>
-            </header>
+            <!-- Liste des kanji similaires -->
+            <twig:Ideogramme:IdeogrammeAssociated
+                title="Kanji similaires"
+                ideogrammes="{{ ideogramme.similars.toArray }}" 
+            />
+            <!-- Liste des kanji similaires -->
+        {% endif %}
 
-            {% for similar in ideogramme.similars %}
-                {% else %}
-                <p>Aucun kanji similaire.</p>
-            {% endfor %}
-        </section>
-        <!-- Liste des kanji similaires -->
+        {% if class_name == "App\\Entity\\Key" %}
+            <!-- Liste des kanji associés à la clé -->
+            <twig:Ideogramme:IdeogrammeAssociated 
+                title="Kanji associés"
+                ideogrammes="{{ ideogramme.kanjis.toArray }}" 
+            />
+            <!-- Liste des kanji associés à la clé -->
         {% endif %}
 
         <!-- Vocabulaires associés au kanji -->

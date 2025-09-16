@@ -1,0 +1,22 @@
+<div {{ attributes }}>
+    <section class="mt-5">
+        <header class="mb-3">
+            <h2 class="title mb-0 h3 fw-semibold">{{ title }}</h2>
+        </header>
+
+        <div class="row g-2 mb-4">
+            {% for ideogramme in this.getListIdeogrammes %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="{{ path('ideogramme.show', {id: ideogramme.id}) }}" class="card shadow-sm card-body text-decoration-none">
+                        <div class="d-flex gap-3 align-items-center d-xl-block">
+                            <h3 class="h3 fw-bold mb-0">{{ ideogramme.ideogramme }}</h3>
+                            <p class="mb-0">{{ ideogramme.signification }}</p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+
+        {{ knp_pagination_render(this.getListIdeogrammes) }}
+    </section>
+</div>
