@@ -41,6 +41,9 @@ class ThemeCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->request('GET', $this->generateNewFormUrl());
         static::assertResponseRedirects('/connexion');
+
+        $this->client->request('GET', $this->generateEditFormUrl(1));
+        static::assertResponseRedirects('/connexion');
     }
 
     /**
@@ -60,8 +63,14 @@ class ThemeCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->request('GET', $this->generateNewFormUrl());
         static::assertResponseIsSuccessful();
+
+        $this->client->request('GET', $this->generateEditFormUrl(1));
+        static::assertResponseIsSuccessful();
     }
 
+    /**
+     * testCreateEntityKanji.
+     */
     public function testCreateEntityKanji(): void
     {
         $testUser = $this->findOneEntityBy(User::class, ['email' => 'admin@domaine.fr']);
@@ -80,5 +89,26 @@ class ThemeCrudControllerTest extends AbstractCrudTestCase
         $this->client->followRedirect();
 
         $this->assertSelectorTextContains('div', "'ideogramme' a été créé avec succès.");
+    }
+
+    public function testUpdateEntityKanji(): void
+    {
+        $testUser = $this->findOneEntityBy(User::class, ['email' => 'admin@domaine.fr']);
+        $this->client->loginUser($testUser);
+        $crawler = $this->client->request('GET', $this->generateEditFormUrl(1));
+
+        $form = $crawler->selectButton('Sauvegarder les modifications')->form();
+        $form['Theme[name]'] = 'update theme';
+        $this->client->submit($form);
+
+        $entityUpdate = $this->findEntity(Theme::class, 1);
+
+        self::assertInstanceOf(Theme::class, $entityUpdate);
+        self::assertEquals('update theme', $entityUpdate->getName());
+        self::assertResponseRedirects();
+
+        $this->client->followRedirect();
+
+        $this->assertSelectorTextContains('div', "'update theme' a été mis à jour avec succès.");
     }
 }

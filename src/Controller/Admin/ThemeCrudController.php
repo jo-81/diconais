@@ -30,6 +30,7 @@ class ThemeCrudController extends AbstractCrudController
             ->setPageTitle('index', 'Liste des %entity_label_plural%')
             ->setPageTitle('detail', 'Consulter un %entity_label_singular%')
             ->setPageTitle('new', 'Ajouter un %entity_label_singular%')
+            ->setPageTitle('edit', fn (Theme $theme) => sprintf('Modifier le thème : %s', $theme->getName()))
             ->showEntityActionsInlined()
         ;
     }
