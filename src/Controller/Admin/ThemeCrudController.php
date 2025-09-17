@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Theme;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
@@ -27,6 +28,7 @@ class ThemeCrudController extends AbstractCrudController
             ->setEntityLabelInPlural('thèmes')
             ->setEntityLabelInSingular('thème')
             ->setPageTitle('index', 'Liste des %entity_label_plural%')
+            ->setPageTitle('detail', 'Consulter un %entity_label_singular%')
             ->showEntityActionsInlined()
         ;
     }
@@ -34,6 +36,7 @@ class ThemeCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            IdField::new('id')->onlyOnDetail(),
             TextField::new('name', 'Theme'),
             SlugField::new('slug')->setTargetFieldName('name'),
             TextField::new('description'),
