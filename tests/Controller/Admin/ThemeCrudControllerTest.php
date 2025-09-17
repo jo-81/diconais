@@ -5,8 +5,8 @@ namespace App\Tests\Controller\Admin;
 use App\Entity\User;
 use App\Entity\Theme;
 use App\Tests\Traits\EntityFinderTrait;
-use App\Controller\Admin\KeyCrudController;
 use App\Controller\Admin\DashboardController;
+use App\Controller\Admin\ThemeCrudController;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 use EasyCorp\Bundle\EasyAdminBundle\Test\AbstractCrudTestCase;
 
@@ -20,7 +20,7 @@ class ThemeCrudControllerTest extends AbstractCrudTestCase
 
     protected function getControllerFqcn(): string
     {
-        return KeyCrudController::class;
+        return ThemeCrudController::class;
     }
 
     protected function getDashboardFqcn(): string
@@ -38,6 +38,9 @@ class ThemeCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->request('GET', $this->generateDetailUrl(1));
         static::assertResponseRedirects('/connexion');
+
+        $this->client->request('GET', $this->generateNewFormUrl());
+        static::assertResponseRedirects('/connexion');
     }
 
     /**
@@ -54,5 +57,28 @@ class ThemeCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->request('GET', $this->generateDetailUrl(1));
         static::assertResponseIsSuccessful();
+
+        $this->client->request('GET', $this->generateNewFormUrl());
+        static::assertResponseIsSuccessful();
+    }
+
+    public function testCreateEntityKanji(): void
+    {
+        $testUser = $this->findOneEntityBy(User::class, ['email' => 'admin@domaine.fr']);
+        $this->client->loginUser($testUser);
+        $crawler = $this->client->request('GET', $this->generateNewFormUrl());
+
+        $form = $crawler->selectButton('Créer')->form();
+        $form['Theme[name]'] = 'ideogramme';
+        $form['Theme[slug]'] = 'ideogramme';
+        $form['Theme[description]'] = 'description';
+        $this->client->submit($form);
+
+        self::assertInstanceOf(Theme::class, $this->findOneEntityBy(Theme::class, ['name' => 'ideogramme']));
+        self::assertResponseRedirects();
+
+        $this->client->followRedirect();
+
+        $this->assertSelectorTextContains('div', "'ideogramme' a été créé avec succès.");
     }
 }
