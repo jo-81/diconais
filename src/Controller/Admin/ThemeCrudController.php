@@ -29,6 +29,7 @@ class ThemeCrudController extends AbstractCrudController
             ->setEntityLabelInSingular('thème')
             ->setPageTitle('index', 'Liste des %entity_label_plural%')
             ->setPageTitle('detail', 'Consulter un %entity_label_singular%')
+            ->setPageTitle('new', 'Ajouter un %entity_label_singular%')
             ->showEntityActionsInlined()
         ;
     }
@@ -37,7 +38,7 @@ class ThemeCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->onlyOnDetail(),
-            TextField::new('name', 'Theme'),
+            TextField::new('name', 'Thème'),
             SlugField::new('slug')->setTargetFieldName('name'),
             TextField::new('description'),
         ];

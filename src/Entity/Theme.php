@@ -4,7 +4,11 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ThemeRepository;
+use App\Validator\Constraints\NameAndSlugConstraints;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+#[UniqueEntity('name')]
+#[UniqueEntity('slug')]
 #[ORM\Entity(repositoryClass: ThemeRepository::class)]
 class Theme
 {
@@ -13,9 +17,11 @@ class Theme
     #[ORM\Column]
     private ?int $id = null;
 
+    #[NameAndSlugConstraints]
     #[ORM\Column(length: 255, unique: true)]
     private ?string $name = null;
 
+    #[NameAndSlugConstraints]
     #[ORM\Column(length: 255, unique: true)]
     private ?string $slug = null;
 
@@ -61,5 +67,10 @@ class Theme
         $this->description = $description;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }
