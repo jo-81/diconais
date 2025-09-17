@@ -98,7 +98,10 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "test": "phpunit --colors=always",
+        "test": [
+            "Composer\\Config::disableProcessTimeout",
+            "phpunit --colors=always"
+        ],
         "cs-fix": "php-cs-fixer fix --ansi",
         "stan": "phpstan analyse --ansi --memory-limit=512M",
         "quality": [

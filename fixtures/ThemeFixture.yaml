@@ -1,0 +1,10 @@
+App\Entity\Theme:
+  theme_1:
+    name: theme
+    slug: theme
+    description: description
+
+  theme_{2..20}:
+    name (unique): <word()>
+    slug (unique): <slug(2)>
+    description: <sentence()>

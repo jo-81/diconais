@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Key;
 use App\Entity\Kana;
 use App\Entity\Kanji;
+use App\Entity\Theme;
 use App\Entity\Course;
 use App\Entity\Category;
 use Symfony\Component\HttpFoundation\Response;
@@ -42,5 +43,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Kanji', 'fa-solid fa-k', Kanji::class);
         yield MenuItem::linkToCrud('Key', 'fa-solid fa-key', Key::class);
         yield MenuItem::linkToCrud('Kana', 'fa-solid fa-language', Kana::class);
+
+        yield MenuItem::section('Vocabulaires');
+        yield MenuItem::linkToCrud('Theme', 'fa-solid fa-scroll', Theme::class);
     }
 }
