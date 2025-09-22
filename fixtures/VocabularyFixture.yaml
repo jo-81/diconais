@@ -1,0 +1,6 @@
+App\Entity\Vocabulary:
+  Vocabulary_{1..100}:
+    signification: <word()>
+    reading: '25%? ひ困と'
+    theme: '50%? @theme_<numberBetween(1, 20)>'
+    kanjis: ['@kanji_<numberBetween(1, 49)>', '@kanji_<numberBetween(50, 100)>']

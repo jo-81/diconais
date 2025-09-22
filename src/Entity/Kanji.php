@@ -29,10 +29,17 @@ class Kanji extends Ideogramme
     #[ORM\Column(nullable: true, enumType: JlptLevelEnum::class)]
     private ?JlptLevelEnum $level = null;
 
+    /**
+     * @var Collection<int, Vocabulary>
+     */
+    #[ORM\ManyToMany(targetEntity: Vocabulary::class, mappedBy: 'kanjis')]
+    private Collection $vocabularies;
+
     public function __construct()
     {
         $this->associatedKey = new ArrayCollection();
         $this->similars = new ArrayCollection();
+        $this->vocabularies = new ArrayCollection();
     }
 
     public function getOnyomi(): ?string
@@ -103,6 +110,33 @@ class Kanji extends Ideogramme
     public function setLevel(?JlptLevelEnum $level): static
     {
         $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Vocabulary>
+     */
+    public function getVocabularies(): Collection
+    {
+        return $this->vocabularies;
+    }
+
+    public function addVocabulary(Vocabulary $vocabulary): static
+    {
+        if (!$this->vocabularies->contains($vocabulary)) {
+            $this->vocabularies->add($vocabulary);
+            $vocabulary->addKanji($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVocabulary(Vocabulary $vocabulary): static
+    {
+        if ($this->vocabularies->removeElement($vocabulary)) {
+            $vocabulary->removeKanji($this);
+        }
 
         return $this;
     }
