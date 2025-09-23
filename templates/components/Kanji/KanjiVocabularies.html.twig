@@ -1,0 +1,21 @@
+<div {{ attributes.defaults({class: 'mt-5'}) }}>
+    <header class="mb-3">
+        <h2 class="title mb-0 h3 fw-semibold">Vocabulaires</h2>
+    </header>
+
+
+    <div class="row gap-2">
+        {% for vocabulary in this.getListVocabularies %}
+            <div class="col-12">
+                <div class="shadow-sm card flex-wrap flex-row p-3 rounded-3">
+                    <span class="col-12 col-md-1">{{ this.page * (loop.index0 + 1) }}</span>
+                    <span class="col-12 col-md">{{ reading(vocabulary) }}</span>
+                    <span class="col-12 col-md">{{ vocabulary.romaji }}</span>
+                    <span class="col-12 col-md">{{ vocabulary.signification }}</span>
+                </div>
+            </div>
+        {% endfor %}
+
+        {{ knp_pagination_render(this.getListVocabularies) }}
+    </div>
+</div>

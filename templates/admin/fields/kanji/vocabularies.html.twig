@@ -1,0 +1,13 @@
+{% if field.value is not empty %}
+    <ul>
+    {% for vocabulary in field.value %}
+        {% set vocabularyUrl = ea_url()
+            .setController('App\\Controller\\Admin\\VocabularyCrudController')
+            .setEntityId(vocabulary.id)
+        %}
+        <li><a href="{{ vocabularyUrl }}">{{ vocabulary.signification }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+Aucun vocabulary associé(s)
+{% endif %}

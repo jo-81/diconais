@@ -30,6 +30,9 @@ class Vocabulary
     #[ORM\ManyToMany(targetEntity: Kanji::class, inversedBy: 'vocabularies')]
     private Collection $kanjis;
 
+    #[ORM\Column(length: 255)]
+    private ?string $romaji = null;
+
     public function __construct()
     {
         $this->kanjis = new ArrayCollection();
@@ -101,6 +104,18 @@ class Vocabulary
     public function removeKanji(Kanji $kanji): static
     {
         $this->kanjis->removeElement($kanji);
+
+        return $this;
+    }
+
+    public function getRomaji(): ?string
+    {
+        return $this->romaji;
+    }
+
+    public function setRomaji(string $romaji): static
+    {
+        $this->romaji = $romaji;
 
         return $this;
     }

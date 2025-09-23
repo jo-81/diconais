@@ -46,6 +46,7 @@ class VocabularyCrudController extends AbstractCrudController
             IdField::new('id')->onlyOnDetail(),
             TextField::new('signification'),
             TextField::new('reading', 'Lecture'),
+            TextField::new('romaji'),
             AssociationField::new('theme'),
             ArrayField::new('kanjis')
                 ->hideOnForm()

@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\ChoiceFilter;
@@ -75,6 +76,9 @@ class KanjiCrudController extends AbstractCrudController
             AssociationField::new('similars', 'Kanji similaire(s)')
                 ->onlyOnDetail()
                 ->setTemplatePath('admin/fields/kanji/similars.html.twig'),
+            ArrayField::new('vocabularies', 'Vocabulaires')
+                ->setTemplatePath('admin/fields/kanji/vocabularies.html.twig')
+                ->onlyOnDetail(),
         ];
     }
 
