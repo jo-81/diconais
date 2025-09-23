@@ -63,7 +63,7 @@
         </section>
         <!-- Informations sur le kanji -->
 
-        {% if class_name == "App\\Entity\\Kanji" %}
+        {% if class_name == "App\\Entity\\Kanji" and ideogramme.similars.count > 0 %}
             <!-- Liste des kanji similaires -->
             <twig:Ideogramme:IdeogrammeAssociated
                 title="Kanji similaires"
@@ -81,7 +81,10 @@
             <!-- Liste des kanji associés à la clé -->
         {% endif %}
 
-        <!-- Vocabulaires associés au kanji -->
-        <!-- Vocabulaires associés au kanji -->
+        {% if class_name == "App\\Entity\\Kanji" and ideogramme.vocabularies.count > 0 %}
+            <!-- Vocabulaires associés au kanji -->
+            <twig:Kanji:KanjiVocabularies vocabularies="{{ ideogramme.vocabularies.toArray }}" />
+            <!-- Vocabulaires associés au kanji -->
+        {% endif %}
     </div>
 {% endblock %}

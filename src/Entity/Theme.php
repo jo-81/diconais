@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ThemeRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use App\Validator\Constraints\NameAndSlugConstraints;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -27,6 +29,17 @@ class Theme
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
+
+    /**
+     * @var Collection<int, Vocabulary>
+     */
+    #[ORM\OneToMany(targetEntity: Vocabulary::class, mappedBy: 'theme')]
+    private Collection $vocabularies;
+
+    public function __construct()
+    {
+        $this->vocabularies = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -72,5 +85,35 @@ class Theme
     public function __toString()
     {
         return $this->name;
+    }
+
+    /**
+     * @return Collection<int, Vocabulary>
+     */
+    public function getVocabularies(): Collection
+    {
+        return $this->vocabularies;
+    }
+
+    public function addVocabulary(Vocabulary $vocabulary): static
+    {
+        if (!$this->vocabularies->contains($vocabulary)) {
+            $this->vocabularies->add($vocabulary);
+            $vocabulary->setTheme($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVocabulary(Vocabulary $vocabulary): static
+    {
+        if ($this->vocabularies->removeElement($vocabulary)) {
+            // set the owning side to null (unless already changed)
+            if ($vocabulary->getTheme() === $this) {
+                $vocabulary->setTheme(null);
+            }
+        }
+
+        return $this;
     }
 }
