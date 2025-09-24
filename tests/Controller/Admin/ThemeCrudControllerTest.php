@@ -69,9 +69,9 @@ class ThemeCrudControllerTest extends AbstractCrudTestCase
     }
 
     /**
-     * testCreateEntityKanji.
+     * testCreateEntityTheme.
      */
-    public function testCreateEntityKanji(): void
+    public function testCreateEntityTheme(): void
     {
         $testUser = $this->findOneEntityBy(User::class, ['email' => 'admin@domaine.fr']);
         $this->client->loginUser($testUser);
@@ -91,7 +91,10 @@ class ThemeCrudControllerTest extends AbstractCrudTestCase
         $this->assertSelectorTextContains('div', "'ideogramme' a été créé avec succès.");
     }
 
-    public function testUpdateEntityKanji(): void
+    /**
+     * testUpdateEntityTheme.
+     */
+    public function testUpdateEntityTheme(): void
     {
         $testUser = $this->findOneEntityBy(User::class, ['email' => 'admin@domaine.fr']);
         $this->client->loginUser($testUser);

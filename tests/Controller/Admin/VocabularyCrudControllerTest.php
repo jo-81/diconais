@@ -41,6 +41,9 @@ class VocabularyCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->request('GET', $this->generateNewFormUrl());
         static::assertResponseRedirects('/connexion');
+
+        $this->client->request('GET', $this->generateEditFormUrl(1));
+        static::assertResponseRedirects('/connexion');
     }
 
     /**
@@ -60,9 +63,12 @@ class VocabularyCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->request('GET', $this->generateNewFormUrl());
         static::assertResponseIsSuccessful();
+
+        $this->client->request('GET', $this->generateEditFormUrl(1));
+        static::assertResponseIsSuccessful();
     }
 
-    public function testCreateEntityKanji(): void
+    public function testCreateEntityVocabulary(): void
     {
         $testUser = $this->findOneEntityBy(User::class, ['email' => 'admin@domaine.fr']);
         $this->client->loginUser($testUser);
@@ -80,5 +86,26 @@ class VocabularyCrudControllerTest extends AbstractCrudTestCase
         $this->client->followRedirect();
 
         $this->assertSelectorTextContains('div', "'vocabulary' a été créé avec succès.");
+    }
+
+    public function testUpdateEntityVocabulary(): void
+    {
+        $testUser = $this->findOneEntityBy(User::class, ['email' => 'admin@domaine.fr']);
+        $this->client->loginUser($testUser);
+        $crawler = $this->client->request('GET', $this->generateEditFormUrl(1));
+
+        $form = $crawler->selectButton('Sauvegarder les modifications')->form();
+        $form['Vocabulary[signification]'] = 'update vocabulary';
+        $this->client->submit($form);
+
+        $entityUpdate = $this->findEntity(Vocabulary::class, 1);
+
+        self::assertInstanceOf(Vocabulary::class, $entityUpdate);
+        self::assertEquals('update vocabulary', $entityUpdate->getSignification());
+        self::assertResponseRedirects();
+
+        $this->client->followRedirect();
+
+        $this->assertSelectorTextContains('div', "'update vocabulary' a été mis à jour avec succès.");
     }
 }
