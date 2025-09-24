@@ -36,6 +36,11 @@ final class KanjiVocabularies
         );
     }
 
+    public function getIndex(int $index): int
+    {
+        return ($this->page - 1) * self::NUMBER_ITEMS + $index;
+    }
+
     public function hydrateVocabulary(array $data): array
     {
         $results = [];

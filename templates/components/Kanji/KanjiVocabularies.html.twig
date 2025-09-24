@@ -8,7 +8,7 @@
         {% for vocabulary in this.getListVocabularies %}
             <div class="col-12">
                 <div class="shadow-sm card flex-wrap flex-row p-3 rounded-3">
-                    <span class="col-12 col-md-1">{{ this.page * (loop.index0 + 1) }}</span>
+                    <span class="col-12 col-md-1">{{ this.getIndex(loop.index) }}</span>
                     <span class="col-12 col-md">{{ reading(vocabulary) }}</span>
                     <span class="col-12 col-md">{{ vocabulary.romaji }}</span>
                     <span class="col-12 col-md">{{ vocabulary.signification }}</span>
