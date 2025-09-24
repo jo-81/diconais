@@ -27,6 +27,7 @@ class VocabularyCrudController extends AbstractCrudController
             ->setPaginatorPageSize(15)
             ->setPageTitle('index', 'Liste des mots de vocabulaire')
             ->setPageTitle('detail', 'Consulter un mot de vocabulaire')
+            ->setPageTitle('new', 'Ajouter un mot de vocabulaire')
             ->showEntityActionsInlined()
         ;
     }
@@ -45,17 +46,24 @@ class VocabularyCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->onlyOnDetail(),
-            TextField::new('signification'),
-            TextField::new('reading', 'Lecture'),
-            TextField::new('romaji'),
-            AssociationField::new('theme'),
+            TextField::new('signification')
+                ->setColumns('col-12 col-md-6'),
+            TextField::new('reading', 'Lecture')
+                ->setHelp('Si le contenue de contient pas que des kanji alors laisser ce champs vide.')
+                ->setColumns('col-12 col-md-6'),
+            TextField::new('romaji')
+                ->setColumns('col-12 col-md-6'),
+            AssociationField::new('theme')
+                ->setColumns('col-12 col-md-6'),
             ArrayField::new('kanjis')
                 ->onlyOnIndex()
                 ->setTemplatePath('admin/fields/vocabulary/kanjis.html.twig'),
             ArrayField::new('kanjis')
                 ->onlyOnDetail()
-                ->setTemplatePath('admin/fields/vocabulary/kanjis_detail.html.twig'),
-            AssociationField::new('kanjis')->onlyWhenUpdating(),
+                ->setTemplatePath('admin/fields/vocabulary/kanjis_detail.html.twig')
+                ->setColumns('col-12 col-md-6'),
+            AssociationField::new('kanjis')->onlyOnForms()
+                ->setColumns('col-12 col-xl-6'),
         ];
     }
 

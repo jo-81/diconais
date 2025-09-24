@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\VocabularyRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: VocabularyRepository::class)]
 class Vocabulary
@@ -15,6 +16,7 @@ class Vocabulary
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message: 'Cette valeur ne peux pas être vide.')]
     #[ORM\Column(length: 255)]
     private ?string $signification = null;
 
@@ -30,6 +32,7 @@ class Vocabulary
     #[ORM\ManyToMany(targetEntity: Kanji::class, inversedBy: 'vocabularies')]
     private Collection $kanjis;
 
+    #[Assert\NotBlank(message: 'Cette valeur ne peux pas être vide.')]
     #[ORM\Column(length: 255)]
     private ?string $romaji = null;
 
