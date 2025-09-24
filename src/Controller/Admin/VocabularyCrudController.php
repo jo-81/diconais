@@ -26,6 +26,7 @@ class VocabularyCrudController extends AbstractCrudController
             ->setDefaultSort(['id' => 'DESC'])
             ->setPaginatorPageSize(15)
             ->setPageTitle('index', 'Liste des mots de vocabulaire')
+            ->setPageTitle('detail', 'Consulter un mot de vocabulaire')
             ->showEntityActionsInlined()
         ;
     }
@@ -49,8 +50,11 @@ class VocabularyCrudController extends AbstractCrudController
             TextField::new('romaji'),
             AssociationField::new('theme'),
             ArrayField::new('kanjis')
-                ->hideOnForm()
+                ->onlyOnIndex()
                 ->setTemplatePath('admin/fields/vocabulary/kanjis.html.twig'),
+            ArrayField::new('kanjis')
+                ->onlyOnDetail()
+                ->setTemplatePath('admin/fields/vocabulary/kanjis_detail.html.twig'),
             AssociationField::new('kanjis')->onlyWhenUpdating(),
         ];
     }

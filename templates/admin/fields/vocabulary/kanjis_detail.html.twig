@@ -1,0 +1,14 @@
+{% if field.value is not empty %}
+    <p class="mb-1">Nombre de kanji : {{ field.value.count }}</p>
+    <ul>
+    {% for kanji in field.value %}
+        {% set kanjiUrl = ea_url()
+            .setController('App\\Controller\\Admin\\KanjiCrudController')
+            .setEntityId(kanji.id)
+        %}
+        <li><a href="{{ kanjiUrl }}">{{ kanji.ideogramme }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <span class="badge badge-outline">Aucun(e)</span>
+{% endif %}

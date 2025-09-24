@@ -26,6 +26,9 @@ class VocabularyCrudControllerTest extends AbstractCrudTestCase
     {
         $this->client->request('GET', $this->generateIndexUrl());
         static::assertResponseRedirects('/connexion');
+
+        $this->client->request('GET', $this->generateDetailUrl(1));
+        static::assertResponseRedirects('/connexion');
     }
 
     /**
@@ -38,6 +41,9 @@ class VocabularyCrudControllerTest extends AbstractCrudTestCase
         $this->client->loginUser($testUser);
 
         $this->client->request('GET', $this->generateIndexUrl());
+        static::assertResponseIsSuccessful();
+
+        $this->client->request('GET', $this->generateDetailUrl(1));
         static::assertResponseIsSuccessful();
     }
 }
