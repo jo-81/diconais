@@ -46,6 +46,12 @@ $pagination-border-width: 0;
 $pagination-disabled-bg: white;
 $pagination-focus-box-shadow: 0 0 0 0.25rem rgba($link, 0.25);
 
+/* NAVBAR */
+$navbar-padding-y: 2rem;
+$navbar-light-active-color: $primary;
+$navbar-light-hover-color: $primary;
+$navbar-light-brand-color: $body-color;
+
 /* BREAKPOINTS */
 $grid-breakpoints: (
     xs: 0,
