@@ -79,6 +79,10 @@ $container-max-widths: (
     color: mix($black, $primary, 60%);
 }
 
+.bg-footer {
+    background-color:  mix($black, $primary, 80%);
+}
+
 .ideogramme {
     font-size: 7rem;
 }
