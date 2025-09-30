@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue | {{ parent() }}{% endblock %}
+
+{% block body %}
+<twig:PageHeader title="Diconais"/>
+
+{# La liste des derniers cours de Japonais #}
+<section class="container my-5">
+    <header class="mb-4">
+        <h2 class="title mb-0">Les derniers cours publiés</h2>
+    </header>
+
+    <div class="row g-2 mb-4">
+        {% for course in courses %}
+            <twig:Course:CourseCard key="course-{{ course.id }}" course="{{ course }}" />
+        {% endfor %}
+    </div>
+
+    <footer>
+        <a class="btn btn-secondary" href="{{ path('course.list') }}">Plus de cours</a>
+    </footer>
+</section>
+{# La liste des derniers cours de Japonais #}
+
+{# La liste des derniers kanji #}
+<section class="container my-5">
+    <header>
+        <h2 class="title">Les derniers kanji ajoutés</h2>
+    </header>
+
+    <div class="row g-2 mb-4">
+        {% for kanji in kanjis %}
+            <twig:Ideogramme:IdeogrammeCard key="kanji-{{ kanji.id }}" ideogramme="{{ kanji }}"/>
+        {% endfor %}
+    </div>
+
+    <footer>
+        <a class="btn btn-secondary" href="{{ path('ideogramme.list') }}">Plus de kanji</a>
+    </footer>
+</section>
+{# La liste des derniers kanji #}
+{% endblock %}
