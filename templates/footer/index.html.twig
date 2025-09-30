@@ -1,0 +1,36 @@
+<footer class="bg-footer text-white p-5">
+    <div class="container">
+        <div class="row g-4 g-md-2">
+            {# Nom du site + phrase d'accoche #}
+            <div class="col-12 col-md">
+                <h3 class="h4">Diconais</h3>
+                <p class="mb-0">Apprendre le Japonais facilement.</p>
+            </div>
+            {# Nom du site + phrase d'accoche #}
+            
+            {# Les derniers cours rédigés #}
+            <div class="col-12 col-md">
+                <h3 class="h4">Les derniers cours</h3>
+                <ul>
+                    {% for course in courses %}
+                    <li><a class="link-light text-decoration-none" href="{{ path('course.show', {slug: course.slug}) }}">{{ course.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {# Les derniers cours rédigés #}
+            
+            {# Un kanji au hasard ou le dernier ajouté #}
+            <div class="col-12 col-md">
+                <h3 class="h4">Kanji</h3>
+                <a href="{{ path('ideogramme.show', {id: kanji.id}) }}" class="link-light text-decoration-none d-flex align-items-center">
+                    <div class="h1 me-2">{{ kanji.ideogramme }}</div>
+                    <div>
+                        <p class="mb-0">{{ kanji.signification }}</p>
+                    </div>
+                </a>
+            </div>
+            {# Un kanji au hasard ou le dernier ajouté #}
+        </div>
+    </div>
+</footer>
+

@@ -17,6 +17,9 @@
     </head>
     <body>
         {{ knp_menu_render('main', {'currentClass': 'active', template: "/menu/main.html.twig"}) }}
+        
         {% block body %}{% endblock %}
+
+        {{ render(controller('App\\Controller\\FooterController::index')) }}
     </body>
 </html>
