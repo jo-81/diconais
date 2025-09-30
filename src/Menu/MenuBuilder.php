@@ -30,12 +30,12 @@ class MenuBuilder
 
         $menu->addChild('Cours', ['route' => 'course.list'])
             ->setAttributes(['class' => 'nav-item'])
-            ->setLinkAttributes(['class' => 'course.list' === $currentRoute ? $activeClass.' nav-link' : 'fw-bold nav-link'])
+            ->setLinkAttributes(['class' => \str_contains($currentRoute, 'course')  ? $activeClass.' nav-link' : 'fw-bold nav-link'])
         ;
 
         $menu->addChild('Ideogramme', ['route' => 'ideogramme.list'])
             ->setAttributes(['class' => 'nav-item'])
-            ->setLinkAttributes(['class' => 'ideogramme.list' == $currentRoute ? $activeClass.' nav-link' : 'fw-bold nav-link'])
+            ->setLinkAttributes(['class' => \str_contains($currentRoute, 'ideogramme') ? $activeClass.' nav-link' : 'fw-bold nav-link'])
         ;
 
         if (!$this->security->getUser() instanceof UserInterface) {

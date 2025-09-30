@@ -22,9 +22,9 @@
 {% block list %}
     {% if item.hasChildren and options.depth is not same as(0) and item.displayChildren %}
         {% import _self as knp_menu %}
-        <nav class="navbar navbar-expand-lg bg-body-tertiary shadow">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
             <div class="container">
-                <a class="navbar-brand fw-bold" href="#">Diconais</a>
+                <a class="navbar-brand fw-bold" href="{{ path('homepage') }}">Diconais</a>
                 <button 
                     class="navbar-toggler" 
                     type="button" 
