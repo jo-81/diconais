@@ -30,7 +30,7 @@ class MenuBuilder
 
         $menu->addChild('Cours', ['route' => 'course.list'])
             ->setAttributes(['class' => 'nav-item'])
-            ->setLinkAttributes(['class' => \str_contains($currentRoute, 'course')  ? $activeClass.' nav-link' : 'fw-bold nav-link'])
+            ->setLinkAttributes(['class' => \str_contains($currentRoute, 'course') ? $activeClass.' nav-link' : 'fw-bold nav-link'])
         ;
 
         $menu->addChild('Ideogramme', ['route' => 'ideogramme.list'])

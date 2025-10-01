@@ -1,0 +1,15 @@
+{% extends 'bundles/TwigBundle/Exception/base.html.twig' %}
+
+{% block title %}Erreur{% endblock %}
+
+{% block body %}
+    <section class="m-auto">
+        <div class="container">
+            <h1 class="fw-bold"><span class="text-danger">{{ status_code }}</span> Une erreur est survenue</h1>
+
+            <p class="mb-0">
+                Une erreur inattendue s’est produite sur notre site. Veuillez réessayer dans quelques instants. <br />Merci de votre compréhension !
+            </p>
+        </div>
+    </section>
+{% endblock %}
