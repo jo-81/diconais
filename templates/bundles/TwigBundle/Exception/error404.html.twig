@@ -1,0 +1,15 @@
+{% extends 'bundles/TwigBundle/Exception/base.html.twig' %}
+
+{% block title %}Page non trouvée{% endblock %}
+
+{% block body %}
+    <section class="m-auto">
+        <div class="container">
+            <h1 class="fw-bold"><span class="text-danger">{{ status_code }}</span> Page non trouvée</h1>
+
+            <p class="mb-0">
+                La page demandée est introuvable. Vérifiez l'orthographe de l'URL ou bien <a href="{{ path('homepage') }}">retourner à la page d'acueil</a>.
+            </p>
+        </div>
+    </section>
+{% endblock %}
