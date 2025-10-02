@@ -18,7 +18,7 @@ jobs:
         image: mysql:8.0.32
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-          MYSQL_DATABASE: diconais
+          MYSQL_DATABASE: diconais_test
         ports:
           - 3306:3306
         options: >-
