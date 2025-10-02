@@ -12,6 +12,21 @@ permissions:
 jobs:
   symfony-tests:
     runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0.32
+        env:
+          MYSQL_ROOT_PASSWORD: ''
+          MYSQL_DATABASE: diconais
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
     steps:
       - uses: actions/checkout@v4
 
@@ -36,13 +51,12 @@ jobs:
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-      - name: Create Database
-        run: |
-          mkdir -p data
-          touch data/database.sqlite
+      - name: Wait for MySQL to be ready
+        run: until mysqladmin ping -h 127.0.0.1 --silent; do sleep 1; done
 
       - name: Set up test database schema
-        run: php bin/console doctrine:migrations:migrate --env=test --no-interaction
+        run: |
+          php bin/console doctrine:migrations:migrate --env=test --no-interaction
 
       - name: Build SASS assets
         run: php bin/console sass:build
@@ -52,5 +66,5 @@ jobs:
 
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         env:
-          DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
+          DATABASE_URL: "mysql://root@127.0.0.1:3306/diconais?serverVersion=8.0.32&charset=utf8mb4"
         run: vendor/bin/phpunit --testdox
