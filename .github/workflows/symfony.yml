@@ -64,6 +64,12 @@ jobs:
       - name: Install importmap assets
         run: php bin/console importmap:install
 
+      - name: php cs fixer
+        run: vendor/bin/php-cs-fixer fix
+
+      - name: phpstan
+        run: vendor/bin/phpstan analyse 
+
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         env:
           DATABASE_URL: "mysql://root@127.0.0.1:3306/diconais?serverVersion=8.0.32&charset=utf8mb4"
