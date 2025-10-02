@@ -43,6 +43,8 @@ jobs:
         touch data/database.sqlite
     - name: Build SASS assets
       run: php bin/console sass:build
+    - name: Install importmap assets
+      run: php bin/console importmap:install
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
