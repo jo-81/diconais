@@ -4,6 +4,7 @@ namespace App\Tests\Controller\Admin;
 
 use App\Entity\User;
 use App\Entity\Course;
+use App\Tests\Traits\AssertTrait;
 use App\Tests\Traits\EntityFinderTrait;
 use App\Controller\Admin\DashboardController;
 use App\Controller\Admin\CourseCrudController;
@@ -17,6 +18,7 @@ class CourseCrudControllerTest extends AbstractCrudTestCase
      */
     use EntityFinderTrait;
     use ReloadDatabaseTrait;
+    use AssertTrait;
 
     protected function getControllerFqcn(): string
     {
@@ -90,7 +92,7 @@ class CourseCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->followRedirect();
 
-        $this->assertSelectorTextContains('div', "'A new course' a été créé avec succès.");
+        $this->assertSuccessMessageWhenCreateEntity('A new course');
     }
 
     /**
@@ -114,6 +116,6 @@ class CourseCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->followRedirect();
 
-        $this->assertSelectorTextContains('div', "'Cours modifié' a été mis à jour avec succès.");
+        $this->assertSuccessMessageWhenUpdateEntity('Cours modifié');
     }
 }

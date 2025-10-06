@@ -4,6 +4,7 @@ namespace App\Tests\Controller\Admin;
 
 use App\Entity\User;
 use App\Entity\Vocabulary;
+use App\Tests\Traits\AssertTrait;
 use App\Tests\Traits\EntityFinderTrait;
 use App\Controller\Admin\DashboardController;
 use App\Controller\Admin\VocabularyCrudController;
@@ -17,6 +18,7 @@ class VocabularyCrudControllerTest extends AbstractCrudTestCase
      */
     use EntityFinderTrait;
     use ReloadDatabaseTrait;
+    use AssertTrait;
 
     protected function getControllerFqcn(): string
     {
@@ -85,7 +87,7 @@ class VocabularyCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->followRedirect();
 
-        $this->assertSelectorTextContains('div', "'vocabulary' a été créé avec succès.");
+        $this->assertSuccessMessageWhenCreateEntity('vocabulary');
     }
 
     public function testUpdateEntityVocabulary(): void
@@ -106,6 +108,6 @@ class VocabularyCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->followRedirect();
 
-        $this->assertSelectorTextContains('div', "'update vocabulary' a été mis à jour avec succès.");
+        $this->assertSuccessMessageWhenUpdateEntity('update vocabulary');
     }
 }

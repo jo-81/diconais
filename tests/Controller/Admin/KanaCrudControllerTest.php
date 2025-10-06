@@ -4,6 +4,7 @@ namespace App\Tests\Controller\Admin;
 
 use App\Entity\Kana;
 use App\Entity\User;
+use App\Tests\Traits\AssertTrait;
 use App\Tests\Traits\EntityFinderTrait;
 use App\Controller\Admin\KanaCrudController;
 use App\Controller\Admin\DashboardController;
@@ -17,6 +18,7 @@ class KanaCrudControllerTest extends AbstractCrudTestCase
      */
     use EntityFinderTrait;
     use ReloadDatabaseTrait;
+    use AssertTrait;
 
     protected function getControllerFqcn(): string
     {
@@ -86,7 +88,7 @@ class KanaCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->followRedirect();
 
-        $this->assertSelectorTextContains('div', "'や' a été créé avec succès.");
+        $this->assertSuccessMessageWhenCreateEntity('や');
     }
 
     public function testUpdateEntityKana(): void
@@ -107,6 +109,6 @@ class KanaCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->followRedirect();
 
-        $this->assertSelectorTextContains('div', "'あ' a été mis à jour avec succès.");
+        $this->assertSuccessMessageWhenUpdateEntity('あ');
     }
 }

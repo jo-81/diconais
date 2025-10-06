@@ -4,6 +4,7 @@ namespace App\Tests\Controller\Admin;
 
 use App\Entity\User;
 use App\Entity\Category;
+use App\Tests\Traits\AssertTrait;
 use App\Tests\Traits\EntityFinderTrait;
 use App\Controller\Admin\DashboardController;
 use App\Controller\Admin\CategoryCrudController;
@@ -18,6 +19,7 @@ final class CategoryCrudControllerTest extends AbstractCrudTestCase
      */
     use EntityFinderTrait;
     use ReloadDatabaseTrait;
+    use AssertTrait;
 
     protected function getControllerFqcn(): string
     {
@@ -95,7 +97,7 @@ final class CategoryCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->followRedirect();
 
-        $this->assertSelectorTextContains('div', "'category 2' a été créé avec succès.");
+        $this->assertSuccessMessageWhenCreateEntity('category 2');
     }
 
     /**
@@ -119,6 +121,6 @@ final class CategoryCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->followRedirect();
 
-        $this->assertSelectorTextContains('div', "'category update' a été mis à jour avec succès.");
+        $this->assertSuccessMessageWhenUpdateEntity('category update');
     }
 }

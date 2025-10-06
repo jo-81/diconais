@@ -4,6 +4,7 @@ namespace App\Tests\Controller\Admin;
 
 use App\Entity\User;
 use App\Entity\Theme;
+use App\Tests\Traits\AssertTrait;
 use App\Tests\Traits\EntityFinderTrait;
 use App\Controller\Admin\DashboardController;
 use App\Controller\Admin\ThemeCrudController;
@@ -17,6 +18,7 @@ class ThemeCrudControllerTest extends AbstractCrudTestCase
      */
     use EntityFinderTrait;
     use ReloadDatabaseTrait;
+    use AssertTrait;
 
     protected function getControllerFqcn(): string
     {
@@ -88,7 +90,7 @@ class ThemeCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->followRedirect();
 
-        $this->assertSelectorTextContains('div', "'ideogramme' a été créé avec succès.");
+        $this->assertSuccessMessageWhenCreateEntity('ideogramme');
     }
 
     /**
@@ -112,6 +114,6 @@ class ThemeCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->followRedirect();
 
-        $this->assertSelectorTextContains('div', "'update theme' a été mis à jour avec succès.");
+        $this->assertSuccessMessageWhenUpdateEntity('update theme');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Tests\Controller\Admin;
 
 use App\Entity\User;
 use App\Entity\Kanji;
+use App\Tests\Traits\AssertTrait;
 use App\Tests\Traits\EntityFinderTrait;
 use App\Controller\Admin\DashboardController;
 use App\Controller\Admin\KanjiCrudController;
@@ -17,6 +18,7 @@ class KanjiCrudControllerTest extends AbstractCrudTestCase
      */
     use EntityFinderTrait;
     use ReloadDatabaseTrait;
+    use AssertTrait;
 
     protected function getControllerFqcn(): string
     {
@@ -89,7 +91,7 @@ class KanjiCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->followRedirect();
 
-        $this->assertSelectorTextContains('div', "'ideogramme' a été créé avec succès.");
+        $this->assertSuccessMessageWhenCreateEntity('ideogramme');
     }
 
     /**
@@ -113,6 +115,6 @@ class KanjiCrudControllerTest extends AbstractCrudTestCase
 
         $this->client->followRedirect();
 
-        $this->assertSelectorTextContains('div', "'困' a été mis à jour avec succès.");
+        $this->assertSuccessMessageWhenUpdateEntity('困');
     }
 }
