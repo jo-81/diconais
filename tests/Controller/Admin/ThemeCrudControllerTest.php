@@ -4,10 +4,10 @@ namespace App\Tests\Controller\Admin;
 
 use App\Entity\User;
 use App\Entity\Theme;
-use App\Tests\Traits\AssertTrait;
 use App\Tests\Traits\EntityFinderTrait;
 use App\Controller\Admin\DashboardController;
 use App\Controller\Admin\ThemeCrudController;
+use App\Tests\Traits\AdminCrudAssertionsTrait;
 use App\Tests\Traits\CrudAuthenticationTestTrait;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 use EasyCorp\Bundle\EasyAdminBundle\Test\AbstractCrudTestCase;
@@ -19,8 +19,8 @@ class ThemeCrudControllerTest extends AbstractCrudTestCase
      */
     use EntityFinderTrait;
     use ReloadDatabaseTrait;
-    use AssertTrait;
     use CrudAuthenticationTestTrait;
+    use AdminCrudAssertionsTrait;
 
     protected function getControllerFqcn(): string
     {
@@ -61,11 +61,8 @@ class ThemeCrudControllerTest extends AbstractCrudTestCase
         $this->client->submit($form);
 
         self::assertInstanceOf(Theme::class, $this->findOneEntityBy(Theme::class, ['name' => 'ideogramme']));
-        self::assertResponseRedirects();
 
-        $this->client->followRedirect();
-
-        $this->assertSuccessMessageWhenCreateEntity('ideogramme');
+        $this->assertEntityCreated('ideogramme');
     }
 
     /**
@@ -85,10 +82,7 @@ class ThemeCrudControllerTest extends AbstractCrudTestCase
 
         self::assertInstanceOf(Theme::class, $entityUpdate);
         self::assertEquals('update theme', $entityUpdate->getName());
-        self::assertResponseRedirects();
 
-        $this->client->followRedirect();
-
-        $this->assertSuccessMessageWhenUpdateEntity('update theme');
+        $this->assertEntityUpdated('update theme');
     }
 }

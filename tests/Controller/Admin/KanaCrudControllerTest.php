@@ -4,10 +4,10 @@ namespace App\Tests\Controller\Admin;
 
 use App\Entity\Kana;
 use App\Entity\User;
-use App\Tests\Traits\AssertTrait;
 use App\Tests\Traits\EntityFinderTrait;
 use App\Controller\Admin\KanaCrudController;
 use App\Controller\Admin\DashboardController;
+use App\Tests\Traits\AdminCrudAssertionsTrait;
 use App\Tests\Traits\CrudAuthenticationTestTrait;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 use EasyCorp\Bundle\EasyAdminBundle\Test\AbstractCrudTestCase;
@@ -19,8 +19,8 @@ class KanaCrudControllerTest extends AbstractCrudTestCase
      */
     use EntityFinderTrait;
     use ReloadDatabaseTrait;
-    use AssertTrait;
     use CrudAuthenticationTestTrait;
+    use AdminCrudAssertionsTrait;
 
     protected function getControllerFqcn(): string
     {
@@ -65,11 +65,8 @@ class KanaCrudControllerTest extends AbstractCrudTestCase
         $this->client->submit($form);
 
         self::assertInstanceOf(Kana::class, $this->findOneEntityBy(Kana::class, ['ideogramme' => 'や']));
-        self::assertResponseRedirects();
 
-        $this->client->followRedirect();
-
-        $this->assertSuccessMessageWhenCreateEntity('や');
+        $this->assertEntityCreated('や');
     }
 
     /**
@@ -88,11 +85,7 @@ class KanaCrudControllerTest extends AbstractCrudTestCase
         $entityUpdate = $this->findEntity(Kana::class, 1);
 
         self::assertInstanceOf(Kana::class, $entityUpdate);
-        self::assertEquals('ki', $entityUpdate->getRomaji());
-        self::assertResponseRedirects();
 
-        $this->client->followRedirect();
-
-        $this->assertSuccessMessageWhenUpdateEntity('あ');
+        $this->assertEntityUpdated('あ');
     }
 }

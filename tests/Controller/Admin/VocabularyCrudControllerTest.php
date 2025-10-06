@@ -4,9 +4,9 @@ namespace App\Tests\Controller\Admin;
 
 use App\Entity\User;
 use App\Entity\Vocabulary;
-use App\Tests\Traits\AssertTrait;
 use App\Tests\Traits\EntityFinderTrait;
 use App\Controller\Admin\DashboardController;
+use App\Tests\Traits\AdminCrudAssertionsTrait;
 use App\Tests\Traits\CrudAuthenticationTestTrait;
 use App\Controller\Admin\VocabularyCrudController;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
@@ -19,8 +19,8 @@ class VocabularyCrudControllerTest extends AbstractCrudTestCase
      */
     use EntityFinderTrait;
     use ReloadDatabaseTrait;
-    use AssertTrait;
     use CrudAuthenticationTestTrait;
+    use AdminCrudAssertionsTrait;
 
     protected function getControllerFqcn(): string
     {
@@ -61,11 +61,8 @@ class VocabularyCrudControllerTest extends AbstractCrudTestCase
         $this->client->submit($form);
 
         self::assertInstanceOf(Vocabulary::class, $this->findOneEntityBy(Vocabulary::class, ['signification' => 'vocabulary']));
-        self::assertResponseRedirects();
 
-        $this->client->followRedirect();
-
-        $this->assertSuccessMessageWhenCreateEntity('vocabulary');
+        $this->assertEntityCreated('vocabulary');
     }
 
     /**
@@ -85,10 +82,7 @@ class VocabularyCrudControllerTest extends AbstractCrudTestCase
 
         self::assertInstanceOf(Vocabulary::class, $entityUpdate);
         self::assertEquals('update vocabulary', $entityUpdate->getSignification());
-        self::assertResponseRedirects();
 
-        $this->client->followRedirect();
-
-        $this->assertSuccessMessageWhenUpdateEntity('update vocabulary');
+        $this->assertEntityUpdated('update vocabulary');
     }
 }

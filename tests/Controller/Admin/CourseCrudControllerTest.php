@@ -4,10 +4,10 @@ namespace App\Tests\Controller\Admin;
 
 use App\Entity\User;
 use App\Entity\Course;
-use App\Tests\Traits\AssertTrait;
 use App\Tests\Traits\EntityFinderTrait;
 use App\Controller\Admin\DashboardController;
 use App\Controller\Admin\CourseCrudController;
+use App\Tests\Traits\AdminCrudAssertionsTrait;
 use App\Tests\Traits\CrudAuthenticationTestTrait;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 use EasyCorp\Bundle\EasyAdminBundle\Test\AbstractCrudTestCase;
@@ -19,8 +19,8 @@ class CourseCrudControllerTest extends AbstractCrudTestCase
      */
     use EntityFinderTrait;
     use ReloadDatabaseTrait;
-    use AssertTrait;
     use CrudAuthenticationTestTrait;
+    use AdminCrudAssertionsTrait;
 
     protected function getControllerFqcn(): string
     {
@@ -63,11 +63,7 @@ class CourseCrudControllerTest extends AbstractCrudTestCase
         $this->client->submit($form);
 
         self::assertInstanceOf(Course::class, $this->findOneEntityBy(Course::class, ['name' => 'A new course']));
-        self::assertResponseRedirects();
-
-        $this->client->followRedirect();
-
-        $this->assertSuccessMessageWhenCreateEntity('A new course');
+        $this->assertEntityCreated('A new course');
     }
 
     /**
@@ -86,11 +82,7 @@ class CourseCrudControllerTest extends AbstractCrudTestCase
         $entityUpdate = $this->findEntity(Course::class, 1);
 
         self::assertInstanceOf(Course::class, $entityUpdate);
-        self::assertEquals('Cours modifié', $entityUpdate->getName());
-        self::assertResponseRedirects();
 
-        $this->client->followRedirect();
-
-        $this->assertSuccessMessageWhenUpdateEntity('Cours modifié');
+        $this->assertEntityUpdated('Cours modifié');
     }
 }

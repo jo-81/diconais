@@ -4,9 +4,9 @@ namespace App\Tests\Controller\Admin;
 
 use App\Entity\User;
 use App\Entity\Category;
-use App\Tests\Traits\AssertTrait;
 use App\Tests\Traits\EntityFinderTrait;
 use App\Controller\Admin\DashboardController;
+use App\Tests\Traits\AdminCrudAssertionsTrait;
 use App\Controller\Admin\CategoryCrudController;
 use App\Tests\Traits\CrudAuthenticationTestTrait;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
@@ -19,8 +19,8 @@ final class CategoryCrudControllerTest extends AbstractCrudTestCase
      */
     use EntityFinderTrait;
     use ReloadDatabaseTrait;
-    use AssertTrait;
     use CrudAuthenticationTestTrait;
+    use AdminCrudAssertionsTrait;
 
     protected function getControllerFqcn(): string
     {
@@ -61,11 +61,8 @@ final class CategoryCrudControllerTest extends AbstractCrudTestCase
         $this->client->submit($form);
 
         self::assertInstanceOf(Category::class, $this->findOneEntityBy(Category::class, ['name' => 'category 2']));
-        self::assertResponseRedirects();
 
-        $this->client->followRedirect();
-
-        $this->assertSuccessMessageWhenCreateEntity('category 2');
+        $this->assertEntityCreated('category 2');
     }
 
     /**
@@ -84,11 +81,6 @@ final class CategoryCrudControllerTest extends AbstractCrudTestCase
         $entityUpdate = $this->findEntity(Category::class, 1);
 
         self::assertInstanceOf(Category::class, $entityUpdate);
-        self::assertEquals('category update', $entityUpdate->getName());
-        self::assertResponseRedirects();
-
-        $this->client->followRedirect();
-
-        $this->assertSuccessMessageWhenUpdateEntity('category update');
+        $this->assertEntityUpdated('category update');
     }
 }

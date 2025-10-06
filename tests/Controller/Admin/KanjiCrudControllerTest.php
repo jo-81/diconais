@@ -4,10 +4,10 @@ namespace App\Tests\Controller\Admin;
 
 use App\Entity\User;
 use App\Entity\Kanji;
-use App\Tests\Traits\AssertTrait;
 use App\Tests\Traits\EntityFinderTrait;
 use App\Controller\Admin\DashboardController;
 use App\Controller\Admin\KanjiCrudController;
+use App\Tests\Traits\AdminCrudAssertionsTrait;
 use App\Tests\Traits\CrudAuthenticationTestTrait;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 use EasyCorp\Bundle\EasyAdminBundle\Test\AbstractCrudTestCase;
@@ -19,8 +19,8 @@ class KanjiCrudControllerTest extends AbstractCrudTestCase
      */
     use EntityFinderTrait;
     use ReloadDatabaseTrait;
-    use AssertTrait;
     use CrudAuthenticationTestTrait;
+    use AdminCrudAssertionsTrait;
 
     protected function getControllerFqcn(): string
     {
@@ -62,11 +62,8 @@ class KanjiCrudControllerTest extends AbstractCrudTestCase
         $this->client->submit($form);
 
         self::assertInstanceOf(Kanji::class, $this->findOneEntityBy(Kanji::class, ['ideogramme' => 'ideogramme']));
-        self::assertResponseRedirects();
 
-        $this->client->followRedirect();
-
-        $this->assertSuccessMessageWhenCreateEntity('ideogramme');
+        $this->assertEntityCreated('ideogramme');
     }
 
     /**
@@ -86,10 +83,7 @@ class KanjiCrudControllerTest extends AbstractCrudTestCase
 
         self::assertInstanceOf(Kanji::class, $entityUpdate);
         self::assertEquals('update signification', $entityUpdate->getSignification());
-        self::assertResponseRedirects();
 
-        $this->client->followRedirect();
-
-        $this->assertSuccessMessageWhenUpdateEntity('困');
+        $this->assertEntityUpdated('困');
     }
 }
