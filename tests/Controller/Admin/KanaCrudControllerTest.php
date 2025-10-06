@@ -8,6 +8,7 @@ use App\Tests\Traits\AssertTrait;
 use App\Tests\Traits\EntityFinderTrait;
 use App\Controller\Admin\KanaCrudController;
 use App\Controller\Admin\DashboardController;
+use App\Tests\Traits\CrudAuthenticationTestTrait;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 use EasyCorp\Bundle\EasyAdminBundle\Test\AbstractCrudTestCase;
 
@@ -19,6 +20,7 @@ class KanaCrudControllerTest extends AbstractCrudTestCase
     use EntityFinderTrait;
     use ReloadDatabaseTrait;
     use AssertTrait;
+    use CrudAuthenticationTestTrait;
 
     protected function getControllerFqcn(): string
     {
@@ -31,37 +33,16 @@ class KanaCrudControllerTest extends AbstractCrudTestCase
     }
 
     /**
-     * testKanaPageWhenUserNotLogged.
+     * @return array<int, list<int|string>>
      */
-    public function testKanaPageWhenUserNotLogged(): void
+    public static function provideProtectedUrls(): iterable
     {
-        $this->client->request('GET', $this->generateNewFormUrl());
-        static::assertResponseRedirects('/connexion');
-
-        $this->client->request('GET', $this->generateDetailUrl(1));
-        static::assertResponseRedirects('/connexion');
-
-        $this->client->request('GET', $this->generateIndexUrl());
-        static::assertResponseRedirects('/connexion');
-    }
-
-    /**
-     * testKanaPageWhenUserLogged.
-     */
-    public function testKanaPageWhenUserLogged(): void
-    {
-        $userRepository = $this->entityManager->getRepository(User::class);
-        $testUser = $userRepository->findOneByEmail('admin@domaine.fr');
-        $this->client->loginUser($testUser);
-
-        $this->client->request('GET', $this->generateNewFormUrl());
-        static::assertResponseIsSuccessful();
-
-        $this->client->request('GET', $this->generateDetailUrl(1));
-        static::assertResponseIsSuccessful();
-
-        $this->client->request('GET', $this->generateIndexUrl());
-        static::assertResponseIsSuccessful();
+        return [
+            ['index'],
+            ['new'],
+            ['detail', 1],
+            ['edit', 1],
+        ];
     }
 
     /**
@@ -91,6 +72,9 @@ class KanaCrudControllerTest extends AbstractCrudTestCase
         $this->assertSuccessMessageWhenCreateEntity('や');
     }
 
+    /**
+     * testUpdateEntityKana.
+     */
     public function testUpdateEntityKana(): void
     {
         $testUser = $this->findOneEntityBy(User::class, ['email' => 'admin@domaine.fr']);

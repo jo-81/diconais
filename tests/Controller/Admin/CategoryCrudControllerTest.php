@@ -8,7 +8,7 @@ use App\Tests\Traits\AssertTrait;
 use App\Tests\Traits\EntityFinderTrait;
 use App\Controller\Admin\DashboardController;
 use App\Controller\Admin\CategoryCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use App\Tests\Traits\CrudAuthenticationTestTrait;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 use EasyCorp\Bundle\EasyAdminBundle\Test\AbstractCrudTestCase;
 
@@ -20,6 +20,7 @@ final class CategoryCrudControllerTest extends AbstractCrudTestCase
     use EntityFinderTrait;
     use ReloadDatabaseTrait;
     use AssertTrait;
+    use CrudAuthenticationTestTrait;
 
     protected function getControllerFqcn(): string
     {
@@ -32,49 +33,16 @@ final class CategoryCrudControllerTest extends AbstractCrudTestCase
     }
 
     /**
-     * testCategoryPageWhenUserNotLogged.
+     * @return array<int, list<int|string>>
      */
-    public function testCategoryPageWhenUserNotLogged(): void
+    public static function provideProtectedUrls(): iterable
     {
-        $this->client->request('GET', $this->generateIndexUrl());
-        static::assertResponseRedirects('/connexion');
-
-        $this->client->request('GET', $this->generateNewFormUrl());
-        static::assertResponseRedirects('/connexion');
-
-        $this->client->request('GET', $this->generateEditFormUrl(1));
-        static::assertResponseRedirects('/connexion');
-
-        $this->client->request('POST', $this->getCrudUrl(Action::DELETE, 1));
-        static::assertResponseRedirects('/connexion');
-
-        $this->client->request('GET', $this->generateDetailUrl(1));
-        static::assertResponseRedirects('/connexion');
-    }
-
-    /**
-     * testCategoryPageWhenUserLogged.
-     */
-    public function testCategoryPageWhenUserLogged(): void
-    {
-        $userRepository = $this->entityManager->getRepository(User::class);
-        $testUser = $userRepository->findOneByEmail('admin@domaine.fr');
-        $this->client->loginUser($testUser);
-
-        $this->client->request('GET', $this->generateIndexUrl());
-        static::assertResponseIsSuccessful();
-
-        $this->client->request('GET', $this->generateNewFormUrl());
-        static::assertResponseIsSuccessful();
-
-        $this->client->request('GET', $this->generateEditFormUrl(1));
-        static::assertResponseIsSuccessful();
-
-        $this->client->request('GET', $this->generateDetailUrl(1));
-        static::assertResponseIsSuccessful();
-
-        $this->client->request('POST', $this->getCrudUrl(Action::DELETE, 1));
-        static::assertResponseRedirects('/admin');
+        return [
+            ['index'],
+            ['new'],
+            ['detail', 1],
+            ['edit', 1],
+        ];
     }
 
     /**

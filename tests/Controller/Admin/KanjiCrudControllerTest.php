@@ -8,6 +8,7 @@ use App\Tests\Traits\AssertTrait;
 use App\Tests\Traits\EntityFinderTrait;
 use App\Controller\Admin\DashboardController;
 use App\Controller\Admin\KanjiCrudController;
+use App\Tests\Traits\CrudAuthenticationTestTrait;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 use EasyCorp\Bundle\EasyAdminBundle\Test\AbstractCrudTestCase;
 
@@ -19,6 +20,7 @@ class KanjiCrudControllerTest extends AbstractCrudTestCase
     use EntityFinderTrait;
     use ReloadDatabaseTrait;
     use AssertTrait;
+    use CrudAuthenticationTestTrait;
 
     protected function getControllerFqcn(): string
     {
@@ -31,43 +33,16 @@ class KanjiCrudControllerTest extends AbstractCrudTestCase
     }
 
     /**
-     * testKanjiPageWhenUserNotLogged.
+     * @return array<int, list<int|string>>
      */
-    public function testKanjiPageWhenUserNotLogged(): void
+    public static function provideProtectedUrls(): iterable
     {
-        $this->client->request('GET', $this->generateIndexUrl());
-        static::assertResponseRedirects('/connexion');
-
-        $this->client->request('GET', $this->generateNewFormUrl());
-        static::assertResponseRedirects('/connexion');
-
-        $this->client->request('GET', $this->generateEditFormUrl(215));
-        static::assertResponseRedirects('/connexion');
-
-        $this->client->request('POST', $this->getCrudUrl('delete', 215));
-        static::assertResponseRedirects('/connexion');
-    }
-
-    /**
-     * testKanjiPageWhenUserLogged.
-     */
-    public function testKanjiPageWhenUserLogged(): void
-    {
-        $userRepository = $this->entityManager->getRepository(User::class);
-        $testUser = $userRepository->findOneByEmail('admin@domaine.fr');
-        $this->client->loginUser($testUser);
-
-        $this->client->request('GET', $this->generateIndexUrl());
-        static::assertResponseIsSuccessful();
-
-        $this->client->request('GET', $this->generateNewFormUrl());
-        static::assertResponseIsSuccessful();
-
-        $this->client->request('GET', $this->generateDetailUrl(215));
-        static::assertResponseIsSuccessful();
-
-        $this->client->request('GET', $this->generateEditFormUrl(215));
-        static::assertResponseIsSuccessful();
+        return [
+            ['index'],
+            ['new'],
+            ['detail', 215],
+            ['edit', 215],
+        ];
     }
 
     /**
