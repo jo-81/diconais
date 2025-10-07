@@ -6,6 +6,8 @@ use App\Entity\User;
 use App\Entity\Vocabulary;
 use App\Tests\Traits\EntityFinderTrait;
 use App\Controller\Admin\DashboardController;
+use App\Tests\Traits\AdminCrudAssertionsTrait;
+use App\Tests\Traits\CrudAuthenticationTestTrait;
 use App\Controller\Admin\VocabularyCrudController;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 use EasyCorp\Bundle\EasyAdminBundle\Test\AbstractCrudTestCase;
@@ -17,6 +19,8 @@ class VocabularyCrudControllerTest extends AbstractCrudTestCase
      */
     use EntityFinderTrait;
     use ReloadDatabaseTrait;
+    use CrudAuthenticationTestTrait;
+    use AdminCrudAssertionsTrait;
 
     protected function getControllerFqcn(): string
     {
@@ -29,45 +33,21 @@ class VocabularyCrudControllerTest extends AbstractCrudTestCase
     }
 
     /**
-     * testVocabularyPageWhenUserNotLogged.
+     * @return array<int, list<int|string>>
      */
-    public function testVocabularyPageWhenUserNotLogged(): void
+    public static function provideProtectedUrls(): iterable
     {
-        $this->client->request('GET', $this->generateIndexUrl());
-        static::assertResponseRedirects('/connexion');
-
-        $this->client->request('GET', $this->generateDetailUrl(1));
-        static::assertResponseRedirects('/connexion');
-
-        $this->client->request('GET', $this->generateNewFormUrl());
-        static::assertResponseRedirects('/connexion');
-
-        $this->client->request('GET', $this->generateEditFormUrl(1));
-        static::assertResponseRedirects('/connexion');
+        return [
+            ['index'],
+            ['new'],
+            ['detail', 1],
+            ['edit', 1],
+        ];
     }
 
     /**
-     * testVocabularyPageWhenUserLogged.
+     * testCreateEntityVocabulary.
      */
-    public function testVocabularyPageWhenUserLogged(): void
-    {
-        $userRepository = $this->entityManager->getRepository(User::class);
-        $testUser = $userRepository->findOneByEmail('admin@domaine.fr');
-        $this->client->loginUser($testUser);
-
-        $this->client->request('GET', $this->generateIndexUrl());
-        static::assertResponseIsSuccessful();
-
-        $this->client->request('GET', $this->generateDetailUrl(1));
-        static::assertResponseIsSuccessful();
-
-        $this->client->request('GET', $this->generateNewFormUrl());
-        static::assertResponseIsSuccessful();
-
-        $this->client->request('GET', $this->generateEditFormUrl(1));
-        static::assertResponseIsSuccessful();
-    }
-
     public function testCreateEntityVocabulary(): void
     {
         $testUser = $this->findOneEntityBy(User::class, ['email' => 'admin@domaine.fr']);
@@ -81,13 +61,13 @@ class VocabularyCrudControllerTest extends AbstractCrudTestCase
         $this->client->submit($form);
 
         self::assertInstanceOf(Vocabulary::class, $this->findOneEntityBy(Vocabulary::class, ['signification' => 'vocabulary']));
-        self::assertResponseRedirects();
 
-        $this->client->followRedirect();
-
-        $this->assertSelectorTextContains('div', "'vocabulary' a été créé avec succès.");
+        $this->assertEntityCreated('vocabulary');
     }
 
+    /**
+     * testUpdateEntityVocabulary.
+     */
     public function testUpdateEntityVocabulary(): void
     {
         $testUser = $this->findOneEntityBy(User::class, ['email' => 'admin@domaine.fr']);
@@ -102,10 +82,7 @@ class VocabularyCrudControllerTest extends AbstractCrudTestCase
 
         self::assertInstanceOf(Vocabulary::class, $entityUpdate);
         self::assertEquals('update vocabulary', $entityUpdate->getSignification());
-        self::assertResponseRedirects();
 
-        $this->client->followRedirect();
-
-        $this->assertSelectorTextContains('div', "'update vocabulary' a été mis à jour avec succès.");
+        $this->assertEntityUpdated('update vocabulary');
     }
 }

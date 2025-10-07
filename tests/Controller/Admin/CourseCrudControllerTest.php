@@ -7,6 +7,8 @@ use App\Entity\Course;
 use App\Tests\Traits\EntityFinderTrait;
 use App\Controller\Admin\DashboardController;
 use App\Controller\Admin\CourseCrudController;
+use App\Tests\Traits\AdminCrudAssertionsTrait;
+use App\Tests\Traits\CrudAuthenticationTestTrait;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 use EasyCorp\Bundle\EasyAdminBundle\Test\AbstractCrudTestCase;
 
@@ -17,6 +19,8 @@ class CourseCrudControllerTest extends AbstractCrudTestCase
      */
     use EntityFinderTrait;
     use ReloadDatabaseTrait;
+    use CrudAuthenticationTestTrait;
+    use AdminCrudAssertionsTrait;
 
     protected function getControllerFqcn(): string
     {
@@ -29,43 +33,16 @@ class CourseCrudControllerTest extends AbstractCrudTestCase
     }
 
     /**
-     * testCoursePageWhenUserNotLogged.
+     * @return array<int, list<int|string>>
      */
-    public function testCoursePageWhenUserNotLogged(): void
+    public static function provideProtectedUrls(): iterable
     {
-        $this->client->request('GET', $this->generateIndexUrl());
-        static::assertResponseRedirects('/connexion');
-
-        $this->client->request('GET', $this->generateDetailUrl(1));
-        static::assertResponseRedirects('/connexion');
-
-        $this->client->request('GET', $this->generateEditFormUrl(1));
-        static::assertResponseRedirects('/connexion');
-
-        $this->client->request('GET', $this->generateNewFormUrl());
-        static::assertResponseRedirects('/connexion');
-    }
-
-    /**
-     * testCoursePageWhenUserLogged.
-     */
-    public function testCoursePageWhenUserLogged(): void
-    {
-        $userRepository = $this->entityManager->getRepository(User::class);
-        $testUser = $userRepository->findOneByEmail('admin@domaine.fr');
-        $this->client->loginUser($testUser);
-
-        $this->client->request('GET', $this->generateIndexUrl());
-        static::assertResponseIsSuccessful();
-
-        $this->client->request('GET', $this->generateDetailUrl(1));
-        static::assertResponseIsSuccessful();
-
-        $this->client->request('GET', $this->generateEditFormUrl(1));
-        static::assertResponseIsSuccessful();
-
-        $this->client->request('GET', $this->generateNewFormUrl());
-        static::assertResponseIsSuccessful();
+        return [
+            ['index'],
+            ['new'],
+            ['detail', 1],
+            ['edit', 1],
+        ];
     }
 
     /**
@@ -86,11 +63,7 @@ class CourseCrudControllerTest extends AbstractCrudTestCase
         $this->client->submit($form);
 
         self::assertInstanceOf(Course::class, $this->findOneEntityBy(Course::class, ['name' => 'A new course']));
-        self::assertResponseRedirects();
-
-        $this->client->followRedirect();
-
-        $this->assertSelectorTextContains('div', "'A new course' a été créé avec succès.");
+        $this->assertEntityCreated('A new course');
     }
 
     /**
@@ -109,11 +82,7 @@ class CourseCrudControllerTest extends AbstractCrudTestCase
         $entityUpdate = $this->findEntity(Course::class, 1);
 
         self::assertInstanceOf(Course::class, $entityUpdate);
-        self::assertEquals('Cours modifié', $entityUpdate->getName());
-        self::assertResponseRedirects();
 
-        $this->client->followRedirect();
-
-        $this->assertSelectorTextContains('div', "'Cours modifié' a été mis à jour avec succès.");
+        $this->assertEntityUpdated('Cours modifié');
     }
 }

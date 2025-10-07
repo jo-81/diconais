@@ -44,7 +44,7 @@ final class CourseControllerTest extends WebTestCase
      */
     public function testNotFoundWhenCourseNotPublished(): void
     {
-        $courseNotPublished = $this->findOneEntityBy(Course::class, ['published' => false]);
+        $courseNotPublished = $this->findOneEntityByOrFail(Course::class, ['published' => false]);
         $this->client->request('GET', '/cours/'.$courseNotPublished->getSlug());
 
         self::assertResponseStatusCodeSame(404);
@@ -55,8 +55,8 @@ final class CourseControllerTest extends WebTestCase
      */
     public function testWhenUserLoggedAndCourseNotPublished(): void
     {
-        $user = $this->findOneEntityBy(User::class, ['email' => 'admin@domaine.fr']);
-        $courseNotPublished = $this->findOneEntityBy(Course::class, ['published' => false]);
+        $user = $this->findOneEntityByOrFail(User::class, ['email' => 'admin@domaine.fr']);
+        $courseNotPublished = $this->findOneEntityByOrFail(Course::class, ['published' => false]);
         $this->client->loginUser($user);
         $this->client->request('GET', '/cours/'.$courseNotPublished->getSlug());
 
@@ -64,22 +64,20 @@ final class CourseControllerTest extends WebTestCase
     }
 
     /**
-     * testShowAdminLinkWhenUserLogged.
+     * testShowUnpublishedWarningWhenUserLogged.
      */
-    public function testShowAdminLinkWhenUserLogged(): void
+    public function testShowUnpublishedWarningWhenUserLogged(): void
     {
-        // User logged
-        $user = $this->findOneEntityBy(User::class, ['email' => 'admin@domaine.fr']);
+        $user = $this->findOneEntityByOrFail(User::class, ['email' => 'admin@domaine.fr']);
+        $unpublishedCourse = $this->findOneEntityByOrFail(Course::class, ['published' => false]);
+
         $this->client->loginUser($user);
-        $this->client->request('GET', '/cours/the-course-one');
+        $this->client->request('GET', '/cours/'.$unpublishedCourse->getSlug());
 
-        $this->assertSelectorTextContains('div.mt-3 a', 'Modifier le cours');
-        // $this->assertSelectorTextContains('div.alert.alert-warning', "Ce cours n'est pas encore publié !");
-
-        // User not logged
-        $this->client->request('GET', '/cours/the-course-one');
-
-        $this->assertAnySelectorTextContains('div.mt-3 a', 'Modifier le cours');
-        // $this->assertAnySelectorTextContains('div.alert.alert-warning', "Ce cours n'est pas encore publié !");
+        $this->assertSelectorExists('div.alert.alert-warning');
+        $this->assertSelectorTextContains(
+            'div.alert.alert-warning',
+            "Ce cours n'est pas encore publié !"
+        );
     }
 }
