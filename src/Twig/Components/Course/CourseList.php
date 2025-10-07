@@ -29,7 +29,7 @@ final class CourseList
         private CourseRepository $courseRepository,
         private PaginatorInterface $paginator,
         private CategoryRepository $categoryRepository,
-        private ParameterBagInterface $params
+        private ParameterBagInterface $params,
     ) {
     }
 

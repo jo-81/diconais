@@ -30,11 +30,10 @@ final class KanaList
     public string $query = '';
 
     public function __construct(
-        private KanaRepository $kanaRepository, 
+        private KanaRepository $kanaRepository,
         private PaginatorInterface $paginator,
-        private ParameterBagInterface $params
-    )
-    {
+        private ParameterBagInterface $params,
+    ) {
     }
 
     public function getKanas(): PaginationInterface

@@ -52,11 +52,11 @@ final class IdeogrammeAssociated
         $results = [];
         foreach ($data as $item) {
             $ideogramme = $this->ideogrammeRepository->find($item['id']);
-            if ($ideogramme !== null) {
+            if (null !== $ideogramme) {
                 $results[] = $ideogramme;
             }
         }
-        
+
         return $results;
     }
 

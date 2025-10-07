@@ -19,7 +19,12 @@ class KanjiRepository extends ServiceEntityRepository
     }
 
     /**
-     * findKanjiBy.
+     * Recherche des kanji selon plusieurs critères.
+     *
+     * @param string                                      $signification Filtre sur la signification (LIKE)
+     * @param string                                      $ideogramme    Filtre exact sur l'idéogramme
+     * @param string                                      $jlpt          Niveau JLPT
+     * @param array{numberStroke: int|null, egal: string} $strokes       Configuration du filtre de traits
      *
      * @return Kanji[]
      */

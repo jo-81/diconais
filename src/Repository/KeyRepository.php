@@ -19,7 +19,12 @@ class KeyRepository extends ServiceEntityRepository
     }
 
     /**
-     * findKeyBy.
+     * Recherche des key selon plusieurs critères.
+     *
+     * @param string                                      $signification Filtre sur la signification (LIKE)
+     * @param string                                      $ideogramme    Filtre exact sur l'idéogramme
+     * @param string                                      $numberKey     Numéro de la clé associé
+     * @param array{numberStroke: int|null, egal: string} $strokes       Configuration du filtre de traits
      *
      * @return Key[]
      */

@@ -44,7 +44,7 @@ final class IdeogrammeList
         private KanjiRepository $kanjiRepository,
         private KeyRepository $keyRepository,
         private PaginatorInterface $paginator,
-        private ParameterBagInterface $params
+        private ParameterBagInterface $params,
     ) {
     }
 
