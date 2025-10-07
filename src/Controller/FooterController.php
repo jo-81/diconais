@@ -16,7 +16,7 @@ final class FooterController extends AbstractController
     public function index(): Response
     {
         return $this->render('footer/index.html.twig', [
-            'courses' => $this->courseRepository->findBy(['published' => true], ['createdAt' => 'DESC'], 4),
+            'courses' => $this->courseRepository->findPublishedWithCategory(4),
             'kanji' => $this->kanjiRepository->findOneBy([], ['id' => 'DESC']),
         ]);
     }

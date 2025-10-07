@@ -47,28 +47,16 @@ class CourseRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    //    /**
-    //     * @return Course[] Returns an array of Course objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('c.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Course
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function findPublishedWithCategory(int $limit): array
+    {
+        return $this->createQueryBuilder('c')
+            ->select('c', 'cat')
+            ->innerJoin('c.category', 'cat')
+            ->where('c.published = :published')
+            ->setParameter('published', true)
+            ->orderBy('c.createdAt', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
 }
