@@ -49,7 +49,7 @@ class VocabularyCrudController extends AbstractCrudController
             TextField::new('signification')
                 ->setColumns('col-12 col-md-6'),
             TextField::new('reading', 'Lecture')
-                ->setHelp('Si le contenue de contient pas que des kanji alors laisser ce champs vide.')
+                ->setHelp('Si le contenue ne contient pas que des kanji alors laisser ce champs vide.')
                 ->setColumns('col-12 col-md-6'),
             TextField::new('romaji')
                 ->setColumns('col-12 col-md-6'),
