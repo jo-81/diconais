@@ -11,14 +11,13 @@ use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 #[AsLiveComponent]
 final class CourseList
 {
     use DefaultActionTrait;
     use PaginationTrait;
-
-    public const NUMBER_ITEMS = 6;
 
     #[LiveProp(writable: true, url: true)]
     public string $categorySlug = '';
@@ -30,6 +29,7 @@ final class CourseList
         private CourseRepository $courseRepository,
         private PaginatorInterface $paginator,
         private CategoryRepository $categoryRepository,
+        private ParameterBagInterface $params
     ) {
     }
 
@@ -38,7 +38,7 @@ final class CourseList
         return $this->paginator->paginate(
             $this->courseRepository->findCourseQuery($this->query, $this->getSelectedCategory()),
             $this->page,
-            self::NUMBER_ITEMS
+            $this->params->get('app.pagination.courses')
         );
     }
 
