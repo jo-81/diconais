@@ -77,6 +77,7 @@ final class IdeogrammeList
     #[LiveAction]
     public function reset(): void
     {
+        $this->resetPagination();
         $this->ideogrammeType = 'kanji';
         $this->query = '';
         $this->ideogramme = '';
