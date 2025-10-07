@@ -11,14 +11,13 @@ use Symfony\UX\LiveComponent\DefaultActionTrait;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 #[AsLiveComponent]
 final class IdeogrammeList
 {
     use DefaultActionTrait;
     use PaginationTrait;
-
-    public const NUMBER_ITEMS = 18;
 
     #[LiveProp(writable: true)]
     public string $ideogrammeType = 'kanji';
@@ -45,6 +44,7 @@ final class IdeogrammeList
         private KanjiRepository $kanjiRepository,
         private KeyRepository $keyRepository,
         private PaginatorInterface $paginator,
+        private ParameterBagInterface $params,
     ) {
     }
 
@@ -71,12 +71,13 @@ final class IdeogrammeList
             default => [],
         };
 
-        return $this->paginator->paginate($ideogrammes, $this->page, self::NUMBER_ITEMS);
+        return $this->paginator->paginate($ideogrammes, $this->page, $this->params->get('app.pagination.ideogrammes'));
     }
 
     #[LiveAction]
     public function reset(): void
     {
+        $this->resetPagination();
         $this->ideogrammeType = 'kanji';
         $this->query = '';
         $this->ideogramme = '';

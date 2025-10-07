@@ -28,4 +28,10 @@ trait PaginationTrait
     {
         $this->page = $page;
     }
+
+    #[LiveAction]
+    public function resetPagination(): void
+    {
+        $this->page = 1;
+    }
 }

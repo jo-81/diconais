@@ -11,13 +11,20 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
  */
 class KeyRepository extends ServiceEntityRepository
 {
+    private const ALLOWED_OPERATORS = ['=', '>', '<', '>=', '<='];
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Key::class);
     }
 
     /**
-     * findKeyBy.
+     * Recherche des key selon plusieurs critères.
+     *
+     * @param string   $signification Filtre sur la signification (LIKE)
+     * @param string   $ideogramme    Filtre exact sur l'idéogramme
+     * @param int|null $numberKey     Numéro de la clé associé
+     * @param array    $strokes       Configuration du filtre de traits
      *
      * @return Key[]
      */
@@ -53,39 +60,14 @@ class KeyRepository extends ServiceEntityRepository
         }
 
         if (isset($strokes['numberStroke']) && !is_null($strokes['numberStroke'])) {
-            $egal = $strokes['egal'] ?: '=';
+            $operator = in_array($strokes['egal'] ?? '=', self::ALLOWED_OPERATORS)
+                ? $strokes['egal']
+                : '=';
 
-            $qb
-                ->andWhere("k.numberStroke $egal :numberStroke")
-                ->setParameter('numberStroke', $strokes['numberStroke'])
-            ;
+            $qb->andWhere("k.numberStroke {$operator} :numberStroke")
+                ->setParameter('numberStroke', $strokes['numberStroke']);
         }
 
         return $qb->getQuery()->getResult();
     }
-
-    //    /**
-    //     * @return Key[] Returns an array of Key objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('k')
-    //            ->andWhere('k.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('k.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Key
-    //    {
-    //        return $this->createQueryBuilder('k')
-    //            ->andWhere('k.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }

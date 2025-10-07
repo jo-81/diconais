@@ -29,6 +29,10 @@ class Course
     private ?string $slug = null;
 
     #[Assert\NotBlank(message: 'Ce champ ne peut pas être vide.')]
+    #[Assert\Length(
+        min: 10,
+        minMessage: 'Le contenu doit contenir au moins {{ limit }} caractères.'
+    )]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 

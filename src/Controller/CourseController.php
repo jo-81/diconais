@@ -19,7 +19,7 @@ final class CourseController extends AbstractController
     #[Route('/cours/{slug}', name: 'course.show', methods: ['GET'])]
     public function show(#[MapEntity(mapping: ['slug' => 'slug'])] Course $course): Response
     {
-        if (!$course->isPublished() && null === $this->getUser()) {
+        if (!$course->isPublished() && !$this->isGranted('ROLE_ADMIN')) {
             throw $this->createNotFoundException("Cette page n'existe pas !");
         }
 

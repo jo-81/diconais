@@ -11,13 +11,20 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
  */
 class KanjiRepository extends ServiceEntityRepository
 {
+    private const ALLOWED_OPERATORS = ['=', '>', '<', '>=', '<='];
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Kanji::class);
     }
 
     /**
-     * findKanjiBy.
+     * Recherche des kanji selon plusieurs critères.
+     *
+     * @param string $signification Filtre sur la signification (LIKE)
+     * @param string $ideogramme    Filtre exact sur l'idéogramme
+     * @param string $jlpt          Niveau JLPT
+     * @param array  $strokes       Configuration du filtre de traits
      *
      * @return Kanji[]
      */
@@ -53,39 +60,14 @@ class KanjiRepository extends ServiceEntityRepository
         }
 
         if (isset($strokes['numberStroke']) && !is_null($strokes['numberStroke'])) {
-            $egal = $strokes['egal'] ?: '=';
+            $operator = in_array($strokes['egal'] ?? '=', self::ALLOWED_OPERATORS)
+                ? $strokes['egal']
+                : '=';
 
-            $qb
-                ->andWhere("k.numberStroke $egal :numberStroke")
-                ->setParameter('numberStroke', $strokes['numberStroke'])
-            ;
+            $qb->andWhere("k.numberStroke {$operator} :numberStroke")
+                ->setParameter('numberStroke', $strokes['numberStroke']);
         }
 
         return $qb->getQuery()->getResult();
     }
-
-    //    /**
-    //     * @return Kanji[] Returns an array of Kanji objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('k')
-    //            ->andWhere('k.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('k.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Kanji
-    //    {
-    //        return $this->createQueryBuilder('k')
-    //            ->andWhere('k.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }

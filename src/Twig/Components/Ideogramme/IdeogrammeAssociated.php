@@ -10,14 +10,13 @@ use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 #[AsLiveComponent]
 final class IdeogrammeAssociated
 {
     use DefaultActionTrait;
     use PaginationTrait;
-
-    public const NUMBER_ITEMS = 6;
 
     #[LiveProp()]
     public string $title;
@@ -28,6 +27,7 @@ final class IdeogrammeAssociated
     public function __construct(
         private IdeogrammeRepository $ideogrammeRepository,
         private PaginatorInterface $paginator,
+        private ParameterBagInterface $params,
     ) {
     }
 
@@ -36,7 +36,7 @@ final class IdeogrammeAssociated
         return $this->paginator->paginate(
             $this->ideogrammes,
             $this->page,
-            self::NUMBER_ITEMS
+            $this->params->get('app.pagination.ideogrammes.associated')
         );
     }
 
@@ -51,7 +51,10 @@ final class IdeogrammeAssociated
     {
         $results = [];
         foreach ($data as $item) {
-            $results[] = $this->ideogrammeRepository->find($item['id']);
+            $ideogramme = $this->ideogrammeRepository->find($item['id']);
+            if (null !== $ideogramme) {
+                $results[] = $ideogramme;
+            }
         }
 
         return $results;

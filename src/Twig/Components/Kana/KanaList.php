@@ -9,6 +9,7 @@ use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 #[AsLiveComponent]
 final class KanaList
@@ -28,10 +29,11 @@ final class KanaList
     #[LiveProp(writable: true, url: true)]
     public string $query = '';
 
-    public const NUMBER_ITEMS = 24;
-
-    public function __construct(private KanaRepository $kanaRepository, private PaginatorInterface $paginator)
-    {
+    public function __construct(
+        private KanaRepository $kanaRepository,
+        private PaginatorInterface $paginator,
+        private ParameterBagInterface $params,
+    ) {
     }
 
     public function getKanas(): PaginationInterface
@@ -39,7 +41,7 @@ final class KanaList
         return $this->paginator->paginate(
             $this->kanaRepository->filterListKana($this->query, $this->type, $this->accent, $this->combination),
             $this->page,
-            self::NUMBER_ITEMS
+            $this->params->get('app.pagination.kana')
         );
     }
 }
