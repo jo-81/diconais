@@ -38,6 +38,11 @@ class MenuBuilder
             ->setLinkAttributes(['class' => \str_contains($currentRoute, 'ideogramme') ? $activeClass.' nav-link' : 'fw-bold nav-link'])
         ;
 
+        $menu->addChild('Kana', ['route' => 'kana.list'])
+            ->setAttributes(['class' => 'nav-item'])
+            ->setLinkAttributes(['class' => \str_contains($currentRoute, 'kana') ? $activeClass.' nav-link' : 'fw-bold nav-link'])
+        ;
+
         if (!$this->security->getUser() instanceof UserInterface) {
             $menu->addChild('Connexion', ['route' => 'app_login'])
                 ->setAttributes(['class' => 'nav-item'])

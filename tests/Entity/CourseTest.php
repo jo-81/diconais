@@ -73,8 +73,9 @@ class CourseTest extends WebTestCase
         $course->setContent('');
         $violations = $this->getValidationErrors($course, $this->validator);
 
-        $this->assertEquals(1, $violations['count']);
+        $this->assertEquals(2, $violations['count']);
         $this->assertContains('Ce champ ne peut pas être vide.', $violations['messages']);
+        $this->assertContains('Le contenu doit contenir au moins 10 caractères.', $violations['messages']);
     }
 
     /**
