@@ -15,7 +15,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[InheritanceType('JOINED')]
 #[DiscriminatorColumn(name: 'discr', type: 'string')]
-#[DiscriminatorMap(['user' => User::class, 'admin' => Admin::class])]
+#[DiscriminatorMap(['user' => User::class, 'admin' => Admin::class, 'registered' => Registered::class])]
 abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
