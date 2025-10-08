@@ -29,6 +29,7 @@ class RegisteredCrudController extends AbstractCrudController
             ->setEntityLabelInPlural('utilisateurs')
             ->setEntityLabelInSingular('utilisateur')
             ->setPageTitle('index', 'Liste des %entity_label_plural%')
+            ->setPageTitle('detail', 'Consulter un %entity_label_singular%')
             ->showEntityActionsInlined()
         ;
     }

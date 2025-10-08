@@ -28,6 +28,7 @@ class RegisteredCrudControllerTest extends AbstractCrudTestCase
     {
         return [
             ['index'],
+            ['detail', 1],
         ];
     }
 }
