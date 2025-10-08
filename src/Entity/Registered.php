@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\RegisteredRepository;
 
+#[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: RegisteredRepository::class)]
 class Registered extends User
 {
@@ -21,5 +22,12 @@ class Registered extends User
         $this->registerAt = $registerAt;
 
         return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function setPersistValues(): void
+    {
+        $this->registerAt = new \DateTimeImmutable();
+        $this->roles = ['ROLE_REGISTERED'];
     }
 }

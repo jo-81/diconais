@@ -1,0 +1,10 @@
+App\Entity\Registered:
+  registered_1:
+    username: registered
+    email: registered@domaine.fr
+    password: \$2y\$10\$unwxO6nadFglas40HdqdLeWVleT29CRKOFqTTWcM7kgJZtsfIH1eC
+
+  registered_{2..100}:
+    username: registered_<current()>
+    email: <email()>
+    password: \$2y\$10\$unwxO6nadFglas40HdqdLeWVleT29CRKOFqTTWcM7kgJZtsfIH1eC
