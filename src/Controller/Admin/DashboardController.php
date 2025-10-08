@@ -8,6 +8,7 @@ use App\Entity\Kanji;
 use App\Entity\Theme;
 use App\Entity\Course;
 use App\Entity\Category;
+use App\Entity\Registered;
 use App\Entity\Vocabulary;
 use Symfony\Component\HttpFoundation\Response;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -49,5 +50,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Vocabulaires');
         yield MenuItem::linkToCrud('Liste des mots', 'fa-solid fa-list', Vocabulary::class);
         yield MenuItem::linkToCrud('Thème', 'fa-solid fa-scroll', Theme::class);
+
+        yield MenuItem::section('Utilisateurs');
+        yield MenuItem::linkToCrud('Liste des inscris', 'fa-solid fa-users', Registered::class);
     }
 }
